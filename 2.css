@@ -7861,7 +7861,7 @@ p.star:before {
 }
 .notice-information-box .txt strong {font-weight: 700;}
 
-.order_wrap.pay_complete .notice-information-box {margin-top: 26px;}
+.order_wrap.pay_complete .notice-information-box {margin-top: 26px; margin-bottom: 1px;}
 .mypage_wrap.myorder_view .notice-information-box {margin-top: 5px;}
 /* //2022-01-10 안내사항 추가 */
 
