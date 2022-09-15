@@ -7888,7 +7888,7 @@ p.star:before {
 
 
 /* 2022-07-24 회원가입 페이지 수정 */
-.member_wrap .input_area .inp_name {margin-top: 0;}
+.member_wrap .input_area .inp_name {margin-top: 10px;}
 .member_wrap .input_area .inp_name input {width: 165px;}
 .join2 .input_area div.disabled .inp_name label {width: 100%; display: block;}
 .member_wrap .input_area .gender  {
