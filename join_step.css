@@ -1,0 +1,574 @@
+/*서브페이지 전부 이파일에*/
+
+/* title style */
+.tit__style1 {
+	font-size: 32px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.tit__style2 {
+	margin: 55px 0 27px;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.tit__style3 {
+	font-size: 16px;
+	font-weight: 700;
+}
+
+/* btn style */
+.btn-box a {
+	display: block;
+	width: 100%;
+	height: 60px;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 58px;
+	text-align: center;
+	border-radius: 30px;
+	box-sizing: border-box;
+}
+
+.btn-box button {
+	display: block;
+	width: 100%;
+	font-size: 18px;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.btn_bg__bk {
+	background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255)
+}
+
+.btn_bg__gr {
+	background-color: rgb(204, 204, 204);
+}
+
+.btn_sld__bk {
+	border: 1px solid rgb(0, 0, 0);
+	box-sizing: border-box;
+	color: rgb(0, 0, 0);
+	font-weight: 700;
+}
+
+.btn_sld__gr {
+	border: 1px solid rgb(238, 238, 238);
+	box-sizing: border-box;
+}
+
+/* input style */
+.sel_bg__gr {
+	border: 1px solid rgb(153, 153, 153) !important;
+	background-color: rgb(238, 238, 238) !important;
+}
+
+.inp_bg__gr {
+	border: 1px solid rgb(153, 153, 153) !important;
+	background-color: rgb(238, 238, 238) !important;
+}
+
+/* border */
+.bd-bt__gr {
+	border-bottom: 1px solid rgb(238, 238, 238);
+	box-sizing: border-box;
+}
+
+/* line */
+.top__line {
+	margin-top: 50px;
+	padding-top: 40px;
+	border-top: 1px solid rgb(238, 238, 238);
+}
+
+/* wrapper */
+.mbr__contents,
+.odr__contents {
+	padding: 60px 0 100px;
+	box-sizing: border-box;
+}
+
+
+/************ member ***************/
+.mbr-box {
+	max-width: 640px;
+	width: 100%;
+	margin: 44px auto 0;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.mbr-box .pb0 {
+	padding-bottom: 0 !important;
+}
+
+.mbr-box .inp-box input {
+	width: 100%;
+	height: 50px;
+	padding: 0 64px 0 20px;
+	font-weight: 500;
+	font-family: 'Noto Sans Korean', sans-serif;
+	font-size: 16px;
+	color: rgb(51, 51, 51);
+	background: none;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 5px;
+	box-sizing: border-box;
+	outline: 0;
+}
+
+.mbr-box .inp-box input:focus {
+	border: 1px solid rgb(0, 0, 0);
+	box-sizing: border-box;
+}
+
+.mbr-box .inp-box input::placeholder {
+	color: rgb(153, 153, 153);
+	font-size: 16px;
+	font-family: 'Noto Sans Korean', sans-serif;
+	font-weight: 400;
+}
+
+
+.mbr-box .inp-box .pwonoff__btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+	width: 64px;
+	height: 48px;
+	font-size: 0;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url(/pc/resource/images/common/ico_eye_gr_24x24.png);
+	background-size: 24px;
+}
+
+.mbr-box .inp-box .pwonoff__btn:after {
+	content: '';
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 1px;
+	height: 50%;
+	background-color: rgb(153, 153, 153);
+	-webkit-transform: translate(-50%, -50%) rotate(45deg);
+	-ms-transform: translate(-50%, -50%) rotate(45deg);
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.mbr-box .inp-box .pwonoff__btn.off:after {
+	display: block;
+}
+
+.mbr-box .inp-box select {
+	padding: 0 43px 0 20px;
+	font-size: 16px;
+	font-weight: 400;
+	font-family: 'Noto Sans Korean', sans-serif;
+	color: rgb(153, 153, 153);
+	background: url(/resource/images/common/arr_down_9x6.png) no-repeat center right 20px;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	/* for chrome */
+	-moz-appearance: none;
+	/*for firefox*/
+	appearance: none;
+}
+
+.mbr-box .inp-box select::-ms-expand {
+	display: none;
+	/*for IE10,11*/
+}
+
+.mbr-box ._scroll {
+	overflow-y: scroll;
+}
+
+.mbr-box .tit__style2+.inp-box {
+	margin-top: 15px
+}
+
+.mbr-box .inp-box>div {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.mbr-box .inp-box>div:first-child {
+	margin-top: 0;
+}
+
+.mbr-box .inp-box .count_down {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	color: rgb(153, 153, 153);
+}
+
+.mbr-box .id-box {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 0 0;
+}
+
+.mbr-box .id-save label {
+	display: inline-block;
+	padding-left: 30px;
+	vertical-align: top;
+	font-weight: 400;
+	font-size: 16px;
+	color: rgb(0, 0, 0);
+	line-height: 16px;
+}
+
+.mbr-box .id-box .id-srh a {
+	font-size: 16px;
+	color: rgb(153, 153, 153);
+	text-decoration: underline;
+}
+
+.mbr-box .btn-box {
+	margin-top: 27px;
+}
+
+.mbr-box .btn-box.top__line a:first-child {
+	margin-bottom: 30px;
+}
+
+.mbr-box .btn-box.top__line a {
+	margin-bottom: 10px;
+}
+
+.mbr-box .login_sns {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin: 20px 0 56px 0;
+	padding-bottom: 60px;
+	border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.mbr-box .login_sns a {
+	margin-top: 10px;
+	width: 49%;
+	height: 50px;
+	border: 1px solid rgb(238, 238, 238);
+	border-radius: 30px;
+	box-sizing: border-box;
+	line-height: 47px;
+	font-size: 16px;
+	text-align: center;
+}
+
+.mbr-box .login_sns .btn_naver {
+	background: url(/pc/resource/images/sub/ico_naver_13x12.png) no-repeat center left 20px;
+}
+
+.mbr-box .login_sns .btn_kakao {
+	background: url(/pc/resource/images/sub/ico_kakao_17x16.png) no-repeat center left 20px;
+}
+
+.mbr-box .login_sns .btn_toss {
+	background: url(/pc/resource/images/sub/ico_toss_26x26.png) no-repeat center left 20px;
+}
+
+.mbr-box .login_sns a img {
+	padding: 0 30px 0 20px;
+}
+
+.mbr-box .btn-box .txt__btn {
+	margin-top: 27px;
+	height: auto;
+	line-height: initial;
+	font-size: 16px;
+	font-weight: 400;
+	color: rgb(153, 153, 153);
+	text-decoration: underline;
+}
+
+.mbr-box .txt {
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 32px;
+}
+
+.mbr-box .txt__gr {
+	font-size: 16px;
+	color: rgb(153, 153, 153);
+	line-height: 26px;
+}
+
+.mbr-box .join_kakao {
+	height: 60px;
+	background-color: rgb(254, 220, 0);
+	background-image: url(/pc/resource/images/sub/ico_kakao_17x16.png);
+	background-repeat: no-repeat;
+	background-position: left 20px center;
+	line-height: 60px;
+	border-radius: 30px;
+	box-sizing: border-box;
+}
+
+.mbr-box .inp-box select {
+	padding: 0 43px 0 20px;
+	font-size: 16px;
+	font-weight: 400;
+	font-family: 'Noto Sans Korean', sans-serif;
+	color: rgb(153, 153, 153);
+	background: url(/pc/resource/images/common/arr_down_bk_9x6.png) no-repeat center right 20px;
+	box-sizing: border-box;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 5px;
+	-webkit-appearance: none;
+	/* for chrome */
+	-moz-appearance: none;
+	/*for firefox*/
+	appearance: none;
+}
+
+.mbr-box .inp-box select::-ms-expand {
+	display: none;
+	/*for IE10,11*/
+}
+
+.mbr-box .inp-box .wid__style1 {
+	width: 110px;
+}
+
+.mbr-box .inp-box .wid__style2 {
+	width: 145px;
+}
+
+.mbr-box .inp-box .wid__style3 {
+	width: 140px;
+}
+
+.mbr-box label {
+	padding-left: 30px;
+	font-size: 16px;
+	line-height: 18px;
+}
+
+.mbr-box .red {
+	color: rgb(214, 0, 31);
+}
+
+/* join */
+.join-sec {
+	padding-bottom: 60px;
+	border-bottom: 1px solid rgb(0,0,0);
+	box-sizing: border-box;
+}
+.join1-frm-box .inp-box>div {
+	display: flex;
+}
+
+.join1-frm-box .inp-box .name input,
+.join1-frm-box .inp-box .birthday input {
+	margin-right: 10px;
+	width: 480px;
+}
+
+.join1-frm-box .inp-box .phone select {
+	margin-right: 10px;
+}
+
+.join1-frm-box .inp-box .phone input {
+	width: 295px;
+}
+
+.join1-frm-box .self-verification {
+	padding-bottom: 60px;
+	margin-bottom: 60px;
+	border-bottom: 1px solid rgb(238, 238, 238);
+	box-sizing: border-box;
+}
+
+.join1-frm-box .self-verification .btn-box button {
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	font-size: 18px;
+	font-weight: 700;
+	border-radius: 30px;
+	border: 1px solid rgb(0, 0, 0);
+	box-sizing: border-box;
+}
+
+.join1-frm-box .self-verification .all-agree-self {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 15px 0;
+	height: 50px;
+}
+
+.mbr-box .arr-down-btn {
+	background: url(/pc/resource/images/common/arr_down_bk_9x6.png) no-repeat center right;
+	width: 50px;
+	height: 50px;
+}
+
+.join1-frm-box .self-verification .self-chk-box {
+	display: none;
+}
+
+.join1-frm-box .self-verification.--open .self-chk-box {
+	display: block;
+}
+
+.join1-frm-box .self-verification .self-chk-box li {
+	display: flex;
+	justify-content: space-between;
+	margin: 5px 0;
+}
+
+.join1-frm-box .self-verification .self-chk-box label {
+	font-size: 12px;
+}
+
+.join1-frm-box .self-verification .self-chk-box .view-btn {
+	font-size: 12px;
+	text-decoration: underline;
+	color: rgb(153, 153, 153);
+}
+
+.join__add-info {
+	position: relative;
+}
+
+.join__add-info .btn_sel {
+	position: absolute;
+	right: 0;
+	top: 55px;
+	font-size: 16px;
+}
+
+.join__add-info .btn_sel .minus {
+	margin-left: 14px;
+	display: inline-block;
+	width: 10px;
+	height: 2px;
+	background-color: rgb(0, 0, 0);
+	vertical-align: 5px;
+}
+
+.join__add-info .inp_email {
+	margin-bottom: 17px;
+}
+
+.join__add-info .btn__style1 {
+	margin-bottom: 15px;
+	height: 50px;
+	line-height: 50px;
+	border-radius: 5px;
+}
+
+.join__agreement {}
+
+.join__agreement .all-agree-box {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+}
+
+.join__agreement .all-agree-box .arr-down-btn {
+	height: auto;
+}
+
+.join__agreement .all-agree-box {}
+
+.join__agreement .agree-chk-wrap {
+	padding-left: 30px;
+}
+
+.join__agreement .agree-chk-box {
+	padding: 20px 0 17px;
+}
+
+.join__agreement .agree-chk-box li {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 0;
+}
+
+.join__agreement .agree-chk-box li {}
+
+.join__agreement .agree-chk-box .view-btn {
+	font-size: 14px;
+	color: rgb(153, 153, 153);
+	text-decoration: underline;
+}
+
+.join__agreement .txt__gr {
+	padding-bottom: 28px;
+}
+
+.mkt-agree-box {
+	margin-top: 27px;
+}
+
+.join__privacy {
+	position: relative;
+}
+
+.join__privacy .view-btn {
+	position: absolute;
+	right: 0;
+	top: 55px;
+	font-size: 14px;
+	text-decoration: underline;
+	color: rgb(153, 153, 153);
+	line-height: 28px;
+}
+
+.join__privacy>span {
+	font-size: 18px;
+	line-height: 26px;
+}
+
+.join__membership {
+	margin-top: 55px;
+}
+
+.join__membership .txt {
+	margin-top: 16px;
+}
+
+.join__membership .btn-box {
+	display: flex;
+	margin-bottom: 60px;
+}
+
+.join__membership .inp__but {
+	margin-right: 10px;
+	width: 50%;
+	height: 50px;
+	line-height: 50px;
+	color: rgb(153, 153, 153);
+	text-align: center;
+	font-size: 16px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.join__membership .inp__but:last-child {
+	margin-right: 0;
+}
+
+.join__membership .inp__but:focus {
+	border: 1px solid rgb(0, 0, 0);
+	color: rgb(0, 0, 0);
+}

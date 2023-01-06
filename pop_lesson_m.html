@@ -1,0 +1,408 @@
+<div class="lesson__layer">
+	<div class="lyr-bg__wrap"></div>
+
+	<div class="con">
+		<button type="button" class="close__btn">close</button>
+
+		<div class="txt-box">
+			<div class="hd">
+				<p class="tit">스피드서브 원포인트 레슨 참가 신청서</p>
+			</div>
+<form name="form01" id="form01">
+			<div class="cn">
+				<div class="join-class-form">
+					<div>
+						<p class="name">참가자 이름</p>
+						<input type="text" name="mbname" id="mbname" placeholder="" maxlength="20">
+					</div>
+					<div>
+						<p class="phone">참가자 연락처<span>숫자만 입력</span></p>
+						<input type="number" name="mbtel" id="mbtel" placeholder="" maxlength="12" numberOnly inputmode="numeric">
+					</div>
+					<div>
+						<p class="sns">참가자 인스타그램 계정<span>예) korea_tennis</span></p>
+						<input type="text" name="mbinsta" id="mbinsta" placeholder="" maxlength="50">
+						<div class="chk-box">
+							<input type="checkbox" class="cb__style" id="noIns">
+							<label for="noIns">없음</label>
+						</div>
+					</div>
+					<div class="day-box">
+						<p class="date">참가 희망 일정<span>타임별 1시간 진행</span></p>
+						<select name="entryDate" id="entryDate" class="sel__style">
+							<option value="">일자 및 코치 선택</option>
+							<option value="20221008">10.08 (토) 김형돈 / 김성훈</option>
+							<option value="20221009">10.09 (일) 송아 / 우충효</option>
+							<option value="20221010">10.10 (월) 손혁재 / 이용준</option>
+							<option value="20221015">10.15 (토) 송아 / 우충효</option>
+							<option value="20221016">10.16 (일) 김형돈 / 김성훈</option>
+						</select>
+						<select name="entryTime" id="entryTime" class="sel__style">
+							<option value="">시간 및 커리큘럼 선택</option>
+						</select>
+					</div>
+				</div>
+</form>
+				<div class="agree_form">
+
+					<div class="head">
+						<strong>개인정보 수집 및 이용동의 (이름, 연락처)</strong><br /><br />
+						<div class="chk-box">
+							<input type="checkbox" class="cb__style" id="agreeA">
+							<label for="agreeA">동의</label>
+						</div>
+						<span>상기 개인정보 수집•이용에 대하여 동의를 거부할 수 있습니다.  다만, 동의를 거부할 경우 스피드서브 원포인트 레슨 참여에 제한이 있을 수 있습니다.</span>
+					</div>
+
+					<div class="tbl-box mt16">
+						<p class="tit">개인정보 수집 및 이용 내역</p>
+						<table>
+							<colgroup>
+								<col width="28%" />
+								<col width="%" />
+								<col width="35%" />
+							</colgroup>
+
+							<tr>
+								<td>항목</td>
+								<td>수집목적</td>
+								<td>보유기간</td>
+							</tr>
+							<tr>
+								<td>성명, <br>휴대폰번호</td>
+								<td>스피드서브<br>
+									원포인트 레슨,<br>
+									안내사항 공지 등<br>
+									정보제공
+
+								</td>
+								<td><a href="javascript:;" class="under">대회 <br>종료일로부터 60일</a></td>
+							</tr>
+						</table><br /><br />
+					</div>
+
+					<div class="head">
+						<strong>초상권 수집 및 이용동의</strong><br /><br />
+						<div class="chk-box">
+							<input type="checkbox" class="cb__style" id="agreeB">
+							<label for="agreeB">동의</label>
+						</div>
+						<span>상기 개인정보 수집•이용에 대하여 동의를 거부할 수 있습니다.  다만, 동의를 거부할 경우 스피드서브 원포인트 레슨 참여에 제한이 있을 수 있습니다.</span>
+					</div>
+
+					<div class="tbl-box mt16">
+						<p class="tit">초상권 수집 및 이용 내역</p>
+						<table>
+							<colgroup>
+								<col width="105px" />
+								<col width="" />
+							</colgroup>
+
+							<tr>
+								<td>항목</td>
+								<td>수집목적</td>
+							</tr>
+							<tr>
+								<td><a href="javascript:;" class="under">초상권<br>
+								(행사 참여 사진
+								및 영상)</a></td>
+								<td>초상 및 실연을 촬영한 촬영물, 편집물
+								등 모든 결과물(2차 저작물 포함)을 
+								아래 수집 목적으로 사용함<br>
+								1. 휠라코리아 공식온라인몰 및 SNS
+								채널 내 홍보 등 영리목적으로 사용
+								2. 휠라코리아 내부 홍보자료 및 
+								기획물<br>
+								3. 언론매체(온라인 뉴스 포함) 홍보 
+								기사 자료로 사용</td>
+							</tr>
+						</table><br /><br />
+					</div>
+					<a href="javascript:event_lesson();" class="btn_submit">신청서 제출하기</a>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		/* layer */
+		.lesson__layer {
+			width: 100%;
+			height: 100%;
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 20000;
+		}
+		body.agree--open .lesson__layer {display: block;}
+		.lyr-bg__wrap {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			background-color: rgba(0,0,0,0.3);
+			backdrop-filter: blur(50px);
+		}
+		.lesson__layer .con {
+			width: 89.333vw;
+			height: 138.666vw;
+			padding: 8.8vw 5.333vw;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			background-color: rgb(255,255,255);
+			box-sizing: border-box;
+			transform: translate(-50%, -50%);
+		}	
+		.lesson__layer .con .close__btn {
+			width: 8vw;
+			height: 8vw;
+			display: block;
+			position: absolute;
+			top: -4vw;
+			right: -4vw;
+			font-size: 0;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-image: url(//assets.styleship.com/fila/heritage/images/220915/btn_close_60x60.png);
+			background-size: 100%;
+		}
+		.lesson__layer .hd .tit {
+			font-family: 'NotoSansKR-Black', sans-serif;
+			font-weight: 400;
+			font-size: 4.266vw;
+			color: rgb(0,0,0);
+			text-align: center;
+		}
+		.lesson__layer .cn {
+			height: 110vw;
+			overflow-y: auto;
+			margin-top: 4.8vw;
+			padding-top: 4.8vw;
+			font-family: 'NotoSansKR-Regular', sans-serif;
+			font-weight: 400;
+			font-size: 3.2vw;
+			color: rgb(0,0,0);
+			line-height: 4.8vw;
+			border-top: 1px solid rgb(0,0,0);
+
+			-ms-overflow-style: none; /* IE and Edge */
+		  scrollbar-width: none; /* Firefox */
+		}
+		.lesson__layer .cn::-webkit-scrollbar {
+		  display: none; /* Chrome, Safari, Opera*/
+		}
+		.lesson__layer .cn strong {
+			font-family: 'NotoSansKR-Bold', sans-serif;
+			font-weight: 400;
+			font-size: 3.2vw;
+			color: rgb(0,0,0);
+			line-height: 3.2vw;
+		}
+		.lesson__layer .cn table {
+			width: 100%;
+			background-color: rgb(255,255,255);
+			border: 1px solid rgb(112,112,112);
+			box-sizing: border-box;
+		}
+		.lesson__layer .cn td {
+			padding: 1.866vw 2.666vw;
+			font-family: 'NotoSansKR-Regular', sans-serif;
+			font-weight: 400;
+			font-size: 3.2vw;
+			color: rgb(0,0,0);
+			border: 1px solid rgb(112,112,112);
+		}
+		.lesson__layer .cn td .under {
+			cursor: none;
+			text-decoration: underline;
+			font-size: 3.733vw;
+			font-weight: bold;
+		}
+
+		
+		.lesson__layer .join-class-form {
+		}
+		.lesson__layer .join-class-form p {
+			font-size: 3.2vw;
+			font-weight: 700;
+			line-height: 20px;
+			margin-bottom: 8px;
+		}
+		.lesson__layer .join-class-form > div {
+			position: relative;
+			margin-bottom: 27px;
+		}
+		.lesson__layer .join-class-form input[type="text"],
+		.lesson__layer .join-class-form input[type="number"] {
+			background-color: rgb(238,238,238);
+			border-radius: 5px;
+			width: 100%;
+			height: 40px;
+			padding: 0 20px;
+			box-sizing: border-box;
+			font-size: 3.7333vw;
+			color: rgb(0,0,0);color: rgb(0,0,0);
+			outline: 0;
+			border: 0;
+		}
+		.lesson__layer .join-class-form input[type="number"]::-webkit-outer-spin-button,
+		input[type="number"]::-webkit-inner-spin-button {
+		  -webkit-appearance: none;
+		  margin: 0;
+		}
+		.lesson__layer .join-class-form input[type="text"]::placeholder {color: rgb(0,0,0);}
+		.lesson__layer .join-class-form p span {
+			font-size: 12px;
+			font-weight: 400;
+			position: absolute;
+			right: 0;
+			line-height: 20px;
+		}
+		.lesson__layer .join-class-form .sel__style {
+			background-color: rgb(238,238,238);
+			border-radius: 10px;
+			width: 100%;
+			height: 40px;
+			font-size: 3.7333vw;
+			padding: 0 20px;
+			box-sizing: border-box;
+			margin: 0 0 5px;
+			border: 0;
+		  -o-appearance: none;
+		  -webkit-appearance: none;
+		  -moz-appearance: none;
+		  appearance: none;
+		  background: rgb(238,238,238) url(//assets.styleship.com/fila/heritage/images/220928/arr_down_10x6.png) no-repeat center right 20px;
+		  background-size: ;
+		  outline: 0 none;
+		}
+		.lesson__layer select::-ms-expand {display: none;}
+		.lesson__layer .cb__style {
+			position: absolute;
+			z-index: -9999;
+			opacity: 0;
+		}
+		.lesson__layer .join-class-form .chk-box {margin-top: 15px;}
+		.lesson__layer .join-class-form .chk-box:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.lesson__layer .join-class-form .chk-box label {
+			float: left;
+			padding-left: 25px;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 20px;
+			position: relative;
+		}
+		.lesson__layer .join-class-form .chk-box label:before{
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 20px;
+			height: 20px;
+			border: 1px solid rgb(204,204,204);
+			border-radius: 5px;
+			box-sizing: border-box;
+		}
+		.lesson__layer .join-class-form .chk-box input[type="checkbox"]:checked + label:after {
+			content: 'Ⅴ';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 4px;
+			width: 20px;
+			height: 20px;
+			font-size: 12px;
+			font-weight: 600;
+			color: rgb(204,204,204);
+		}
+		.lesson__layer input[type="checkbox"] {
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			padding: 0;
+		}
+		.lesson__layer .join-class-form .day-box {
+			border-top: 1px solid rgb(238,238,238);
+			border-bottom: 1px solid rgb(238,238,238);
+			padding: 27px 0;
+		}
+		.lesson__layer .agree_form .head {position: relative;}
+		.lesson__layer .agree_form .chk-box {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+		.lesson__layer .agree_form .chk-box:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.lesson__layer .agree_form .chk-box label {
+			float: left;
+			padding-left: 25px;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 20px;
+			position: relative;
+		}
+		.lesson__layer .agree_form .chk-box label:before{
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 20px;
+			height: 20px;
+			border: 1px solid rgb(0,0,0);
+			border-radius: 5px;
+			box-sizing: border-box;
+		}
+		.lesson__layer .agree_form .chk-box input[type="checkbox"]:checked + label:after {
+			content: 'Ⅴ';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 4px;
+			width: 20px;
+			height: 20px;
+			font-size: 12px;
+			font-weight: 600;
+			color: rgb(0,0,0);
+		}
+		.lesson__layer .cn .agree_form td {
+			vertical-align: top;
+		}
+		.lesson__layer .agree_form .tit {
+			font-size: 12px;
+			font-weight: 700;
+			line-height: 20px;
+			margin-bottom: 9px;
+		}
+		.lesson__layer .agree_form .btn_submit {
+			width: 100%;
+			height: 10.6666vw;
+			line-height: 10.6666vw;
+			background-color: rgb(0,0,0);
+			border-radius: 50px;
+			box-sizing: border-box;
+			text-align: center;
+			font-size: 3.73333vw;
+			 font-family: 'NotoSansKR-Black', sans-serif;
+			 display: block;
+			 color: rgb(255,255,255);
+		}
+		.lesson__layer .agree_form .mt16 {
+			margin-top: 16px;
+		}
+		/* //layer */
+	</style>
+</div>
