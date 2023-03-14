@@ -1,0 +1,146 @@
+<div class="banner-wrap">
+    <img src="//img.nepamall.com/resources/image/banner/2022042709/4c4595df-7035-4efd-8d4f-b407ed1082b7_20220427095730.jpg" onerror="imgError(this,'//img.nepamall.com/resources/image/noimg.jpg')" alt="null"></div>
+<div class="bo-contents-wrap">
+    <style>
+* {padding:0;margin:0;}
+.benefit {position:relative; overflow:auto;}
+.benefit div {position:relative; }
+.benefit img {width:100%; outline:0;}
+
+.pro1 {position:absolute; top:81%; left:0%; width:50%; height:9.5%;}
+.pro1 .circle{width:4px;height:4px;border-radius:50%; background:#ff2803; left:90%; top:30%}	
+.pro2 {position:absolute; top:90.5%; left:0%; width:50%; height:9.5%;}	
+.pro2 .circle{width:4px;height:4px;border-radius:50%; background:#ff2803; left:91%; top:30%}	
+.pro3 {position:absolute; top:81%; left:50%; width:50%; height:9.5%;}	
+.pro3 .circle{width:4px;height:4px;border-radius:50%; background:#ff2803; left:83%; top:30%}	
+.pro4 {position:absolute; top:90.5%; left:50%; width:50%; height:9.5%;}	
+.pro4 .circle{width:4px;height:4px;border-radius:50%; background:#ff2803; left:87.5%; top:30%}
+
+.prop2-1 {position:absolute; top: 54.180508%; left:58.8%; width:30.3%; height:1.23541523678792%;}
+.prop2-sub {position:absolute !important; top: 56.21207961564859%; left:8.58%; width:83%; height:14%;}
+.prop2-1-1 {position:absolute; top: 56.21207961564859%; left:8.5%; width:27.4%; height:1.19423472889499%;}
+.prop2-1-2 {position:absolute; top:56.21207961564859%; left:36.2%; width:27.4%; height:1.19423472889499%;}
+.prop2-1-3 {position:absolute; top:56.21207961564859%; left:64.1%; width:27.4%; height:1.19423472889499%;}
+.prop2-1-4 {position:absolute; top:57.42004118050789%; left:8.5%; width:41.5%; height:1.19423472889499%;}
+.prop2-1-5 {position:absolute; top:57.42004118050789%; left:50%; width:41.5%; height:1.19423472889499%;}
+</style> 
+
+
+<div class="benefit">
+<div class="benefit_prop">	
+<img src="https://assets.styleship.com/nepa/222222/benefit_mo02.jpg">			
+<a class="pro1" nohref="" onclick="javascript:changeSubImg(1);"><div class="circle" id="circle1"></div></a>	
+<a class="pro2" nohref="" onclick="javascript:changeSubImg(2);"><div class="circle" id="circle2"></div></a>   
+<a class="pro3" nohref="" onclick="javascript:changeSubImg(3);"><div class="circle" id="circle3"></div></a>
+<a class="pro4" nohref="" onclick="javascript:changeSubImg(4);"><div class="circle" id="circle4"></div></a>
+</div>
+
+
+<img id="subImg" src="">
+
+<div class="prop2-sub"><img id="sub2Img" src="//img.nepamall.com/resources/image/content/benefit_grade1_m.jpg"></div>
+
+<a class="prop2-1" href="/customer/membership.asp"></a>		
+<a class="prop2-1-1" nohref="" onclick="goSubLink(1)"></a>	
+<a class="prop2-1-2" nohref="" onclick="goSubLink(2)"></a>	
+<a class="prop2-1-3" nohref="" onclick="goSubLink(3)"></a>	
+<a class="prop2-1-4" nohref="" onclick="goSubLink(4)"></a>	
+<a class="prop2-1-5" nohref="" onclick="goSubLink(5)"></a>	
+
+</div>
+
+<script>		
+var param = getParams();
+
+if(param.tabNo !== undefined){				
+setTimeout(function(){
+changeSubImg(parseInt(param.tabNo));
+}, 500);
+} else {
+setTimeout(function(){
+changeSubImg(1);
+}, 500);
+}
+
+function goPlanDetail(){
+location.href = "/planShop/planShopDetail.do?ctgNo=14002";
+};
+
+// 서브이미지 변경
+function changeSubImg(type){
+var baseUrl = "//img.nepamall.com/resources/image/content/";
+var baseUrl2 = "https://assets.styleship.com/nepa/222222/";
+switch(type){
+case 1 : $("#subImg").attr("src", baseUrl2 + "benefit_m1.jpg"); $(".circle").hide(); $("#circle1").show(); preventDefault(type); $(".prop2-sub").hide(); break;
+case 2 : $("#subImg").attr("src", baseUrl + "benefit_m2.jpg"); $(".circle").hide(); $("#circle2").show(); preventDefault(type); $(".prop2-sub").hide(); break;
+case 3 : $("#subImg").attr("src", baseUrl2 + "benefit_m3.jpg"); $(".circle").hide(); $("#circle3").show(); preventDefault(type); $(".prop2-sub").show(); break;
+case 4 : $("#subImg").attr("src", baseUrl + "benefit_m4.jpg"); $(".circle").hide(); $("#circle4").show(); preventDefault(type); $(".prop2-sub").hide(); break;
+}
+};
+
+// 등급별 이미지 변경
+function goSubLink(type) {
+var baseUrl = "//img.nepamall.com/resources/image/content/";
+
+switch(type){
+case 1 : $("#sub2Img").attr("src", baseUrl + "benefit_grade1_m.jpg"); break;
+case 2 : $("#sub2Img").attr("src", baseUrl + "benefit_grade2_m.jpg"); break;
+case 3 : $("#sub2Img").attr("src", baseUrl + "benefit_grade3_m.jpg"); break;
+case 4 : $("#sub2Img").attr("src", baseUrl + "benefit_grade4_m.jpg"); break;
+case 5 : $("#sub2Img").attr("src", baseUrl + "benefit_grade5_m.jpg"); break;
+}
+};
+
+// 요소 비활성화
+function preventDefault(type){
+if(type == "1"){			
+$(".prop1-1").css({ 'pointer-events': 'all' });			
+$(".prop1-2").css({ 'pointer-events': 'all' });			
+$(".prop1-3").css({ 'pointer-events': 'all' });
+} else if(type != "3"){			
+$(".prop2-1").css({ 'pointer-events': 'none' });
+$(".prop2-1-1").css({ 'pointer-events': 'none' });
+$(".prop2-1-2").css({ 'pointer-events': 'none' });
+$(".prop2-1-3").css({ 'pointer-events': 'none' });
+$(".prop2-1-4").css({ 'pointer-events': 'none' });
+$(".prop2-1-5").css({ 'pointer-events': 'none' });
+$(".prop1-1").css({ 'pointer-events': 'none' });			
+$(".prop1-2").css({ 'pointer-events': 'none' });			
+$(".prop1-3").css({ 'pointer-events': 'none' });			
+} else {
+$(".prop2-1").css({ 'pointer-events': 'all' });
+$(".prop2-1-1").css({ 'pointer-events': 'all' });
+$(".prop2-1-2").css({ 'pointer-events': 'all' });
+$(".prop2-1-3").css({ 'pointer-events': 'all' });
+$(".prop2-1-4").css({ 'pointer-events': 'all' });
+$(".prop2-1-5").css({ 'pointer-events': 'all' });
+$(".prop1-1").css({ 'pointer-events': 'none' });			
+$(".prop1-2").css({ 'pointer-events': 'none' });			
+$(".prop1-3").css({ 'pointer-events': 'none' });
+}
+};
+
+function getParams() {
+var param = new Array();
+var url = decodeURIComponent(location.href);
+
+url = decodeURIComponent(url);
+
+var params;
+
+params = url.substring( url.indexOf('?')+1, url.length );
+params = params.split("&");
+
+var size = params.length;
+var key, value;
+for(var i=0 ; i < size ; i++) {
+key = params[i].split("=")[0];
+value = params[i].split("=")[1];
+
+param[key] = value;
+}
+
+return param;
+}
+</script>
+</div>

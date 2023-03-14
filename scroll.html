@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab scroll</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .button-box {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+        width: 1260px;
+        margin: 0 auto;
+    }
+    .button-box button {
+        width: 20%;
+        height: 80px;
+        border: 1px solid lightgreen;
+        background: #fff;
+        color: #777;
+        font-size: 25px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    
+    .button-box button:nth-child(1) {background: lavender;}
+    .button-box button:nth-child(2) {background: lightcyan;}
+    .button-box button:nth-child(3) {background: lightgray;}
+    .button-box button:nth-child(4) {background: lightgoldenrodyellow;}
+    .button-box button:nth-child(5) {background: lightsteelblue;}
+    .button-box button.on {font-size: 50px;}
+    .scroll-box {
+        width: 1260px;
+        margin: 80px auto 0;
+    }
+    .scroll-box > div {
+        width: 100%;
+        height: 1000px;
+    }
+    .scroll-box > div:nth-child(1) {background: lavender;}
+    .scroll-box > div:nth-child(2) {background: lightcyan;}
+    .scroll-box > div:nth-child(3) {background: lightgray;}
+    .scroll-box > div:nth-child(4) {background: lightgoldenrodyellow;}
+    .scroll-box > div:nth-child(5) {background: lightsteelblue;}
+</style>
+<body>
+    <div class="button-box">
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button class="btn">4</button>
+        <button class="btn">5</button>
+    </div>
+    <div class="scroll-box">
+        <div class="sc1 sc" id="sc1"></div>
+        <div class="sc2 sc" id="sc2"></div>
+        <div class="sc3 sc" id="sc3"></div>
+        <div class="sc4 sc" id="sc4"></div>
+        <div class="sc5 sc" id="sc5"></div>
+    </div>
+</body> 
+<script>
+    var lc = document.querySelectorAll(".sc"); 
+    var btns = document.querySelectorAll(".btn");
+
+    for(let i = 0; i < btns.length; i ++){
+
+        btns[i].addEventListener("click", function(){
+            
+            lc[i].scrollIntoView({behavior: "smooth"});
+
+            for(btn of btns){
+                btn.classList.remove('on');
+                btns[i].classList.add('on');
+            }
+            return false;
+        });
+    }
+</script>
+</html>
