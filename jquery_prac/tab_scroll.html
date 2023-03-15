@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        list-style: none;
+    }
+    .tab-menu {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 500px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 500px;
+        margin: 0 auto;
+        z-index: 1;
+    }
+    .tab-menu li {
+        width: 33.33%;
+        height: 50px;
+        border: 1px solid purple;
+        background: palevioletred;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    .tab-menu li a {
+        display: block;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 50px;
+        color: blanchedalmond;
+        text-decoration: none;
+    }
+    .tab-detail {
+        position: relative;
+        width: 500px;
+        margin: 50px auto 550px;
+    }
+    .tab-detail > div {
+        padding: 20px;
+        height: 500px;
+        font-size: 20px;
+        font-weight: 700;
+        text-align: center;
+        color: pink;
+        border: 1px solid pink;
+        box-sizing: border-box;
+    }
+    .tab-menu li.on {
+        background: yellowgreen;
+    }
+</style>
+<body>
+    <ul class="tab-menu">
+        <li class="on"><a href="#tab01">태</a></li>
+        <li><a href="#tab02">애</a></li>
+        <li><a href="#tab03">앱</a></li>
+    </ul>
+    <div class="tab-detail">
+        <div id="tab01">내</div>
+        <div id="tab02">애</div>
+        <div id="tab03">용</div>
+    </div>
+</body>
+<script>
+    $('.tab-menu li').on('click', function(){
+
+        $(this).addClass('on').siblings().removeClass('zon');
+
+
+        var tabId = $(this).children('a').attr('href');
+        var tabHeight = $(this).height();
+        var scTop = $('.tab-detail > div' + tabId).offset().top;
+
+
+        $('html, body').stop().animate({scrollTop : scTop - tabHeight});
+    });
+</script>
+</html> 
