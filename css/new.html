@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #contents {
+        max-width: 1920px;
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .wrap {
+        position: relative;
+        container-type: inline-size;
+        container-name: container1;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid hotpink;
+        width: 1400px;
+        height: 100%;
+    }
+
+    .tit {
+        width: 300px;
+        font-size: 1em;
+        font-weight: 700;
+        text-align: center;
+        color: lightseagreen;
+        padding: 30px;
+        box-sizing: border-box;
+        line-height: 1;
+    }
+
+    .box {
+        width: calc(100% - 300px);
+        height: 600px;
+        background-color: red;
+        padding: 30px;
+        box-sizing: border-box;
+        font-size: 1em;
+    }
+
+
+    @container container1 (min-width: 700px) {
+        .tit {
+            font-size: 2em;
+        }
+
+        .box {
+            background-color: pink;
+        }
+    }
+
+    .sc-wrap {
+        position: relative;
+        margin: 0 auto;
+        width: 1100px;
+        height: 400px;
+        background-color: lightblue;
+        overflow: auto;
+        overscroll-behavior: contain;
+    }
+
+    .sc-wrap>p {
+        font-size: 25px;
+        font-weight: 700;
+        text-align: center;
+        text-align: center;
+    }
+
+    .sc-box {
+        height: 600px;
+        width: 200px;
+        overflow: auto;
+        background-color: lightcoral;
+        overscroll-behavior: contain;
+    }
+
+    .sc-box>p {
+        height: 1100px;
+        font-size: 20px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .has-wrap article {
+        padding: 30px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .has-wrap .article__title {
+        font-size: 36px;
+        font-weight: 700;
+        color: blueviolet;
+    }
+
+    .has-wrap .article__subtitle {
+        font-size: 24px;
+        font-weight: 700;
+        color: lightgray;
+        margin-bottom: 40px;
+    }
+
+    .has-wrap .article__contents {
+        font-size: 22px;
+        font-weight: 400;
+    }
+
+    .has-wrap .article__title:not(:has(+ .article__subtitle)) {
+        color: lime;
+        margin-bottom: 20px;
+    }
+
+    .has-img-wrap {
+        padding: 50px;
+        box-sizing: border-box;
+    }
+    .has-img-wrap h2 {
+        text-align: center;
+        padding-bottom: 40px;
+        color: pink;
+    }
+
+    .has-img-wrap .image-gallery {
+        margin: 0 auto;
+        width: 900px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .has-img-wrap .image-gallery img {
+        object-fit: cover;
+        width: 300px;
+        height: 300px;
+        /* scale: .8;
+        opacity: .7; */
+        transition: all ease .3s;
+    }
+
+    .has-img-wrap .image-gallery:has(img:hover) img:not(:hover) {
+        scale: .8;
+        opacity: .7;
+    }
+
+    /* .image-gallery img:hover {
+        scale: 1;
+        opacity: 1;
+    } */
+    h1 {
+        width: 100%;
+        text-align: center;
+        font-size: 26px;
+        font-weight: 700;
+        color: crimson;
+        padding: 20px;
+        margin-top: 40px;
+    }
+
+    .grid-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    .grid-wrap .grid-box {
+        background-color: aliceblue;
+        border: 1px solid aqua;
+    }
+
+    .grid-wrap .grid-box h1 {
+        font-size: 25px;
+        font-weight: 700;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        background-color: aquamarine;
+    }
+
+    .grid-wrap .img {
+        height: 100px;
+        width: 100%;
+        background-color: beige;
+    }
+
+    .accent-color-box {
+        padding: 30px;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .accent-color-box .inp-box {}
+
+    .accent-color-box input[type="radio"] {
+        accent-color: deeppink;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+    }
+
+    .accent-color-box input[type="radio"]+label {
+        font-size: 18px;
+        vertical-align: middle;
+    }
+
+    .accent-color-box input[type="checkbox"] {
+        accent-color: orange;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+    }
+
+    .accent-color-box input[type="checkbox"]+label {
+        font-size: 20px;
+        vertical-align: middle;
+        color: cadetblue;
+    }
+
+    .accent-color-box .inp-box2 input[type="checkbox"] {
+        accent-color: deeppink;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+    }
+
+    .accent-color-box .inp-box2 input[type="checkbox"]+label {
+        font-size: 20px;
+        vertical-align: middle;
+        color: cadetblue;
+    }
+
+    @media only screen and (300px <=width <=750px) {
+        .sc-wrap {
+            background-color: aqua;
+        }
+    }
+</style>
+
+<body>
+    <div id="contents">
+        <div class="wrap">
+            <h1>1. 컨테이너 쿼리 </h1>
+            <div class="container">
+                <h2 class="tit">@container</h2>
+                <div class="box">min-width: 700px</div>
+            </div>
+        </div>
+
+        <h1>2. Overscroll-behavior/ Media Query range</h1>
+        <div class="sc-wrap">
+            <p> overscroll-behavior</p>
+
+            <div class="sc-box">
+                <p>contain</p>
+            </div>
+
+        </div>
+
+        <div class="has-wrap">
+            <h1>3. has 선택자</h1>
+            <article>
+                <h2 class="article__title">Title</h2>
+                <p class="article__subtitle">Subtitle</p>
+                <p class="article__contents">subtitle -> margin-bottom: 40px</p>
+            </article>
+            <article>
+                <h2 class="article__title">title2</h2>
+                <p class="article__contents">article__title : not ( :has ( + .article__subtitle) ) {-> margin-bottom: 20px}</p>
+            </article>
+        </div>
+
+        <div class="has-img-wrap">
+            <h2>image gallery</h2>
+            <div class="image-gallery">
+                <img src="/jquery_prac/img/1.png" alt="">
+                <img src="/jquery_prac/img/2.png" alt="">
+                <img src="/jquery_prac/img/3.png" alt="">
+                <img src="/jquery_prac/img/1.png" alt="">
+                <img src="/jquery_prac/img/2.png" alt="">
+                <img src="/jquery_prac/img/3.png" alt="">
+                <img src="/jquery_prac/img/1.png" alt="">
+                <img src="/jquery_prac/img/2.png" alt="">
+                <img src="/jquery_prac/img/3.png" alt="">
+            </div>
+        </div>
+
+        <h1>4. Subgrid</h1>
+        <div class="grid-wrap">
+            <div class="grid-box">
+                <h2>제목</h2>
+                <div>내용입니다</div>
+                <div class="img"></div>
+            </div>
+            <div class="grid-box">
+                <h2>제목2</h2>
+                <div>내용입니다 <br> 내용입니다 <br> 내용입니다</div>
+                <div class="img"></div>
+            </div>
+        </div>
+
+        <div class="accent-color-box">
+            <h1>5. Accent color</h1>
+            <div class="inp-box">
+                <input type="radio" id="1" name="radio" checked>
+                <label for="1">1</label>
+                <input type="radio" id="2" name="radio">
+                <label for="2">2</label>
+                <input type="radio" id="3" name="radio">
+                <label for="3">3</label>
+            </div>
+            <div class="inp-box">
+                <input type="checkbox" id="4" checked>
+                <label for="4">4</label>
+                <input type="checkbox" id="5">
+                <label for="5">5</label>
+            </div>
+            <div class="inp-box2">
+                <input type="checkbox" id="4" checked>
+                <label for="4">4</label>
+                <input type="checkbox" id="5">
+                <label for="5">5</label>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

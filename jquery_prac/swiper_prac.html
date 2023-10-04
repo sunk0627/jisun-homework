@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 50px;
+        font-weight: 700;
+        color: cadetblue;
+        padding: 25px 0;
+    }
+    h2 {
+        margin-top: 50px;
+        margin-bottom: 25px;
+        font-size: 25px;
+        font-weight: 500;
+        text-align: center;
+        color: pink;
+    }
+
+    .swiper {
+        width: 900px;
+        margin: 0 auto;
+        padding-bottom: 50px;
+    }
+
+    .swiper .swiper-slide {
+        width: 300px;
+        height: 300px;
+        margin-left: 50px;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .swiper .swiper-slide:first-child {
+        margin-left: 0;
+    }
+    
+    .swiper2 {
+        width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 50px;
+        overflow: hidden;
+    }
+	.swiper2 .swiper-wrapper {
+		transition-timing-function : linear;
+	}
+    .swiper2 .swiper-slide {
+        width: 300px;
+        height: 300px;
+        margin: 0 15px;
+    }
+
+    .slide3 {margin: 0 0 50px;}
+    .swiper3 {
+        position: relative;
+        width: 1200px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .swiper3 .swiper-slide {
+        width: calc(800 / 1920 * 100vw);
+        height: calc(800 / 1920 * 100vw);
+        opacity: 0.4;
+        transform: scale(0.9);
+        border: 1px solid hotpink;
+        transition: all .3s;
+    }
+    .swiper3 .swiper-slide-active {
+        opacity: 1;
+        transform: scale(1);
+    }
+</style>
+
+<body>
+    <h1>Swiper</h1>
+    <div class="slide1">
+        <h2>scroll</h2>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./img/1.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/2.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/3.png" alt=""></div>
+            </div>
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+    <div class="slide2">
+        <h2>rolling</h2>
+        <div class="swiper2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./img/1.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/2.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/3.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/1.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/2.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/3.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/1.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/2.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/3.png" alt=""></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="slide3">
+        <h2>slide size</h2>
+        <div class="swiper3">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./img/1.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/2.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/3.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/1.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/2.png" alt=""></div>
+                <div class="swiper-slide"><img src="./img/3.png" alt=""></div>
+            </div>
+            <div class="swiper-button-next swiper-arrow"></div>
+            <div class="swiper-button-prev swiper-arrow"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</body>
+<script>
+    $(function () {
+
+        var swiper = new Swiper('.swiper', {
+            scrollbar: {
+                el: ".swiper .swiper-scrollbar",
+                hide: false,
+            },
+            freeMode: true,
+            slidesPerView: "auto",
+
+        });
+        
+		var swiper = new Swiper('.swiper2', {
+            speed: 5000,
+            mousewheelControl: true,
+            slidesPerView: "auto",
+            freeMode: true,
+            autoplay: {
+                delay: 1,
+                disableOnInteraction: false
+            },
+            loop: true,
+            centeredSlides: false,
+          });
+          
+		new Swiper('.swiper3', {
+			//observer: true,
+			//observeParents: true,
+			speed: 1000,
+			autoplay: true,
+			loop: true,
+			slidesPerView: "auto",
+			centeredSlides: true,
+			direction: "horizontal",
+			freeMode: false,
+			noSwiping: false,
+			mousewheel: {
+				invert: true,
+				forceToAxis: true
+			},
+			slidesOffsetBefore: 0,
+			slidesOffsetAfter: 0,
+		  navigation: {
+			nextEl: ".swiper3 .swiper-button-next",
+			prevEl: ".swiper3 .swiper-button-prev",
+		  },
+		  pagination: {
+			el: ".swiper3 .swiper-pagination",
+			clickable: true,
+		  },
+			
+			
+		});
+    });
+</script>
+
+</html>

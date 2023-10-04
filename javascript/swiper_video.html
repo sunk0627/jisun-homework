@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .swiper {
+        width: 1400px;
+        height: 700px;
+        margin: 0 auto;
+    }
+
+    .swiper img {
+        width: 100%;
+    }
+
+    .swiper iframe {
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .swiper .swiper-slide {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<body>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div id="player1"></div>
+            </div>
+            <div class="swiper-slide">
+                <div id="player2"></div>
+            </div>
+            <div class="swiper-slide">
+                <div id="player3"><img src="./img/1.jpg" alt=""></div>
+            </div>
+
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</body>
+<script>
+    // -----------youtoube 동영상 생성 방법----------------------
+
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var yt = [];
+
+    function onYouTubeIframeAPIReady() {
+
+        let w = '100%';
+        let h = '100%';
+
+        yt['player1'] = new YT.Player('player1', {
+            width: w,
+            height: h,
+            videoId: 'Q0G-aB5RoiY',
+            events: {
+                'onReady': onPlayerReady,
+            },
+        });
+        yt['player2'] = new YT.Player('player2', {
+            width: w,
+            height: h,
+            videoId: 'Q0G-aB5RoiY',
+            events: {
+                'onReady': onPlayerReady,
+            },
+        });
+        // yt['player3'] = new YT.Player('player3', {
+        //     width: w,
+        //     height: h,
+        //     videoId: '5LI1PysAlkU',
+        // });
+    }
+
+    function onPlayerReady(event) {
+        event.target.mute();
+        event.target.playVideo();
+    }
+
+    var swiper = new Swiper('.swiper', {
+        //speed: 1000,
+        mousewheelControl: true,
+        slidesPerView: "auto",
+        freeMode: true,
+        /*autoplay: {
+            delay: 1,
+            disableOnInteraction: false
+        },*/
+        effect: "fade",
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+    });
+
+    swiper.on('transitionStart', function () {
+        yt['player1'].pauseVideo();
+        yt['player2'].pauseVideo();
+        //yt['player3'].pauseVideo();
+    });
+
+    swiper.on('transitionEnd', function () {
+
+        var index = this.realIndex;
+        var slide = document.getElementsByClassName('swiper-slide')[index];
+        var slideVideo = slide.getElementsByTagName('iframe')[0];
+        var slideVideoId = slideVideo.getAttribute('id');
+
+        if (slideVideo != null || slideVideo != undefined) {
+            yt[slideVideoId].mute();
+            yt[slideVideoId].playVideo();
+        }
+    });
+</script>
+
+</html>

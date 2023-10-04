@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        font-size: 30px;
+        font-weight: 700;
+        text-align: center;
+        color: #333;
+        margin: 30px 0;
+    }
+    .content {
+        max-width: 1920px;
+        min-width: 1400px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    #typing {
+
+    }
+    .content .txt {
+        width: 400px;
+        height: 100%;
+        font-size: 24px;
+        font-weight: 500;
+        color: deeppink;
+    }
+    .content .inner {
+        width: 0;
+        overflow: hidden;
+        animation-name: typing;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+    }
+    .del1 {
+        animation-delay : .4s !important;
+    }
+    .content .txt-wrap {
+        width: 1680px;
+        margin: 0 auto;
+        padding: 30px;
+        box-sizing: border-box;
+        background-color: pink;
+    }
+    @keyframes typing {
+        0% {
+            width: 0%;
+        }
+        100% {
+            width: 100%;
+        }
+    }
+</style>
+<body>
+    <h1>typing</h1>
+    <div id="typing" class="content">
+        <div class="txt-wrap">
+            <div class="inner">
+                <p class="txt">
+                    Hello
+                    HELLO HELLO
+                </p>
+            </div>
+            <div class="inner del1">
+                <div class="txt">Hello hello hello</div>
+            </div>
+        </div>
+    </div>
+    <h1>slide up</h1>
+    <div id="slideUp" class="content">
+        <div class="inner"> 
+            <div><img src="./img/1.png" alt=""></div>
+            <div><img src="./img/2.png" alt=""></div>
+        </div>
+    </div>
+</body>
+</html>

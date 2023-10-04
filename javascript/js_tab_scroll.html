@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS tab</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .tab-wrap {
+        position: relative;
+    }
+
+    .tab-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        width: 100%;
+        height: 80px;
+        background: #fff;
+    }
+
+    .tab-menu a {
+        width: 100%;
+        height: 100%;
+        font-size: 25px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 80px;
+        color: cornflowerblue;
+        text-decoration: none;
+        border: 1px solid skyblue;
+        box-sizing: border-box;
+    }
+
+    .tab-menu a.on {
+        color: #fff;
+        background-color: cornflowerblue;
+    }
+
+    .tab-info {}
+
+    .tab-info>div {
+        width: 100%;
+        height: 100vh;
+        padding-top: 80px;
+        font-size: 25px;
+        font-weight: 500;
+        text-align: center;
+        color: tomato;
+        box-sizing: border-box;
+    }
+
+    .tab-info>div:nth-child(1) {
+        background-color: azure;
+    }
+
+    .tab-info>div:nth-child(2) {
+        background-color: aquamarine;
+    }
+
+    .tab-info>div:nth-child(3) {
+        background-color: aqua;
+    }
+</style>
+
+<body>
+    <div class="tab-wrap">
+        <div class="tab-menu">
+            <a href="#tab1">TAB1</a>
+            <a href="#tab2">TAB2</a>
+            <a href="#tab3">TAB3</a>
+        </div>
+        <div class="tab-info">
+            <div id="tab1">CON1</div>
+            <div id="tab2">CON2</div>
+            <div id="tab3">CON3</div>
+        </div>
+    </div>
+</body>
+<script>
+    var tab = document.querySelector('.tab-menu');
+    var tabBtn = document.querySelectorAll('.tab-menu a');
+    var tabInfo = document.querySelectorAll('.tab-info > div');
+
+    var tabHeight = tab.clientHeight;
+
+
+    for (i = 0; i < tabBtn.length; i++) {
+
+        // 탭 클릭
+        tabBtn[i].addEventListener('click', (e) => {
+            e.preventDefault();
+
+            for (j = 0; j < tabBtn.length; j++) {
+                tabBtn[j].classList.remove('on');
+            }
+            e.currentTarget.classList.add('on'); // 클릭한 탭 활성화
+
+            // 스크롤
+            var tabBoxTop = document.querySelector(e.currentTarget.getAttribute('href')).offsetTop;
+            // console.log(tabBoxTop);
+
+            window.scrollTo({
+                top: tabBoxTop,
+                left: 0,
+                behavior: 'smooth',
+            });
+
+        });
+        window.addEventListener("scroll", function () {
+
+            var tabBoxTop = document.documentElement.scrollTop; // 탭 박스 요소를 선택합니다.
+
+            var scrollPosition = window.scrollY;
+            console.log(tabBoxTop);
+            //console.log(document.documentElement.scrollHeight);
+            //console.log(document.body.offsetHeight);
+
+
+            if (tabBoxTop == document.documentElement.scrollHeight - document.body
+                .offsetHeight) { // 등호를 사용하여 비교합니다.
+                // 여기에 원하는 작업을 추가하세요. 예를 들어, 클래스 추가 또는 다른 동작을 수행할 수 있습니다.
+                console.log('ddd');
+
+                //tabBtn[i].classList.add('on');
+            }
+        });
+
+        // 스크롤 시 메뉴 활성화
+        // window.addEventListener("scroll", function(){
+
+        //     var tabBoxTop = document.querySelector().offsetTop;
+        //     var scrollPosition = window.scrollY;
+
+        //     if(scrollPosition = tabBoxTop){
+        //         tabBtn[i].classList.add('on');
+        //     }
+        // });
+
+    }
+</script>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>swiper for</title>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<body>
+    <button data-id="t1"></button>
+    <div id="t1"></div>
+</body>
+<script>
+    var t = $('button').attr('data-id');
+    console.log(t);
+
+    const fruits = ["apple", "banana", "lemon"];
+    for (let i = 0; i < fruits.length; i++){
+        console.log(fruits[i]);
+    }
+
+    var Date = new Date(2012,1,20,3,12);
+    alert(Date);      
+
+</script>
+
+</html>

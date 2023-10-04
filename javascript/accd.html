@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    ul,li {
+        list-style-type: none;
+    }
+    h1 {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 40px;
+        font-weight: 700;
+        color: skyblue;
+    }
+    .menu {
+        width: 400px;
+        margin: 50px auto;
+    }
+    .menu button {
+        width: 100%;
+        height: 50px;
+        font-size: 20px;
+        font-weight: 900;
+        color: #fff;
+        background: lightpink;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        border-bottom: 0;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    .menu button:last-of-type {border-bottom: 1px solid lightgray;}
+    .menu .con {
+        width: 100%;
+        height: 100px;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        border: 1px solid #ccc;
+        display: none;
+    }
+    .menu li.on .con{display: block;}
+</style>
+<body>
+    <h1>아코디언 메뉴</h1>    
+    <ul class="menu">
+        <li>
+            <button type="button" class="btn">MENU 1</button>
+            <p class="con">MENU CONTENTS</p>
+        </li>
+        <li>
+            <button type="button" class="btn">MENU 2</button>
+            <p class="con">MENU CONTENTS</p>
+        </li>
+        <li>
+            <button type="button" class="btn">MENU 3</button>
+            <p class="con">MENU CONTENTS</p>
+        </li>
+    </ul>
+</body>
+<script>
+    var conts = document.querySelectorAll('.menu .con');
+    var btns = document.querySelectorAll('.menu .btn');
+
+    for(i = 0; i < btns.length; i ++){
+        btns[i].addEventListener('click', (e) => {
+            btns[i].classList.add('on');
+           
+        });
+    }
+</script>
+</html>

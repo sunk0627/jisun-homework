@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENU</title>
+</head>
+<body>
+
+
+<style>
+	* {padding: 0; margin: 0;}
+	ul, li {list-style: none;}
+
+	.ac__list {
+		width: 500px;
+		margin: 50px auto;
+		border-top: 5px solid rgb(0,0,0);
+	}
+	.ac__list li {
+		border-bottom: 2px solid rgb(0,0,0);
+	}
+	.ac__list li > div {padding: 10px 0;}
+	.ac__list .q-box {cursor: pointer;}
+	.ac__list .a-box {display: none;}
+	.ac__list li.open .a-box {display: block;}	
+	.ac__list .a-box p {color: red;}
+</style>
+
+<ul class="ac__list">
+	<li>
+		<div class="q-box">
+			<p>Q MENU 01</p>
+		</div>
+
+		<div class="a-box">
+			<p>A MENU 01</p>
+		</div>
+	</li>
+
+	<li>
+		<div class="q-box">
+			<p>Q MENU 02</p>
+		</div>
+
+		<div class="a-box">
+			<p>A MENU 02</p>
+		</div>
+	</li>
+
+	<li>
+		<div class="q-box">
+			<p>Q MENU 03</p>
+		</div>
+
+		<div class="a-box">
+			<p>A MENU 03</p>
+		</div>
+	</li>
+
+	<li>
+		<div class="q-box">
+			<p>Q MENU 04</p>
+		</div>
+
+		<div class="a-box">
+			<p>A MENU 04</p>
+		</div>
+	</li>
+
+	<li>
+		<div class="q-box">
+			<p>Q MENU 05</p>
+		</div>
+
+		<div class="a-box">
+			<p>A MENU 05</p>
+		</div>
+	</li>
+</ul>
+
+<script>
+	const menuBtns = document.querySelectorAll('.q-box');
+	const acLis = document.querySelectorAll('.ac__list li');
+
+	for(const menuBtn of menuBtns){
+		menuBtn.addEventListener('click', (e)=> {
+			const parentEl = e.currentTarget.parentNode; // 클릭한 버튼에 부모 
+			
+			if(!parentEl.classList.contains('open')){ // jQuery hasClass()
+				for(const acLi of acLis){ // 모든 .ac__list li 에 붙은 클래스 제거 
+					acLi.classList.remove('open'); 
+				}
+				
+				parentEl.classList.add('open'); // 클릭한 버튼에 부모에 클래스 추가
+			}else{
+				for(const acLi of acLis){
+					acLi.classList.remove('open');
+				}
+			}				
+		});
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.3.0/swiper-bundle.min.js"></script>
+
+    <script type="text/javascript" async="" src="https://www.youtube.com/iframe_api"></script>
+    <script type="text/javascript" src="https://player.vimeo.com/api/player.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.3.0/swiper-bundle.css" />
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .main__slider {
+        width: 1000px;
+        margin: 200px auto;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+    }
+
+    .vdo-box {
+        overflow: hidden;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-top: 56.25%;
+        pointer-events: none;
+    }
+
+    .swiper-slide video,
+    .swiper-slide iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<body>
+
+
+    <div class="slider-box">
+        <div class="main__slider swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://filacdn.styleship.com/filacontent/data/banner/img_M_top_chuseok_d_230921_76.jpg"
+                        alt="" />
+                </div>
+
+                <!-- 비디오 태그 -->
+                <div class="swiper-slide _type_vdo">
+                    <div class="vdo-box">
+                        <video muted playsinline>
+                            <source
+                                src="https://filacdn.styleship.com/filacontent/data/contentsfile/sanrio_vid_M_top_d_230919.mp4">
+                        </video>
+                    </div>
+                </div>
+                <!-- //비디오 태그 -->
+
+                <div class="swiper-slide">
+                    <img src="https://filacdn.styleship.com/filacontent/data/banner/img_M_top_chuseok_d_230921_76.jpg"
+                        alt="" />
+                </div>
+
+                <!-- 비디오 태그 -->
+                <div class="swiper-slide _type_vdo">
+                    <div class="vdo-box">
+                        <video muted playsinline>
+                            <source
+                                src="https://filacdn.styleship.com/filacontent/data/contentsfile/sanrio_vid_M_top_d_230919.mp4">
+                        </video>
+                    </div>
+                </div>
+                <!-- //비디오 태그 -->
+
+                <!-- 비디오 태그 -->
+                <div class="swiper-slide _type_vdo">
+                    <div class="vdo-box">
+                        <video muted playsinline>
+                            <source
+                                src="https://filacdn.styleship.com/filacontent/data/contentsfile/sanrio_vid_M_top_d_230919.mp4">
+                        </video>
+                    </div>
+                </div>
+                <!-- //비디오 태그 -->
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    // swiper
+    const swiper = new Swiper('.main__slider', {
+        slidesPerView: 1,
+        loop: true,
+        /*autoplay: {
+        	delay: 1000,
+        	disableOnInteraction: false,
+        }*/
+        on: {
+            // init: function () {
+            //     const videos = document.querySelectorAll(".main__slider ._type_vdo video");
+            //     const activeIndex = this.realIndex;
+            //     const activeSlide = document.getElementsByClassName("swiper-slide")[activeIndex];
+            //     const activeVideo = activeSlide.getElementsByTagName("video")[0];
+            //     //activeVideo.muted = true;
+            //     if (activeSlide.classList.contains("_type_vdo")) {
+
+            //         Array.prototype.forEach.call(videos, function (video) {
+            //             video.pause();
+            //             video.currentTime = 0;
+            //         });
+            //         activeVideo.play();
+            //     }
+            // },
+            transitionStart: function () {
+                const videos = document.querySelectorAll(".main__slider ._type_vdo video");
+                const activeIndex = this.realIndex;
+                const activeSlide = document.getElementsByClassName("swiper-slide")[activeIndex];
+                const activeVideo = activeSlide.getElementsByTagName("video")[0];
+                //activeVideo.muted = true;
+                if (activeSlide.classList.contains("_type_vdo")) {
+
+                    Array.prototype.forEach.call(videos, function (video) {
+                        video.pause();
+                        video.currentTime = 0;
+                    });
+                    activeVideo.play();
+                }
+            }
+        }
+    });
+</script>
+
+</html>

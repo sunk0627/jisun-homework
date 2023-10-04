@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="hello">아ㅣ넝ㄹ</h2>
+
+    <div class="alert-box" id="alert">Alert 박스 <button onclick="document.getElementById('alert').style.display='none';">닫기</button></div>
+    <button onclick="document.getElementById('alert').style.display='block';">버튼</button>
+</body>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    .alert-box {
+        display: none;
+        background: burlywood;
+        width: 400px;
+        height: 100px;
+        font-size: 30px;
+        font-weight: 700;
+        text-align: center;
+    }
+</style>
+<script>
+    document.getElementById('hello').innerHTML = '안녕'; // = : 대입
+            // selector
+    document.getElementById('hello').style.color = '#eee';
+    document.getElementById('hello').style.fontSize = '30px';
+
+    let strA = "10";
+    let strB = "10개";
+
+    let numA = Number(strA);//숫자
+    let numB = parseInt(strB);//문자 + 숫자
+    console.log(numA); //10
+    console.log(numB); //10
+
+    let num = 2022;
+    let str = String(num);
+    
+    console.log(str); //2022
+
+    
+    let nickname = "babo";
+    let user = name ?? nickname;
+                    //null
+
+    console.log(user); // babo
+
+    let name2 = "kim";
+    let nickname2 = "babo";
+    let user2 = name2 ?? nickname2; 
+
+    console.log(user2); //kim
+
+    let number = 1;
+    let result = number % 2 === 0 ? "짝수" : "홀수";
+                                    //true   //false
+
+    console.log(result); // 홀수
+
+    var food = [1, 2, 3, 4];
+
+    food.forEach(function(element, idx){
+        console.log(element, idx);
+    });
+</script>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAB SCROLL MOVE</title>
+</head>
+<body>
+
+
+<style>
+	* {padding: 0; margin: 0;}
+
+	.tab-btn-box {
+		display: flex;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
+	.tab-btn-box button {
+		display: block;
+		width: 100%;
+		height: 50px;
+		border: 1px solid rgb(0,0,0);
+		box-sizing: border-box;
+		cursor: pointer;
+		font-weight: 700;
+		font-size: 24px;
+		color: rgb(0,0,0);
+	}
+	.tab-btn-box button.on {
+		background-color: rgb(0,0,0);
+		color: rgb(255,255,255);
+	}
+	
+	.tab-detail-box {margin-top: 200px;}
+	.tab-detail-box > div {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 120vh;
+		border: 1px solid rgb(0,0,0);
+		box-sizing: border-box;
+		font-weight: 700;
+		font-size: 50px;
+		color: rgb(0,0,0);
+		text-align: center;
+	}
+</style>
+
+
+<nav class="tab-btn-box">
+	<button type="button" data-id="tab01">tab 01</button>
+	<button type="button" data-id="tab02">tab 02</button>
+	<button type="button" data-id="tab03">tab 03</button>
+	<button type="button" data-id="tab04">tab 04</button>
+</nav>
+
+<div class="tab-detail-box">
+	<div id="tab01">tab 01</div>
+	<div id="tab02">tab 02</div>
+	<div id="tab03">tab 03</div>
+	<div id="tab04">tab 04</div>
+</div>
+
+
+<script> 
+	const tabBtns = document.querySelectorAll('.tab-btn-box > button');
+	const tabBoxs = document.querySelectorAll('.tab-detail-box > div');
+
+	const tabScroll = ()=> {
+		const wSt = document.querySelector('html').scrollTop; // 브라우저 스크롤 위치
+
+		for(let i = 0; i < tabBtns.length; i++){			
+			if(wSt < tabBoxs[0].offsetTop){ // 스크롤 위치가 첫번째 박스 위치보다 낮으면
+				for(tabBtn of tabBtns){
+					tabBtn.classList.remove('on');
+				}
+			}else if(wSt > tabBoxs[i].offsetTop){ // 스크롤 위치가 각 박스마다 위치해 있으면?
+				for(tabBtn of tabBtns){
+					tabBtn.classList.remove('on');
+				}
+				tabBtns[i].classList.add('on');
+			}
+		}
+	}	
+                                                                                                                                                                                                 
+	const tabClick = ()=> { 
+		for(tabBtn of tabBtns){
+			tabBtn.addEventListener('click', (e)=>{
+				const boxTop = document.querySelector('#' + e.currentTarget.getAttribute('data-id')).offsetTop + 50; // 클릭하면 해당 속성에 있는 박스 위치
+				
+				/*for(tabBtn of tabBtns){
+					tabBtn.classList.remove('on');
+				}
+				e.currentTarget.classList.add('on');*/
+
+				window.scrollTo({
+					top: boxTop,
+					left: 0,
+					behavior: 'smooth'
+				});
+			});
+		}
+	}
+
+	document.addEventListener('scroll', ()=> {
+		tabScroll();		
+	});
+                                                                      
+	tabScroll();
+	tabClick();
+</script>
+</body>
+</html>
