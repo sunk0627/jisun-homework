@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>tab메뉴 만들기</title>
+	<script src="jquery-3.6.0.min.js"></script>		
+</head>
+
+<style>
+	body {
+		margin: 0;
+		padding: 0;
+	}
+	.tab__box {
+		text-align: center;
+		width: 350px;
+		height: 500px;
+		margin: 0 auto;
+		padding-top: 30px;
+	}
+	.tab__btn {
+		font-size: 0;
+	}
+	.tab__btn a {
+		display: inline-block;
+		vertical-align: top;
+		border: 1px solid orange;
+		font-size: 16px;
+		font-weight: bold;
+		color: #fff;
+		background: orange;
+		width: 33%;
+		box-sizing: border-box;
+		text-decoration: none;
+		text-align: center;
+	}
+	.tab__view > p {
+		display: none;
+		color: #333;
+	}
+	.tab__view > p.on {
+		display: block;
+	}
+	.tab__btn a.on {
+		background: #fff;
+		color: #333;
+	}
+	
+</style>
+<script>
+	$(function(){
+		$(".tab__btn a").on('click', function(e){
+			var tNum = $(this).attr('href');
+
+			e.preventDefault();
+
+			$(".tab__btn a").removeClass('on');
+			$(this).addClass('on');
+
+			$(".tab__view > p").removeClass('on');
+			$(tNum).addClass('on');
+		});
+	});
+</script>
+
+<body>
+		<div class="tab__box">
+			<div class="tab__btn">
+				<a href="#btn1">button1</a>
+				<a href="#btn2">button2</a>
+				<a href="#btn3">button3</a>
+			</div>
+			<div class="tab__view">
+				<p id="btn1">button1</p>
+				<p id="btn2">button2</p>
+				<p id="btn3">button3</p>
+			</div>
+		</div>
+		
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.badge {
+		display: block;
+		width: 100px;
+		line-height: 50px;
+		background: #000;
+		color: #fff;
+		font-size: 18px;
+		font-weight: bold;
+		text-align: center;
+		cursor: pointer;
+	}
+</style>	
+<body>
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<span class="badge bg-dark">Dark</span>
+		</div>
+	</nav>
+
+	<script>
+		var count = 0;
+		count++;
+		console.log(count);
+		
+		var badge = document.querySelector(".badge");
+		badge.addEventListener('click', function(){
+			count++;
+
+			if(count % 2 == 1){
+				badge.innerText = "Light"
+			} else{
+				badge.innerText = "Dark"
+			}
+		});
+	</script>
+</body>
+</html>
