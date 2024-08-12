@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<link rel="stylesheet" href="http://www.fila.co.kr/2018/pc/css/pages/list.css">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/common/font.css">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/common/normalize.css">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/common/opt-default.css">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/pages/layout.css?v=20170215">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/pages/sub.css?v=20200610">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/pages/brand.css">
+	<script src="http://www.fila.co.kr/js/common/libs/modernizr.custom.js"></script>	
+	<script src="http://www.fila.co.kr/js/common/libs/greensock/TweenMax.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<script src="http://www.fila.co.kr/js/common/styleship/mighty.base.1.5.7.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/styleship/mighty.slide.4.2.2.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/styleship/matizCoverLayer.3.1.0.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/styleship/matizResizeMap.1.0.0.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/libs/jquery.bxslider.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/libs/slick.min.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <div id="contents">
+        <div class="event_view" style="max-width: 980px;text-align: center;">
+            <div class="event_view_inner">	
+				
+				<!-- 2020-06-15 소스 --> 
+				<script src="https://www.fila.co.kr/js/common/libs/scrollmagic/ScrollMagic.js"></script>
+				<script src="https://www.fila.co.kr/js/common/libs/scrollmagic/animation.gsap.js"></script>
+				<script type="text/javascript" src="https://www.fila.co.kr/js/common/libs/scrollmagic/debug.addIndicators.js"></script>
+				
+				<style>
+
+					/*배너 기본 설정*/
+					.banner,
+					.banner .slide-box .slide .slick-slide {position: relative;}{position: relative;}
+					.banner .bg{
+						position: absolute;
+						width: 100%;
+						top: 0;
+						left: 0;
+						right: 0;
+						margin: auto;
+						opacity: 0;
+					}
+					/* .banner02{margin-top: 30px;} */
+					
+					/*ie9*/
+					.ie9 .banner .bg,
+					.ie9 .banner .plus-btn > div{opacity: 1;}
+
+					.banner.on .bg{animation:fadeIn 1s forwards;}
+
+					/*영상*/
+					.video-box {
+						position: relative;
+						top: 0;
+						left: 0;
+						width: 100%;
+						padding-bottom: 56.25%;
+					}
+					.video-box iframe,
+					.video-box object,
+					.video-box embed {
+						position: absolute;
+						top: 0;
+						left: 0;
+						bottom: 0;
+						width: 100%;
+						height: 100%;
+					}
+					
+					/*plus-btn*/
+					.banner .plus-btn > div{
+						position: absolute;
+						opacity: 0;
+						z-index: 1;
+					}
+
+					.banner.on .plus-btn > div{animation:fadeIn 1s forwards;}		
+					.banner.on .plus-btn > div a{transition: all .3s;}
+					.banner.on .plus-btn > div a:hover{opacity: .7;}
+					
+					/*버튼위치*/
+
+					.btn1{top: 10px;left: 10px;}
+					.btn2{top: 10px;left: 10px;}
+					.btn3{top: 10px;left: 10px;}
+					
+					.btn4{top: 10px;left: 10px;}
+					.btn5{top: 10px;left: 10px;}
+					.btn6{top: 10px;left: 10px;}
+				
+
+					/*애니메이션 설정*/
+					.del1{animation-delay: .3s !important;}
+					.del2{animation-delay: .6s !important;}
+					.del3{animation-delay: .9s !important;}
+					.del4{animation-delay: 1.2s !important;}
+					.del5{animation-delay: 1.5s !important;}
+
+					/*animation setting*/
+
+					@keyframes fadeIn{
+						0%{opacity: 0;}
+						100%{opacity: 1;}
+					}
+
+					@media screen and (max-width: 767px) {
+
+						/* .banner02{margin-top: 4.7vw;} */
+						.banner.on .plus-btn > div{animation:fadeIn 1s forwards;}
+						
+						
+						/*버튼위치*/
+
+						.btn1{top: 10%;left: 10%;}
+						.btn2{top: 10%;left: 10%;}
+						.btn3{top: 10%;left: 10%;}
+						
+						.btn4{top: 10%;left: 10%;}
+						.btn5{top: 10%;left: 10%;}
+						.btn6{top: 10%;left: 10%;}
+
+
+
+					}
+				</style>
+				<script>
+					$(function(){
+						//스크롤 매직
+						var controller = new ScrollMagic.Controller();
+						var num = $('.banner').length;
+						for( i = 1 ; i < num + 1; i++){
+							//banner
+							var banner = new ScrollMagic.Scene({
+								triggerElement:".banner0"+ i +"",
+								duration: 0,
+								triggerHook: 0.7,
+								reverse: false,
+								offset: 0,
+							})
+							/*.addIndicators({
+								name:"banner03",
+								indent:0,
+								colorStart:"red",
+								colorEnd:"red",
+								colorTrigger:"red"
+							})*/
+							.setClassToggle(".banner0"+ i +"","on")
+							.addTo(controller);
+						}
+						//슬라이드
+						var slider = $('.slide-box .slide');
+						slider.slick({
+							autoplay: true,
+							autoplaySpeed: 3000,
+							fade: false,
+							arrows: false,
+							//centerMode: true,
+							//centerPadding: '350px',
+							slidesToShow: 1,
+							slidesToScroll: 1,
+							//dots: true,
+						});
+					});
+				</script>
+				
+					<div class="banner01 banner on">
+						<div class="m_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_01.jpg">
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_01-1.jpg" alt=""></div>	
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_01-2.jpg" alt=""></div>	
+						</div>
+						<div class="d_hidden t_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_01.jpg">
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_01-1.jpg" alt=""></div>
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_01-2.jpg" alt=""></div>
+						</div>
+					</div>
+
+					<!-- 비디오 영역 -->
+					<div class="video-box">
+						<iframe src="https://www.youtube.com/embed/bf36TnQSa4w?autoplay=1&amp;playlist=bf36TnQSa4w&amp;playsinline=1&amp;loop=1&amp;showinfo=0&amp;rel=0&amp;vp=hd1080&amp;fs=0&amp;wmode=opaque&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fwww.fila.co.kr" frameborder="0" allowfullscreen="" allow="autoplay" data-gtm-yt-inspected-12640479_8="true" >
+						</iframe>
+					</div>					
+					<!-- //비디오 영역 -->
+
+					<div class="banner02 banner">
+						<div class="m_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_02.jpg">
+							<div class="bg "><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_02-1.jpg" alt=""></div>	
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_02-2.jpg" alt=""></div>	
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_02-3.jpg" alt=""></div>	
+						</div>
+						<div class="d_hidden t_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_02.jpg">
+							<div class="bg "><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_02-1.jpg" alt=""></div>
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_02-2.jpg" alt=""></div>
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_02-3.jpg" alt=""></div>
+						</div>
+						<div class="plus-btn">
+							<div class="btn1">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=38224" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn1.png" alt="" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn1.png" alt="" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn2 del1">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=37430" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn2.png" alt="" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn2.png" alt="" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn3 del2">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=37323" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn3.png" alt="" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn3.png" alt="" class="d_hidden t_hidden">
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="banner03 banner">
+						<div class="m_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_03.jpg">
+							<div class="bg "><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_03-1.jpg" alt=""></div>	
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_03-2.jpg" alt=""></div>	
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_03-3.jpg" alt=""></div>	
+						</div>
+						<div class="d_hidden t_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_03.jpg">
+							<div class="bg "><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_03-1.jpg" alt=""></div>
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_03-2.jpg" alt=""></div>
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_03-3.jpg" alt=""></div>
+						</div>
+						<div class="plus-btn">
+							<div class="btn4">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=38660" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn4.png" alt="사선 컬러 블럭 원피스 수영복" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn4.png" alt="사선 컬러 블럭 원피스 수영복" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn5 del2">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=36487" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn5.png" alt="펑키테니스">
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="banner04 banner">
+						<div class="m_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_04.jpg">
+							<div class="bg "><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_04-1.jpg" alt=""></div>	
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_04-2.jpg" alt=""></div>	
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_04-3.jpg" alt=""></div>	
+							<div class="bg del3"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_04-4.jpg" alt=""></div>	
+						</div>
+						<div class="d_hidden t_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_04.jpg">
+							<div class="bg "><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_04-1.jpg" alt=""></div>
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_04-2.jpg" alt=""></div>
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_04-3.jpg" alt=""></div>
+							<div class="bg del3"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_04-4.jpg" alt=""></div>
+						</div>
+						<div class="plus-btn">
+							<div class="btn6">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=38786" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn6.png" alt="토마이아 테이피테잎" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn6.png" alt="토마이아 테이피테잎" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn7 del1">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=38638" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn7.png" alt="크롭 소매 로고 래쉬가드" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn7.png" alt="크롭 소매 로고 래쉬가드" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn8 del2">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=37229" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn8.png" alt="리니어 컬러 배색 원피스" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn8.png" alt="리니어 컬러 배색 원피스" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn9 del3">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=38653" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn9.png" alt="스트라이프 탱크탑" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn9.png" alt="스트라이프 탱크탑" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn10">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=38436" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn10.png" alt="타이다이 컬러풀 반팔 티셔츠" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn10.png" alt="타이다이 컬러풀 반팔 티셔츠" class="d_hidden t_hidden">
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="banner05 banner">
+						<div class="m_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_05.jpg">
+							<div class="bg "><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_05-1.jpg" alt=""></div>	
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_05-2.jpg" alt=""></div>	
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_05-3.jpg" alt=""></div>	
+						</div>
+						<div class="d_hidden t_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_05.jpg">
+							<div class="bg "><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_05-1.jpg" alt=""></div>
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_05-2.jpg" alt=""></div>
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_05-3.jpg" alt=""></div>
+						</div>
+						<div class="plus-btn">
+							<div class="btn11 del1">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=38942" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn11.png" alt="미니 버킷팩" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn11.png" alt="미니 버킷팩" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn12 del1">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=36505" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn12.png" alt="페스티보" >
+								</a>
+							</div>
+							<div class="btn13 del2">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=36491" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn13.png" alt="펑키테니스" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn13.png" alt="펑키테니스" class="d_hidden t_hidden">
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="banner06 banner">
+						<div class="m_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_06.jpg">
+							<div class="bg "><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_06-1.jpg" alt=""></div>	
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_06-2.jpg" alt=""></div>	
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_06-3.jpg" alt=""></div>	
+						</div>
+						<div class="d_hidden t_hidden">
+							<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_06.jpg">
+							<div class="bg "><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_06-1.jpg" alt=""></div>
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_06-2.jpg" alt=""></div>
+							<div class="bg del2"><img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_06-3.jpg" alt=""></div>
+						</div>
+						<div class="plus-btn">
+							<div class="btn14 ">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=38653" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn14.png" alt="스트라이프 탱크탑">
+								</a>
+							</div>
+							<div class="btn15 ">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=36747" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn15.png" alt="아노락 하프 집업" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn15.png" alt="아노락 하프 집업" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn16 ">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=38639" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn16.png" alt="5부 워터 레깅스" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn16.png" alt="5부 워터 레깅스" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn17 del1">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=37816" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn17.png" alt="스윔 숏팬츠">
+								</a>
+							</div>
+							<div class="btn18 del2">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=37594" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn18.png" alt="그라데이션 버킷햇" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn18.png" alt="그라데이션 버킷햇" class="d_hidden t_hidden">
+								</a>
+							</div>
+							<div class="btn19 del2">
+								<a href="https://www.fila.co.kr/product/view.asp?ProductNo=38604" >
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_d_btn19.png" alt="투명 미니 크로스백" class="m_hidden">
+									<img src="https://assets.styleship.com/fila/event/200615/kyj_summer_m_btn19.png" alt="투명 미니 크로스백" class="d_hidden t_hidden">
+								</a>
+							</div>
+						</div>
+					</div>
+					<!-- 슬라이드 -->
+					<div class="banner07 banner">
+						<div class="slide-box">
+								<div class="slide">
+
+									<div><img src="https://assets.styleship.com/fila/event/210124/2_slide_lettering01.jpg"></div>			
+									<div><img src="https://assets.styleship.com/fila/event/210124/2_slide_lettering02.jpg"></div>		
+									<div><img src="https://assets.styleship.com/fila/event/210124/2_slide_lettering03.jpg"></div>		
+									<div><img src="https://assets.styleship.com/fila/event/210124/2_slide_lettering04.jpg"></div>		
+									<div><img src="https://assets.styleship.com/fila/event/210124/2_slide_lettering05.jpg"></div>									
+
+								</div>	
+							</div>
+					</div>
+					<!-- //슬라이드 -->
+					
+						
+			<!-- 2020-06-15 소스 --> 
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

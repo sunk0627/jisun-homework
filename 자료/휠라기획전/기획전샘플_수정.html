@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<link rel="stylesheet" href="http://www.fila.co.kr/2018/pc/css/pages/list.css">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/common/font.css">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/common/normalize.css">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/common/opt-default.css">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/pages/layout.css?v=20170215">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/pages/sub.css?v=20200610">
+    <link rel="stylesheet" href="http://www.fila.co.kr/css/pages/brand.css">
+	<script src="http://www.fila.co.kr/js/common/libs/modernizr.custom.js"></script>	
+	<script src="http://www.fila.co.kr/js/common/libs/greensock/TweenMax.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<script src="http://www.fila.co.kr/js/common/styleship/mighty.base.1.5.7.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/styleship/mighty.slide.4.2.2.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/styleship/matizCoverLayer.3.1.0.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/styleship/matizResizeMap.1.0.0.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/libs/jquery.bxslider.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/libs/slick.min.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <div id="contents">
+        <div class="event_view" style="max-width: 980px;text-align: center;">
+            <div class="event_view_inner">	
+				
+				<!-- 2021-08-20 소스 --> 
+				
+				<style>
+
+					/*배너 기본 설정*/
+					.event_view_inner .banner .slide-box{max-width: 980px;}
+					.banner{position: relative;}
+					.banner .slick-slide {position: relative;margin: 0 1px;}
+					.banner .bg{
+						position: absolute;
+						width: 100%;
+						top: 0;
+						left: 0;
+						right: 0;
+						margin: auto;
+						opacity: 0;
+					}
+					/*ie9*/
+					.ie9 .banner .bg{opacity: 1;}
+
+					.banner.on .bg{animation:fadeIn 1s forwards;}
+					.banner .slide-box{
+						position: absolute;
+						width: 100%;
+						top: 2px;
+						left: 0;
+						right: 0;
+						margin: auto;
+					}				
+
+					/*btn*/
+					
+					.banner .slick-slide a{
+						position: absolute;
+						width: 30px;
+						height: 30px;
+						background: url(https://assets.styleship.com/fila/event/220408/btn_pc.png)center / 100% no-repeat;
+						transition: all .3s;
+					}
+					/* .banner .slick-slide a:hover{
+						transform: rotate(720deg) scale(1.05);
+					} */
+					
+					.btn1{top: 105px;left: 195px;}
+
+					.btn2{top: 150px;left: 155px;}
+					.btn3{top: 228px;left: 7px;}
+
+					.btn4{top: 195px;left: 305px;}
+
+					.btn5{top: 140px;left: 177px;}
+
+					/*애니메이션 설정*/
+					.del1{animation-delay: .3s !important;}
+					.del2{animation-delay: .6s !important;}
+					.del3{animation-delay: .9s !important;}
+					.del4{animation-delay: 1.2s !important;}
+					.del5{animation-delay: 1.5s !important;}
+					/*영상*/
+					.video-box {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						margin: auto;
+						width: 880px;
+						padding-bottom:495px;
+						background-color: rgb(0,0,0);
+					}
+					.video-box iframe,
+					.video-box object,
+					.video-box embed {
+						position: absolute;
+						top: 0;
+						left: 0;
+						bottom: 0;
+						width: 100%;
+						height: 100%;
+					}
+					.video-cover{
+						cursor: pointer;
+						position: absolute;
+						width: 100%;
+						height: 100%;
+						z-index: 1;
+					}
+
+					/*animation setting*/
+
+					@keyframes fadeIn{
+						0%{opacity: 0;}
+						100%{opacity: 1;}
+					}
+					/*flash*/
+					@keyframes flash{
+						0%,100%{opacity: 1;}
+						50%{opacity: .5;}
+					}
+
+
+					@media screen and (max-width: 767px) {
+
+						.banner .slide-box{top: 33%;}				
+						
+						.video-box{							
+							width: 100%;							
+							padding-bottom: 56.25%;
+						}
+						
+						.banner .slick-slide a{
+							width: 9.375vw;
+							height: 9.375vw;
+							background: url(https://assets.styleship.com/fila/event/220408/btn_mo.png)center / 100% no-repeat;
+						}
+						.banner .slick-slide a:hover{
+							transform: rotate(0) scale(1);
+						}
+
+						.btn1{top: 18vw;left: 38vw;}
+
+						.btn2{top: 26vw;left: 31vw;}
+						.btn3{top: 44vw;left: 0vw;}
+
+						.btn4{top: 37vw;left: 58vw;}
+
+						.btn5{top: 26vw;left: 36vw;}
+
+					}
+				</style>
+				<script src="https://www.youtube.com/iframe_api"></script>
+				<script>
+
+						var videoId = 'ox0Yp0AatHE';
+						var startSeconds = 13;
+
+						// Replace the 'ytplayer' element with an <iframe> and
+						// YouTube player after the API code downloads.
+						var player;
+
+						var playerConfig = {
+						  videoId: videoId,
+						  playerVars: {
+							autoplay: 1, // Auto-play the video on load
+							controls: 1, // Show pause/play buttons in player
+							showinfo: 0, // Hide the video title
+							modestbranding: 1, // Hide the Youtube Logo
+							fs: 1, // Hide the full screen button
+							cc_load_policy: 0, // Hide closed captions
+							iv_load_policy: 3, // Hide the Video Annotations
+							start: startSeconds,
+							autohide: 0, // Hide video controls when playing
+						  },
+						  events: {
+							'onStateChange': onStateChange
+						  }
+						};
+
+						function onYouTubePlayerAPIReady() {
+						  player = new YT.Player('vdoPlayer', playerConfig);
+
+						  $('.video-cover').on('click', function(){
+							$(this).hide();
+
+							player.playVideo();						
+						});
+						}
+
+						function onStateChange(state) {
+						  if (state.data === YT.PlayerState.ENDED) {
+							player.loadVideoById({
+							  videoId: videoId,
+							  startSeconds: startSeconds
+							});
+						  }
+						}
+						
+
+						/*function onPlayerStateChange(event) {
+							if(event.data === 0) {
+								//여기에 재생이 끝났을 때 실행시킬 스크립트 작성
+								$('.video-cover').show();
+								player.stopVideo();
+							}
+						}*/
+					$(function(){
+								
+						//자동 슬라이드
+						var slider = $('.slide-box .autoslide');
+						slider.slick({
+							autoplay: true,
+							autoplaySpeed: 0,
+							speed: 5000,
+							fade: false,
+							arrows: false,
+							centerMode: true,
+							centerPadding: '109px',
+							slidesToShow:2,
+							slidesToScroll: 1,
+							cssEase: 'linear',
+							infinite: true,
+							dots: false,
+							pauseOnFocus: false,
+							pauseOnHover: false,
+							draggable:true,	
+						});
+						
+					});
+				</script>
+				
+					
+					<div class="banner01 banner on">
+						<div class="m_hidden">
+							<img src="https://assets.styleship.com/fila/event/220408/wave_active_d_01.jpg">
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/220408/wave_active_d_01-1.jpg" alt=""></div>	
+						</div>
+						<div class="d_hidden t_hidden">
+							<img src="https://assets.styleship.com/fila/event/220408/wave_active_m_01.jpg">
+							<div class="bg del1"><img src="https://assets.styleship.com/fila/event/220408/wave_active_m_01-1.jpg" alt=""></div>
+						</div>
+					</div>
+					<div class="banner02 banner ">					
+						<div class="m_hidden"><img src="https://assets.styleship.com/fila/event/220408/wave_active_d_02.jpg"></div>
+						<div class="d_hidden t_hidden"><img src="https://assets.styleship.com/fila/event/220408/wave_active_m_02.jpg"></div>	
+						<div class="slide-box">
+							<div class="autoslide">
+								<div>
+									<img src="https://assets.styleship.com/fila/event/220408/2_slide_1.png" alt="">
+									<a href="/product/view.asp?ProductNo=46998" class="btn2"></a>
+									<a href="/product/view.asp?ProductNo=46984" class="btn3"></a>
+								</div>
+								<div>
+									<img src="https://assets.styleship.com/fila/event/220408/2_slide_2.png" alt="">
+									<a href="/product/view.asp?ProductNo=46985" class="btn4"></a>
+								</div>
+								<div>
+									<img src="https://assets.styleship.com/fila/event/220408/2_slide_3.png" alt="">
+									<a href="/product/view.asp?ProductNo=46999" class="btn5"></a>
+								</div>
+								<div><img src="https://assets.styleship.com/fila/event/220408/2_slide_4.png" alt=""></div>
+								<div><img src="https://assets.styleship.com/fila/event/220408/2_slide_5.png" alt=""></div>
+								<div>
+									<img src="https://assets.styleship.com/fila/event/220408/2_slide_6.png" alt="">
+									<a href="/product/view.asp?ProductNo=47011" class="btn1"></a>
+								</div>
+							</div>
+						</div>		
+					</div>
+					
+					<div class="banner03 banner ">
+						<div class="m_hidden"><img src="https://assets.styleship.com/fila/event/220408/wave_active_d_03.jpg"></div>
+						<div class="d_hidden t_hidden"><img src="https://assets.styleship.com/fila/event/220408/wave_active_m_03.jpg"></div>
+						<!-- 비디오 영역 -->
+						<div class="video-box">
+							<div class="video-cover">
+								<div class="m_hidden"><img src="https://assets.styleship.com/fila/event/220408/mv_cover_pc.jpg"></div>
+								<div class="d_hidden t_hidden"><img src="https://assets.styleship.com/fila/event/220408/mv_cover_mo.jpg"></div>
+							</div>
+							<div id="vdoPlayer"></div>
+							<!-- <iframe src="https://www.youtube.com/embed/ox0Yp0AatHE?start=13&amp;autoplay=0&amp;playlist=ox0Yp0AatHE;playsinline=1&amp;loop=1&amp;showinfo=0&amp;rel=0&amp;vp=hd1080&amp;fs=0&amp;wmode=opaque&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fwww.fila.co.kr" frameborder="0" allowfullscreen="" allow="autoplay" data-gtm-yt-inspected-12640479_8="true" >
+							</iframe> -->
+						</div>			
+
+					</div>
+					<div class="banner04 banner ">					
+						<div class="m_hidden"><img src="https://assets.styleship.com/fila/event/220223/underwear_d_07.jpg"></div>
+						<div class="d_hidden t_hidden"><img src="https://assets.styleship.com/fila/event/220223/underwear_m_07.jpg"></div>		
+					</div>
+					
+					<div class="add-banner ">
+						<a href="/event/group_view.asp?no=764">
+							<div class="m_hidden"><img src="https://assets.styleship.com/fila/event/220223/under_banner_dt_01.jpg"></div>
+							<div class="d_hidden t_hidden"><img src="https://assets.styleship.com/fila/event/220223/under_banner_mo_01.jpg"></div>	
+						</a>
+					</div>
+
+				
+					
+						
+			<!-- 2021-08-20 소스 --> 
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
