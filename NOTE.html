@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+
+Alt + Shift + Del : 줄삭제
+Ctrl + J : 현재 줄 복제
+Ctrl + R : 현재 줄 선택
+Ctrl + I : 현재줄 들여쓰기
+
+
+
+[팝업창 띄우기]
+
+1.기존 asp 파일 복사하여 test 페이지 만든다.
+2.하단에 팝업 스크립트에서 날짜 삭제
+3.pop_main.asp 이미지 소스 변경
+4.적용
+
+
+[full page 플러그인]
+.fp-auto-height 클래스
+: height: auto;
+
+.vertical-scrolling
+: scroll
+-예제
+https://nepa.styleship.com/about/about.asp
+
+:개별 스크립트 소스넣기
+
+[scroll top]
+-------------------------------------------------
+		mFixBtn: {
+			init: function(){
+				la.mFixedBtn = ssq('.fix_btn');
+
+				la.mFixBtn.scr();
+				la.mFixBtn.top();
+			},
+			scr: function(){
+				if(ssq(window).scrollTop() > 100){
+					la.mFixedBtn.fadeIn();
+				}else{
+					la.mFixedBtn.fadeOut();
+				}
+			},
+			top: function(){
+				ssq('.fix_btn .top').on('click', function(){
+					ssq('body, html').animate({
+						scrollTop: 0
+					}, 800);
+						return false;
+				});
+			}
+		},
+
+
+------------------------------------------------------
+----- > 맨 위 listener ={ (scroll부분에 스크립트 불러오기 )
+
+			ssq(window).on('scroll', function() {
+				la.mFixBtn.scr();
+
+			});
+} 
+
+
+[서치박스 입력값 디폴트 시키기]
+클릭시
+$('input').val('');
+
+----------------------------------------------------------
+[ 요일별로 swiper 센터모드 다르게 ]
+var mySwiper = document.querySelector('.promo-in01 .swiper').swiper;
+							
+							// 월
+							mySwiper.slideTo(0, 0,  false);
+							// 화
+							//mySwiper.slideTo(1, 0,  false);
+							// 수
+							//mySwiper.slideTo(2, 0,  false);
+							// 목
+							//mySwiper.slideTo(3, 0,  false);
+							// 금
+							//mySwiper.slideTo(4, 0,  false);
+							// 토
+							//mySwiper.slideTo(5, 0,  false);
+							// 일
+							//mySwiper.slideTo(5, 0,  false);
+
+--------------------------------------------------------
+[탭 슬라이드]
+페이징으로 탭
+
+---------------------------------------------------
+[아이폰 sticky 버그 문제]
+
+position: -webkit-sticky;
+transform: translate3d(0,0,0);
+transform-style: preserver-3d;
+backface-visibility: hidden;
+
+나머지 박스에 
+position: relative;
+z-index: 12;
+
+- 참고 
+https://forum.framework7.io/t/css-sticky-element-is-flickering/10566/3
+
+---------------------------------------------------
+[swiper 터치 이벤트 막기 ]
+touchRatio: 0.
+---------------------------------------------------
+롤링시 background-position으로 조정
+---------------------------------------------------
+[스와이퍼 2개 연동 시]
+
+		swiperI.controller.control = swiperT;
+		swiperT.controller.control = swiperI;
+
+loop 로 인한 duplicate 오류 -> 
+var promoNum = $('.promo-slide').find('.swiper-slide');
+var techNum = $('.tech-slide').find('.swiper-slide');
+
+각 스와이퍼 안에 넣어줌
+loopedSlides: promoNum.length,
+ loopedSlides: techNum.length,
+observer: true,
+observeParents: true
+---------------------------------------------------
+[스와이퍼 스크롤바 loop 스크립트]
+휠라 메인 
+
+var totalSlide = $('.main-banner-box .swiper-slide').length;
+
+$('.main-slider-pagination').attr('data-total-num', totalSlide);
+$('.main-slider-pagination').attr('data-curr-num', swiper.realIndex + 1);
+$('.main-slider-pagination + .pagination-curr-bar > div').css({
+'width' : (swiper.realIndex + 1 / totalSlide) * 100 + '%',
+'left' : Math.ceil((swiper.realIndex / totalSlide) * 100) + '%'
+
+swiper.on('slideChange', function(){
+$('.main-slider-pagination').attr('data-curr-num', swiper.realIndex + 1);
+
+$('.main-slider-pagination + .pagination-curr-bar > div').css({
+'left' : Math.ceil((swiper.realIndex / totalSlide) * 100) + '%'
+});				
+});
+---------------------------------------------------
+
+[스크롤매직]
+addclass 로 sec마다 클래스 붙게
+$(function(){
+					var controller = new ScrollMagic.Controller();
+
+					$('.main__contents section').each(function(i){
+						$(this).addClass("_sec0" + i);
+						var banner = new ScrollMagic.Scene({
+							triggerElement:"._sec0"+ i,
+							duration: 0,
+							triggerHook: 0.7,
+							reverse: false,
+							offset: 0,
+						})
+						/*.addIndicators({
+							name:"banner03",
+							indent:0,
+							colorStart:"red",
+							colorEnd:"red",
+							colorTrigger:"red"
+						})*/
+						.setClassToggle("._sec0"+ i,"on")
+						.addTo(controller);
+					});
+				}); 
+---------------------------------------------------
+[모바일 slick slide count]
+
+$('.slider').on('init', function(event, slick) {
+    var total = slick.slideCount;
+   var currSld = slick.currentSlide;
+
+    $('.page-num .curr-num').text(currSld + 1);
+    $('.page-num .total-num').text(total);
+})
+
+.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+     var total = slick.slideCount;
+
+    $('.page-num .curr-num').text(nextSlide + 1);
+    $('.page-num .total-num').text(total);
+});
+
+---------------------------------------------------
+<!-- 비디오 영역 -->
+						<div class="video-box">
+							<div>
+								<iframe src="https://www.youtube.com/embed/Q0G-aB5RoiY?amp;autoplay=1&amp;playlist=Q0G-aB5RoiY&amp;loop=1&amp;mute=1" frameborder="0" allowfullscreen="" allow="autoplay" data-gtm-yt-inspected-12640479_8="true">
+								</iframe>
+							</div>
+						</div>					
+						<!-- //비디오 영역 -->
+
+---------------------------------------------------
+[흐르는 스와이퍼]
+swiper-wrapper : transition-timing-function: linear;
+
+var marqueeSlide = new Swiper(".rolling-slide", {
+							  speed: 8e3,
+							  slidesPerView: 'auto',
+							  //freeMode: true,
+							  autoplay: {
+								delay: 0,
+								disableOnInteraction: false
+							  },
+							  allowTouchMove: true,
+							  loop: true,
+							  loopAdditionalSlides: 1,
+							  centeredSlides: true,
+							});
+---------------------------------------------------
+[리사이즈맵 반응형]
+matizResizeMap.1.0.0.min.js
+이사님 플러그인 
+
+<img src="https://www.pxg.co.kr/data/SmartEditContent/view_watch_promo_m_00.jpg" width-init="720" height-init="2685" usemap="#map1" class="resizemap" width="100%">
+				
+<map name="map1" id="map1">
+<area shape="rect" coords="40,1284,680,1590" href="/promotion/230901/renewal_event.asp" target="_blank">
+<area shape="rect" coords="40,1609,680,1914" href="/promotion/view.asp?no=133" target="_blank">
+<area shape="rect" coords="40,1936,680,2240" href="/promotion/230901/renewal_event.asp" target="_blank">
+					
+</map>
+---------------------------------------------------
+
+[ 모바일 스크롤바 스와이퍼 옵션 ]
+freeMode: true,
+noSwiping: false,
+allowSlidePrev: true,
+allowSlideNext: true,
+mousewheel: {
+	invert: true,
+	forceToAxis: true
+},
+slidesPerView: "auto",
+slidesOffsetBefore: 0,
+slidesOffsetAfter: 0,
+scrollbar: {
+   el: ".goods__list._scroll .swiper-scrollbar",
+   draggable: true,
+   snapOnRelease: false
+}
+
+---------------------------------------------------
+[스와이퍼 스크롤바 드래그사이즈]
+scrollbar: {
+dragSize: Math.floor($(window).width() / 5)
+}
+
+---------------------------------------------------
+[text underline 간격]
+
+ h1 {   
+      text-decoration: underline;
+      text-underline-offset: 0.5rem;
+  }
+---------------------------------------------------
+[검색창 레이어 꽉찬 화면 스크롤]
+body {overflow: hidden;}
+.layer .inner {height: calc(100vh - (header 높이값))}
+---------------------------------------------------
+[fade 오류 해결]
+effect : 'fade', 
+				
+fadeEffect: { crossFade: true },
+---------------------------------------------------
+[swiper slide to 사용해서 index구하기]
+var curIdx = $('.special-slide .swiper-slide.on').index();
+specialSlide.slideTo(curIdx, 0, false);
+
+--------------------------------------------------------
+[ 카운트 day + hour ]
+https://www.pxg.co.kr/pc/promotion/240116/black_ops.asp
+
+-------------------------------------------------------
+
+[text gradient]
+background: -webkit-linear-gradient(#fff 50%, #eee);
+						-webkit-background-clip: text;
+						-webkit-text-fill-color: transparent;
+
+-----------------------------------------------------
+[swiper slide 복제 제외]
+var totalSlide = $('.swiper-slide:not(.swiper-slide-duplicate) .tennis-club__slider .swiper-slide').length;
+-----------------------------------------------------
+[swiper paginaiton으로 스크롤바만들기 ]
+var totalSlide = $('.swiper-slide:not(.swiper-slide-duplicate) .tennis-club__slider .swiper-slide').length;
+	var slideInx = 0; //현재 슬라이드 index
+
+
+	var clubSwiper = new Swiper('.tennis-club__slider', {	
+		observer: true,
+		observeParents: true,
+		loop: false,
+		//freeMode: true,
+		nested: true,
+		centeredSlides: false,
+		slidesPerView: 'auto',
+		watchSlidesVisibility: true,
+		watchSlidesProgress: true,
+		pagination: {
+			el: '.club-slider-pagination',
+			clickable: true
+		},
+		on: {
+			init : function () {
+				$('.club-slider-pagination + .pagination-curr-bar > div').css({
+					'width' : ((this.realIndex + 1) / totalSlide) * 100 + '%'
+					//'left' : (this.realIndex / totalSlide) * 100 + '%'
+				});
+			},
+
+			slideChange: function(){
+				$('.club-slider-pagination').attr('data-curr-num', this.realIndex + 1);
+
+				$('.club-slider-pagination + .pagination-curr-bar > div').css({
+					//'left' : (this.realIndex / totalSlide) * 100 + '%'
+					'width' : ((this.realIndex + 1) / totalSlide) * 100 + '%'
+				});	
+			},
+		}
+	});
+
+	
+	$('.club-slider-pagination').attr('data-total-num', totalSlide);
+	$('.club-slider-pagination').attr('data-curr-num', clubSwiper.realIndex + 1);
+
+
+
+-------------------------------------------------
+[gsap 반응형 위치 못잡는 이슈]
+window.addEventListener("resize", ScrollTrigger.update);
+
+추가 
+
+
+------------------------------------------------------
+[popup 가운데 위치시키기]
+
+https://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen
+
+
+
+var popupBtn = document.querySelector('.save__btn');
+
+function popupWindow(url, windowName, win, w, h) {
+const y = win.top.outerHeight / 2 + win.top.screenY - ( h / 2);
+const x = win.top.outerWidth / 2 + win.top.screenX - ( w / 2);
+return win.open(url, windowName, `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`);
+}
+
+popupBtn.onclick = function(){		
+popupWindow('/customstudio/customize_print.asp', 'test', window, 750, 800);
+}
+
+------------------------------------------------------
+[vimeo 영상 관련 스크립트]
+<script src="https://player.vimeo.com/api/player.js"></script>
+************************* 클릭시 
+ssq('.play__btn').on('click', function(){
+
+    var tLayerSize = ssq(this).attr('data-layer-size'),
+        tVdo = ssq(this).attr('data-vdo'),
+        tVdoSize = ssq(this).attr('data-vdo-size');
+
+    ssq('body').addClass('vdo--open');
+    
+    ssq('.vdo__layer .con').css('max-width', tLayerSize + 'px');
+    ssq('.vdo__layer .vdo').css('padding-top', tVdoSize + '%');
+    ssq('.vdo__layer .vdo').html('<iframe id="vdoPlayer" src="https://player.vimeo.com/video/' + tVdo  + '?h=8700bccc92&loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>');
+    
+    var iframe = document.getElementById('vdoPlayer');
+    var player = new Vimeo.Player(iframe);
+    
+    //setTimeout(function(){
+        player.play();
+    //}, 500);				
+});
+
+*예제 사이트
+https://www.leica-store.co.kr/product/m11_silver/20201/
+------------------------------------------------------
+[iphone video 정책]
+전체화면으로 재생하므로 인라인으로 시작할경우
+playsinline 을 기본값으로 넣어줌 *****
+----------------------------------------------------------
+[swiper grid 설정]
+https://nepatest.styleship.com/product/view.asp?pno=35168
+네파 메인 / 상세 npluer
+
+(script)
+$(function(){
+	var npluerSwiper = new Swiper(".npluer__swiper", {
+		slidesPerView: 2,
+		spaceBetween: 6,
+		  grid: {
+			rows: 2,
+		  },
+		mousewheel: false,
+		  scrollbar: {
+			el: ".npluer__swiper .swiper-scrollbar",
+			hide: false,
+		  },
+	});
+});
+
+****css**** 
+.swiper {
+    height: calc(438 / 330*(100vw - 60px));
+}
+.swiper-slide {
+    height: calc((100% - 6px) / 2) !important;
+}
+</body>
+</html>
