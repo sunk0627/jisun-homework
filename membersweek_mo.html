@@ -1,0 +1,1802 @@
+<!-- #include virtual = "/mo/layout/initialize.asp" -->
+<!-- #include virtual = "/mo/layout/doc_title.asp" -->
+<!-- #include virtual = "/mo/layout/html_header.asp" -->
+<%
+if now() > cdate("2023-03-30 10:20:00") and now() < cdate("2023-03-30 11:50:59") then		
+'		AssetsServer = "//d3ntg8vz88ji1p.cloudfront.net/filaweb1"		'// d3ntg8vz88ji1p.cloudfront.net/fila	
+'		PromoAssets = "//d3ntg8vz88ji1p.cloudfront.net/filaweb1"	
+'		ProductAssets = "//d3ntg8vz88ji1p.cloudfront.net/fila"	
+else
+'		AssetsServer = "//assetscdn.styleship.com/assets/filaweb1"		'// d3ntg8vz88ji1p.cloudfront.net/fila	
+'		PromoAssets = "//assetscdn.styleship.com/assets/filaweb1" '// "//www.stylepay.co.kr/fila"
+'		ProductAssets = "//assets.styleship.com/fila" 
+end if	
+
+%>
+	<meta name="title" content="FILA MEMBERS WEEK" />
+	<meta name="description" content="FILA MEMBERS WEEK" />
+	<meta name="keywords" content="FILA MEMBERS WEEK, EVENT, FILA" />
+	<meta name="image" content="https://assetscdn.styleship.com/assets/filaweb1/data/Section_image/members_img_top_m_240321_45.jpg" />
+	<meta property="og:url" content="https://www.fila.co.kr/event/membersweek2024/membersweek.asp" />
+	<meta property="og:title" content="FILA MEMBERS WEEK "/>
+	<meta property="og:description" content="FILA MEMBERS WEEK" />
+	<meta property="og:image" content="https://assetscdn.styleship.com/assets/filaweb1/data/Section_image/members_img_top_m_240321_45.jpg" />	
+	<meta property="og:image:width" content="640" />
+	<meta property="og:image:height" content="640" />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="FILA" />
+	<meta property="og:locale" content="ko_KR" />	
+
+
+<!-- 개별 css, js -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+
+	<script src="/mo/resource/js/lib/scrollmagic/ScrollMagic.js"></script>
+<script src="/mo/event/membersweek2024/members.js?v=003"></script>
+	<script src='/pc/resource/js/pages/clipboard.min.js'></script>
+	<style>
+
+		.promo-banner {
+			position: relative;
+			overflow: hidden;
+			background-color: rgb(255, 255, 255);
+		}
+		.promo-banner img {
+			display: block;
+			width: 100%; 
+		}
+
+		.motion-box {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.motion-box img {
+			position: absolute;
+			opacity: 0;
+		}
+
+		.marquee-slide .swiper-wrapper {transition-timing-function : linear;}
+
+
+	
+
+		.motion-box.on .fadeIn {animation: fadeIn 1s forwards;}
+		.motion-box.on .showUp {animation: showUp .6s ease-out forwards;}
+		@keyframes fadeIn {
+			0% {opacity: 0;}
+			100% {opacity: 1;}
+		}
+		@keyframes showUp {
+			0% {
+				opacity: 0;
+				transform: translateY(calc(80 / 780 * 100vw));
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0px);
+			}
+		} 
+		@keyframes pulse {
+			70% {
+				box-shadow: 0 0 0 calc(10 / 780 * 100vw) rgba(255, 255, 255, 0);
+			}
+			100% {
+				box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+			}
+		}
+		.del1 {animation-delay: .3s !important;}
+		.del2 {animation-delay: .6s !important;}
+		.del3 {animation-delay: .9s !important;}
+		.del4 {animation-delay: 1.2s !important;}
+		.del5 {animation-delay: 1.5s !important;}
+		.del6 {animation-delay: 1.8s !important;}
+		.del7 {animation-delay: 2.1s !important;}
+		.del8 {animation-delay: 2.3s !important;}
+		.del9 {animation-delay: 2.5s !important;}
+	</style>
+	<script>
+		$(document).ready(function(){
+			var controller = new ScrollMagic.Controller();
+			var num = $('.motion-box').length;
+			for( i = 1 ; i < num + 1; i++){
+				//banner
+				var banner = new ScrollMagic.Scene({
+					triggerElement:".motion-box0"+ i +"",
+					duration: 0,
+					triggerHook: 0.7,
+					reverse: false,
+					offset: 0,
+				})
+				/*.addIndicators({
+					name:"banner03",
+					indent:0,
+					colorStart:"red",
+					colorEnd:"red",
+					colorTrigger:"red"
+				})*/
+				.setClassToggle(".motion-box0"+ i +"","on")
+				.addTo(controller);
+			}
+
+			var specialSlide = new Swiper(".special-slide", {
+			  speed: 3000,
+			 // spaceBetween: 10,
+			  slidesPerView: 'auto',
+			  //freeMode: true,
+			  //autoplay: {
+			//	delay: 1000,
+			//	disableOnInteraction: false
+			  //},
+			  allowTouchMove: true,
+			  loop: true,
+			  loopAdditionalSlides: 1,
+			  centeredSlides: true,
+			});
+
+
+			// toggle
+			$('.mbs-toggle-btn').on('click', function(){
+				$(this).parent().toggleClass('on');
+			});
+
+			// layer
+			$('.mbs-com-layer .mbs-close-btn').on('click', function(){
+				$('.mbs-com-layer').removeClass('open');
+			});
+
+			// slot 
+			var slotSlide = $('.ran-slot-box .slot-box .slot .slot-bg');
+			slotSlide.removeClass('stop');
+			/*
+			$('.ran-coupon-btn a').on('click', function(e){
+				//e.preventDefault();
+
+				setTimeout(function(){
+					// n초 뒤에 layer open
+					//$('.mbs-com-layer.layer__ran').addClass('open');
+				}, 500);
+			});
+			*/
+
+		});
+	</script>
+
+</head>
+<body class="hd__style1">
+	<!-- start of :: wrap -->
+	<div id="wrap">
+		<!-- #include virtual = "/mo/layout/doc_header.asp" -->
+
+		<!-- start of :: contents -->
+		<div id="contents" class="brand__contents">
+			<section class="brand-view-box">
+				
+				<h2 class="hidden">FILA X GREY MANSION COLLABORATION EVENT</h2>
+
+				<!--2023-08-01 promo-box-->
+				<div class="promo-box">
+
+				<style>
+					.promo-banner01 {
+						height: calc(751 / 780 * 100vw);
+					}
+					.promo-banner01 .bg {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: calc(1560 / 780 * 100vw);
+						height:  calc(1502 / 780 * 100vw);
+						background: linear-gradient(320deg, rgba(244,140,166,1) 20%, rgba(255,199,108,1) 50%, rgba(244,140,166,1) 80%);
+						background: linear-gradient(130deg, rgba(244,140,166,1) 30%, rgba(255,199,108,1) 55%, rgba(244,140,166,1) 75%);
+						background: radial-gradient(circle, rgba(255,199,108,1) 0%, rgba(244,140,166,1) 60%);
+						animation: bgMoving01 15s linear infinite ;
+					}
+					@keyframes bgMoving01 {
+						0% {background-position: 0 0;}
+						25% {background-position: calc(-780 / 780 * 100vw) calc(0 / 780 * 100vw);}
+						50% {background-position: calc(-780 / 780 * 100vw) calc(-751 / 780 * 100vw);}
+						75% {background-position: calc(0 / 780 * 100vw) calc(-751 / 780 * 100vw);}
+						100% {background-position: calc(0 / 780 * 100vw) calc(0 / 780 * 100vw);}
+					}
+					.promo-banner05 {
+						height: calc(1377 / 780 * 100vw);
+					}
+					.promo-banner05 .bg {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: calc(1560 / 780 * 100vw);
+						height: calc(2126 / 780 * 100vw);
+						background: radial-gradient(circle, rgba(252,218,189,1) 0%, rgba(251,198,205,1) 60%);
+						animation: bgMoving02 10s linear infinite ;
+					}
+					@keyframes bgMoving02 {
+						0% {background-position: 0 0;}
+						25% {background-position: calc(-780 / 780 * 100vw) calc(0 / 780 * 100vw);}
+						50% {background-position: calc(-780 / 780 * 100vw) calc(-1063 / 780 * 100vw);}
+						75% {background-position: calc(0 / 780 * 100vw) calc(-1063 / 780 * 100vw);}
+						100% {background-position: calc(0 / 780 * 100vw) calc(0 / 780 * 100vw);}
+					}
+
+					.promo-banner .promo-btn-style {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: 100%;
+						height: calc(80 / 780 * 100vw);
+						margin: auto;	
+						border-radius: calc(40 / 780 * 100vw);
+						box-sizing: border-box;
+						background: rgb(0, 0, 0);
+						font-size: calc(28 / 780 * 100vw);
+						font-weight: 700;
+						color: rgb(255, 255, 255);
+					}
+
+					.special-slide-box {
+						position: absolute;
+						top: calc(278 / 780 * 100vw);
+						width: 100%;
+					}
+					.special-slide {overflow: visible;}
+					.special-slide-box .swiper-slide {
+						width: calc(257 / 780 * 100vw);
+						margin-right: calc(3 / 780 * 100vw);
+					}
+					.special-slide-box .swiper-slide.on {
+						scale: 1.1;
+						box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+						border-radius: calc(30 / 780 * 100vw);
+						box-sizing: border-box;
+						overflow: hidden;
+						z-index: 13;
+					}
+
+					.mbs-gds-list {
+						padding: calc(49 / 780 * 100vw) calc(30 / 780 * 100vw) calc(100 / 780 * 100vw);
+						background-color: rgb(17,17,17);
+					}
+					.mbs-gds-list .inner {
+						display: grid;
+						grid-template-columns: repeat(2, 1fr);
+						gap: calc(20 / 780 * 100vw);
+					}
+					.mbs-gds-list .inner .goods > a {
+						display: block;
+						padding: calc(20 / 780 * 100vw) calc(20 / 780 * 100vw) calc(28 / 780 * 100vw);
+						border-radius: calc(25 / 780 * 100vw);
+						box-sizing: border-box;
+						background-color: rgb(255, 255, 255);
+					}
+					.mbs-gds-list .inner .goods .thum {
+						width: 100%;
+						border-radius: calc(25 / 780 * 100vw);
+						overflow: hidden;
+					}
+					.mbs-gds-list .inner .goods .thum img {width: 100%;}
+					.mbs-gds-list .inner .goods .pd-info {
+						margin-top: calc(32 / 780 * 100vw);
+					}
+					.mbs-gds-list .inner .goods .pd-info .name {
+						font-weight: 700;
+						font-size: calc(28 / 780 * 100vw);
+						line-height: calc(34 / 780 * 100vw);	
+						color: rgb(0, 0, 0);
+					}
+					.mbs-gds-list .inner .goods .pd-info .price {
+						display: flex;
+						align-items: center;
+						gap: calc(10 / 780 * 100vw);
+						margin-top: calc(2 / 780 * 100vw);
+						font-size: calc(24 / 780 * 100vw);
+						line-height: calc(38 / 780 * 100vw);
+					}
+					.mbs-gds-list .inner .goods .price .sale {color: rgb(0, 0, 0);}
+					.mbs-gds-list .inner .goods .price .ori {color: rgb(204,204,204);}
+					.mbs-gds-list .inner .goods .price .per {
+						color: rgb(214, 0, 31);
+					}
+
+					/* 하루특가 */
+					.mbs-one-day {
+						position: absolute;
+						top: calc(270 / 780 * 100vw);
+						left: 50%;
+						width: calc(720 / 780 * 100vw);
+						transform: translateX(-50%);
+					}
+					.one-day-tab {
+						display: flex;
+						justify-content: center;
+						margin: 0 auto calc(30 / 780 * 100vw);
+						border-radius: calc(20 / 780 * 100vw);
+						background-color: rgb(255,255,255);
+						box-sizing: border-box;
+						overflow: hidden;
+					}
+					.one-day-tab li {
+						width: 100%;
+						height: calc(80 / 780 * 100vw);
+						font-size: calc(22 / 780 * 100vw);
+						line-height: calc(80 / 780 * 100vw);
+						text-align: center;
+						color: rgb(0,0,0);
+						background-color: rgb(255,255,255);
+						box-sizing: border-box;
+					}
+					/* .one-day-tab li.off {
+						color: rgb(255,255,255);
+						border-radius: 30px;
+						box-sizing: border-box;
+					} */
+					.one-day-tab li.on {
+						color: rgb(255,255,255);
+						background-color: rgb(0,0,0);
+						border-radius: calc(20 / 780 * 100vw);
+						box-sizing: border-box;
+					}
+					.one-day-list {
+						background: none;
+						padding: 0;
+					}
+					.one-day-list .inner {
+						grid-template-columns: repeat(3, 1fr);
+						gap: calc(6 / 780 * 100vw);
+					}
+					.one-day-list .inner .goods > a {
+						padding: calc(13 / 780 * 100vw) calc(13 / 780 * 100vw) calc(18 / 780 * 100vw);
+					}
+					.one-day-list .inner .goods .pd-info .price {
+						flex-wrap: wrap;
+						gap: 0;
+						margin-top: calc(10 / 780 * 100vw);
+					}
+					.one-day-list .inner .goods .pd-info .name {
+						height: 32px;
+						font-size: 1.4rem;
+						line-height: 1.6rem;
+					}
+					.one-day-list .inner .goods .pd-info .price {
+						font-size: calc(22 / 780 * 100vw);
+						line-height: calc(26 / 780 * 100vw);
+					}
+					.one-day-list .inner .goods .price .ori {margin-right: calc(10 / 780 * 100vw);}
+					.one-day-list .inner .goods .price .per {margin-top: 5px;}
+
+					.focus-slide-box {
+						position: absolute;
+						top: calc(260 / 780 * 100vw);
+						width: 100%;
+					}
+					.focus-slide-box .swiper-slide {
+						width: calc(600 / 780 * 100vw);
+						/*margin-left: calc(10 / 780 * 100vw);*/
+						margin: 0 calc(5 / 780 * 100vw);
+						text-align: center;
+					}
+					/*.focus-slide-box .swiper-slide:first-child {margin-left: calc(60 / 780 * 100vw);}
+					.focus-slide-box .swiper-slide:last-child {margin-right: calc(60 / 780 * 100vw);}*/
+					.focus-slide .swiper-slide .promo-info {margin-top: calc(40 / 780 * 100vw);}
+					.focus-slide .swiper-slide .promo-info .tit {
+						font-weight: 700;
+						font-size: calc(36 / 780 * 100vw);
+						color: rgb(0, 0, 0)
+					}
+					.focus-slide .swiper-slide .promo-info .tit span {font-weight: 400;}
+					.focus-slide .swiper-slide .promo-info .txt {
+						font-size: calc(24 / 780 * 100vw);
+						color: rgb(102, 102, 102)
+					}
+
+					.focus-slide .swiper-slide .promo-btn-style {
+						width: calc(260 / 780 * 100vw);
+						margin-top: calc(42 / 780 * 100vw);
+					}
+					@media only screen and (max-width: 378px) {
+						.one-day-list .inner .goods .pd-info .name {
+							height: 24px;
+							font-size: 1.1rem;
+							line-height: 1.1rem;
+						}
+						.one-day-list .inner .goods .price .per {margin-top: 3px;}
+					}
+
+
+					/* tab */
+					.mbs-week-tab {
+						position: sticky;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: calc(90 / 780 * 100vw);
+						background-color: rgb(0,0,0);
+						z-index: 123;	
+					}
+					.mbs-week-tab > .in {
+						display: flex;
+						align-items: center;
+						margin: 0 auto;
+						height: 100%;
+					}
+					.mbs-week-tab button {
+						width: 100%;
+						height: 100%;
+						font-size: calc(24 / 780 * 100vw);
+						line-height: calc(28 / 780 * 100vw);
+						font-weight: 500;
+						text-align: center;
+						color: rgb(153,153,153);
+					}
+					.mbs-week-tab button.on {
+						font-weight: 700;
+						color: rgb(255,255,255);
+					}
+					.mbs-week-tab > .in::-webkit-scrollbar {
+						display: none; /* Chrome, Safari, Opera*/
+					}
+
+					/* countdown */
+					.count-container{
+						position: absolute;
+						top: calc(220 / 780 * 100vw);
+						left: 50%;
+						transform: translateX(-50%);
+						width: calc(660 / 780 * 100vw);
+						height: calc(100 / 780 * 100vw);
+					}
+					#countdown{
+						position: relative;
+						height: 100%;
+					}
+					#countdown ul{
+						display: flex;
+						justify-content: space-between;
+						/*justify-content: center;*/
+						width: 100%;
+						height: 100%;
+						font-family: "Dela Gothic One", sans-serif;
+						font-weight: 400;
+						font-feature-settings: "tnum";
+						font-variant-numeric: tabular-nums;
+						font-size: calc(72 / 780 * 100vw);
+						letter-spacing: .04em;
+						line-height: calc(111 / 780 * 100vw);
+						color: rgb(255,255,255);
+						text-align: center;
+						margin: auto;
+					}
+					#countdown ul li {
+						width: calc(135 / 780 * 100vw);
+					}
+					#countdown ul li p{
+						display: flex;
+						justify-content: center;
+						width: 100%;
+						height: 100%;
+					}
+					#countdown ul li p span{
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: calc(50 / 780 * 100vw);
+					}
+					.count-container2 {
+						position: absolute;
+						top: calc(-23 / 780 * 100vw);
+						left: 50%;
+						transform: translateX(-50%);
+						width: calc(480 / 780 * 100vw);
+						height: calc(100 / 780 * 100vw);
+					}
+					#countdown2 {
+						position: relative;
+						height: 100%;
+					}
+					#countdown2 ul {
+						display: flex;
+						justify-content: space-between;
+						/*justify-content: center;*/
+						width: 100%;
+						height: 100%;
+						font-family: "Dela Gothic One", sans-serif;
+						font-weight: 400;
+						font-feature-settings: "tnum";
+						font-variant-numeric: tabular-nums;
+						font-size: calc(72 / 780 * 100vw);
+						letter-spacing: .04em;
+						line-height: calc(111 / 780 * 100vw);
+						color: rgb(255,255,255);
+						text-align: center;
+						margin: auto;
+					}
+					#countdown2 ul li {
+						width: calc(134 / 780 * 100vw);
+					}
+					#countdown2 ul li p {
+						display: flex;
+						justify-content: center;
+						width: 100%;
+						height: 100%;
+					}
+					#countdown2 ul li p span{
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: calc(67 / 780 * 100vw);
+					}
+
+					/* 데일리 래플 */
+					.daily-raffle-box {
+						position: absolute;
+						top: calc(253 / 780 * 100vw);
+						left: 50%;
+						transform: translateX(-50%);
+					}
+					.daily-raffle-box .gift-box {
+						width: calc(720 / 780 * 100vw);
+					}
+					.daily-raffle-box .gift-box img {width: 100%;}
+					
+					.promo-agr-box {
+						margin: calc(55 / 780 * 100vw) auto 0;
+						width: calc(660 / 780 * 100vw);
+					}
+					.promo-agr-box .promo-agr-btn {
+						width: calc(660 / 780 * 100vw);
+						margin-top: calc(25 / 780 * 100vw);	
+					}
+					.promo-agr-box .promo-agr-label {
+						font-size: calc(24 / 780 * 100vw);
+						line-height: calc(38 / 780 * 100vw);
+						padding-left: calc(40 / 780 * 100vw);
+						color: rgb(0,0,0);
+						cursor: pointer;
+						vertical-align: middle;
+					}
+					.promo-agr-box .promo-agr-label:before,
+					.promo-agr-box .promo-agr-label:after {
+						width: calc(30 / 780 * 100vw);
+						height: calc(30 / 780 * 100vw);
+						margin-top: calc(5 / 780 * 100vw);
+						background-size: calc(30 / 780 * 100vw);
+					}
+					.md-pick-box {
+						background-color: rgb(245,245,245);
+					}
+					.md-tab-box {
+						display: flex;
+						justify-content: space-between;
+						width: calc(644 / 780 * 100vw);
+						height: calc(80 / 780 * 100vw);
+						margin: auto;
+						padding: 0 0 calc(30 / 780 * 100vw);
+					}
+					.md-tab-box .md-tab-btn {
+						width: calc(208 / 780 * 100vw);
+						height: calc(80 / 780 * 100vw);
+						border-radius: calc(50 / 780 * 100vw);
+						box-sizing: border-box;
+						background-color: transparent;
+						font-size: calc(28 / 780 * 100vw);
+						font-weight: 400;
+						color: rgb(0,0,0);
+						background-color: rgb(255,255,255);
+					}
+					.md-tab-box .md-tab-btn.on {
+						background-color: rgb(0,0,0);
+						color: rgb(255,255,255);
+					} 
+					.md-pick-box .mbs-gds-list {
+						padding: 0 calc(30 / 780 * 100vw);
+					}
+					.mbs-more-btn {
+						padding: calc(60 / 780 * 100vw) calc(30 / 780 * 100vw) calc(100 / 780 * 100vw);
+					}
+
+					/* slot */
+					.mbs-random-coupon {
+						position: absolute;
+						top: calc(400 / 780 * 100vw);
+						left: 50%;
+						width: 100%;
+						transform: translateX(-50%);
+					}
+					.ran-slot-box {
+						position: relative;
+						left: 50%;
+						transform: translateX(-55%);
+						width: calc(616 / 780 * 100vw);
+						height: calc(255 / 780 * 100vw);
+						background: url(<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_slot.png) center center/cover no-repeat;
+					}
+					.ran-slot-box .slot-box {
+						width: 100%;
+						height: 100%;
+					}
+					.ran-slot-box .slot-box .slot-in {
+						position: absolute;
+						left: calc(300 / 780 * 100vw);
+						top: calc(52 / 780 * 100vw);
+						display: flex;
+						width: calc(210 / 780 * 100vw);
+						height: calc(120 / 780 * 100vw);
+						overflow: hidden;
+					}
+					.ran-slot-box .slot-box .slot {
+						width: 50%;
+						height: 100%;
+						overflow: hidden;
+					}
+					.ran-slot-box .slot-box .slot .slot-bg {
+						width: 100%;
+						height: calc(1273 / 780 * 100vw);
+						background-image: url(<%=AssetsServer%>/data/ContentsFile/img_random_num_240319.png);
+						background-repeat: repeat-y;
+						background-position: center center;
+						background-size: 93% calc(1273 / 780 * 100vw);
+						animation: slotRoll 5s linear infinite;
+					}
+					.ran-slot-box .slot-box .slot .slot-bg._bg2 {
+						animation: slotRoll2 5s linear infinite;
+					}
+					.ran-slot-box .slot-box .slot .slot-bg.stop {
+						animation: slotStop .3s linear forwards;
+					}
+					@keyframes slotRoll {
+						0% {background-position-y: 0;}
+						100% {background-position-y: calc(-1273 / 780 * 100vw);}
+					}
+					@keyframes slotRoll2 {
+						0% {background-position-y: 0;}
+						100% {background-position-y: calc(1273 / 780 * 100vw);}
+					}
+					@keyframes slotStop {
+						0% {background-position-y: 0;}
+						100% {background-position-y: 0;}
+					}
+					
+					.ran-sold-out {
+						display: none;
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: calc(608 / 780 * 100vw);
+						height: calc(245 / 780 * 100vw);
+					}
+					.ran-sold-out.open {display: block;}
+					/* // slot */
+					.ran-coupon-btn {
+						margin: calc(60 / 780 * 100vw) auto 0;
+						width: calc(660 / 780 * 100vw);
+					}
+					
+					.promo-code-box {
+						position: absolute;
+						left: 50%;
+						bottom: calc(260 / 780 * 100vw);
+						width: calc(660 / 780 * 100vw);
+						transform: translateX(-50%);
+					}
+					.promo-code-box .code-inp-box {
+						width: 100%;
+						height: calc(120 / 780 * 100vw);
+					}
+					.promo-code-box .code-inp-box input {
+						width: 100%;
+						height: 100%;
+						text-align: center;
+						font-size: calc(48 / 780 * 100vw);
+						font-weight: 500;
+						background: transparent;
+						outline: 0;
+						border: 0;
+					}
+					.promo-code-box .code-copy-btn {
+						margin-top: calc(30 / 780 * 100vw);	
+					}
+					.promo-code-box .code-copy-btn button {width: 100%;}
+					
+					/* 출석체크 */
+					.mbs-day-check {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+					}
+					.mbs-day-check .day-btn-box {
+						position: absolute;
+						top: calc(447 / 780 * 100vw);
+						width: calc(544 / 780 * 100vw);
+						left: 50%;
+						font-size: 0;
+						transform: translateX(-50%);
+					}
+					.mbs-day-check .day-btn-box button {
+						position: relative;
+						width: calc(121 / 780 * 100vw);
+						height: calc(121 / 780 * 100vw);
+						margin-right: calc(20 / 780 * 100vw);
+					}
+					.mbs-day-check .day-btn-box button:nth-child(4n) {margin-right: 0;}
+					.mbs-day-check .day-btn-box button:nth-child(-n+4) {margin-bottom: calc(80 / 780 * 100vw);}
+					.mbs-day-check .day-btn-box button img {
+						display: none;
+					}
+					.mbs-day-check .day-btn-box button.checked img {display: block;}
+					
+					.mbs-day-check .day-btn-box button._last img {scale: 1.07;}
+					
+					.mbs-day-check .day-inp-box {
+						position: absolute;
+						top: calc(331 / 780 * 100vw);
+						left: calc(355 / 780 * 100vw);
+						width: calc(35 / 780 * 100vw);
+						height: calc(30 / 780 * 100vw);
+					}
+					.mbs-day-check .day-inp-box p {
+						width: calc(35 / 780 * 100vw);
+						height: calc(35 / 780 * 100vw);
+						color: rgb(255,145,144);
+						font-size: calc(28 / 780 * 100vw);
+						text-align: center;
+						font-weight: 700;
+						line-height: calc(35 / 780 * 100vw);
+						background: transparent;
+						border: 0;
+						outline: 0;
+					}
+					.mbs-day-check .promo-agr-box {
+						position: absolute;
+						left: 50%;
+						bottom: calc(266 / 780 * 100vw);
+						transform: translateX(-50%);
+					}
+					.mbs-day-check .promo-agr-box label {
+						color: rgb(255,255,255);
+					}
+					.mbs-day-check .day-check-btn {
+						margin-top: calc(25 / 780 * 100vw);
+					}
+					.mbs-day-check .day-check-btn button {
+						width: 100%;
+						color: rgb(0,0,0);
+						background: linear-gradient(to right, rgb(255,220,148), rgb(255,145,144));
+					}
+					.special-gift-agrs {
+						position: absolute;
+						bottom: calc(90 / 780 * 100vw);
+						left: 50%;
+						transform: translateX(-50%);
+					}
+					
+					.mbs-toggle-btn {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: calc(146 / 780* 100vw);
+						z-index: 12;
+					}
+					.promo-banner13 .mbs-toggle-img {
+						display: none;	
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						z-index: 1;
+					}
+					.promo-banner13.on {
+						height: calc(3021 / 780 * 100vw);
+					}
+					.promo-banner13.on .mbs-toggle-img {display: block;}
+
+					/* popup */
+					.mbs-com-layer {
+						display: none;
+						position: fixed;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						z-index: 1111;
+					}
+					.mbs-com-layer .inner {
+						position: relative;
+						left: 50%;
+						top: 50%;
+						display: flex;	    
+						align-items: flex-end;
+						width: 100%;
+						transform: translate(-50%, -50%);
+						z-index: 1;
+					}
+					.mbs-com-layer:after {
+						content: '';
+						position: absolute;
+						display: block;
+						top: 0;
+						right: 0;
+						left: 0;
+						bottom: 0;
+						background-color: rgba(0,0,0,0.2);
+					}
+					.mbs-com-layer .img-box {
+					}
+					.mbs-com-layer .mbs-close-btn {
+						position: absolute;
+						top: 0;
+						right: 0;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: calc(150 / 780 * 100vw);
+						height: calc(150 / 780 * 100vw);
+					}
+					.mbs-com-layer .mbs-close-btn img {
+						width: calc(30 / 780 * 100vw);
+					}
+					.mbs-com-layer.open {display: block;}
+
+					.mbs-com-layer.layer__ran .img-box {position: relative;}
+					.mbs-com-layer.layer__ran .img-box .percent-box {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						display: flex;
+						flex-wrap: wrap;
+					}
+					.mbs-com-layer.layer__ran .img-box .percent-box p {
+						position: absolute;
+						border: 0;
+						background: transparent;
+						outline: 0;
+						text-align: center;
+					}
+					.mbs-com-layer.layer__ran .img-box .percent-box .top {
+						position: relative;
+						height: calc(197 / 780 * 100vw);
+						width: 100%;
+					}
+					.mbs-com-layer.layer__ran .img-box .percent-box .top p {
+						top: calc(105 / 780 * 100vw);
+						left: calc(250 / 780 * 100vw);
+						font-size: calc(36 / 780 * 100vw);
+						font-weight: 700;
+						width: calc(50 / 780 * 100vw);
+						height: calc(40 / 780 * 100vw);
+					}
+					.mbs-com-layer.layer__ran .img-box .percent-box .bot {
+						position: relative;
+						height: calc(100% - 25.25vw);
+						width: 100%;
+					}
+					.mbs-com-layer.layer__ran .img-box .percent-box .bot p {
+						top: calc(38 / 780 * 100vw);
+						left: calc(376 / 780 * 100vw);
+						font-size: calc(106 / 780 * 100vw);
+						font-family: "Dela Gothic One", sans-serif;
+						color: rgb(255,255,255);
+						width: calc(126 / 780 * 100vw);
+						line-height: 1;
+					}
+
+					.mbs-com-layer.layer__day .img-box {position: relative;}
+					.mbs-com-layer.layer__day .img-box .txt__date {
+						position: absolute;
+						top: calc(115 / 780 * 100vw);
+						left: calc(245 / 780 * 100vw);
+						font-size: calc(36 / 780 * 100vw);
+						font-weight: 700;	
+						line-height: 1;	
+					}
+					
+				</style>
+
+					<script>
+					
+						(function () {
+
+					  const second = 1000,
+
+							minute = second * 60,
+
+							hour = minute * 60,
+
+							day = hour * 24;
+
+
+
+					  //I'm adding this section so I don't have to keep updating this pen every year :-)
+
+					  //remove this if you don't need it
+
+					  let today = new Date(),
+
+						  dd = String(today.getDate()).padStart(2, "0"),
+
+						  mm = String(today.getMonth() + 1).padStart(2, "0"),
+
+						  yyyy = today.getFullYear(),
+
+						  nextYear = yyyy,
+
+						  dayMonth = "06/14/",
+
+						  birthday = dayMonth + yyyy;
+
+					  
+
+					  today = mm + "/" + dd + "/" + yyyy;
+
+					  if (today > birthday) {
+
+						birthday = dayMonth + nextYear;
+
+					  }
+
+					  //end
+
+							const countDown = new Date('2024-03-25T14:59:59').getTime(),
+
+							  x = setInterval(function() {    
+
+
+
+								const now = new Date().getTime(),
+
+									  distance = countDown - now;
+
+								const leftDays = Math.floor(distance / (day)),
+									  leftHours = Math.floor((distance % (day)) / (hour)),
+									  leftMinutes = Math.floor((distance % (hour)) / (minute)),
+									  leftSeconds = Math.floor((distance % (minute)) / second);
+
+								/*const padTxtDays = String(leftDays).padStart(2, "0");
+								document.querySelector('.days01').innerText = padTxtDays.substr(0, 1);
+								document.querySelector('.days02').innerText = padTxtDays.substr(1, 2);
+
+
+								const padTxtHours = String(leftHours).padStart(2, "0");
+								document.querySelector('.hours01').innerText = padTxtHours.substr(0, 1);
+								document.querySelector('.hours02').innerText = padTxtHours.substr(1, 2);
+
+
+								const padTxtMinutes = String(leftMinutes).padStart(2, "0");
+								document.querySelector('.minutes01').innerText = padTxtMinutes.substr(0, 1);
+								document.querySelector('.minutes02').innerText = padTxtMinutes.substr(1, 2);
+
+
+								const padTxtSeconds = String(leftSeconds).padStart(2, "0");
+								document.querySelector('.seconds01').innerText = padTxtSeconds.substr(0, 1);
+								document.querySelector('.seconds02').innerText = padTxtSeconds.substr(1, 2);*/
+
+
+							  document.getElementById("days").innerText = String(leftDays).padStart(2, "0"),
+
+							  document.getElementById("hours").innerText = String(leftHours).padStart(2, "0"),
+
+							  document.getElementById("minutes").innerText = String(leftMinutes).padStart(2, "0"),
+
+							  document.getElementById("seconds").innerText = String(leftSeconds).padStart(2, "0");
+
+
+							//do something later when date is reached
+
+							if (distance < 0) {
+
+							  document.getElementById("headline").innerText = "End";
+
+							  document.getElementById("countdown").style.display = "none";
+
+							  document.getElementById("content").style.display = "block";
+
+							  clearInterval(x);
+
+							}
+
+							//seconds
+
+						  }, 1)
+
+					  }());
+
+
+					</script>
+					
+					<script>
+							
+						$(document).ready(function(){
+															(function () {
+						
+						  const second = 1000,
+						
+								minute = second * 60,
+						
+								hour = minute * 60,
+						
+								day = hour * 24;
+						
+						 
+						
+						  //I'm adding this section so I don't have to keep updating this pen every year :-)
+						
+						  //remove this if you don't need it
+						
+						  let today = new Date(),
+						
+							  dd = String(today.getDate()).padStart(2, "0"),
+						
+							  mm = String(today.getMonth() + 1).padStart(2, "0"),
+						
+							  yyyy = today.getFullYear(),
+						
+							  nextYear = yyyy,
+						
+							  dayMonth = "04/17/",
+						
+							  birthday = dayMonth + yyyy;
+						
+						  
+						
+						  today = mm + "/" + dd + "/" + yyyy;
+						
+						  if (today > birthday) {
+						
+							birthday = dayMonth + nextYear;
+						
+						  }
+						
+						  //end
+						
+						  
+						const countDown2 = new Date('2024-03-25T14:59:59').getTime(),
+
+						  x = setInterval(function() {    
+
+
+
+							const now = new Date().getTime(),
+
+								  distance = countDown2 - now;
+
+							const 
+									//leftDays = Math.floor(distance / (day)),
+								  leftHours = Math.floor((distance % (day)) / (hour)),
+								  leftMinutes = Math.floor((distance % (hour)) / (minute)),
+								  leftSeconds = Math.floor((distance % (minute)) / second);
+
+							//const padTxtDays = String(leftDays).padStart(2, "0");
+							//document.querySelector('.days03').innerText = padTxtDays.substr(0, 1);
+							//document.querySelector('.days04').innerText = padTxtDays.substr(1, 2);
+
+
+							const padTxtHours = String(leftHours).padStart(2, "0");
+							document.querySelector('.hours03').innerText = padTxtHours.substr(0, 1);
+							document.querySelector('.hours04').innerText = padTxtHours.substr(1, 2);
+
+
+							const padTxtMinutes = String(leftMinutes).padStart(2, "0");
+							document.querySelector('.minutes03').innerText = padTxtMinutes.substr(0, 1);
+							document.querySelector('.minutes04').innerText = padTxtMinutes.substr(1, 2);
+
+
+							const padTxtSeconds = String(leftSeconds).padStart(2, "0");
+							document.querySelector('.seconds03').innerText = padTxtSeconds.substr(0, 1);
+							document.querySelector('.seconds04').innerText = padTxtSeconds.substr(1, 2);
+
+
+
+							
+
+							  //document.getElementById("days").innerText = String(leftDays).padStart(2, "0"),
+
+							  //document.getElementById("hours").innerText = String(leftHours).padStart(2, "0"),
+
+							  //document.getElementById("minutes").innerText = String(leftMinutes).padStart(2, "0"),
+
+							  //document.getElementById("seconds").innerText = String(leftSeconds).padStart(2, "0");
+
+						
+						 
+						
+								//do something later when date is reached
+						
+								if (distance < 0) {
+						
+								  document.getElementById("headline").innerText = "End";
+						
+								  document.getElementById("countDown2").style.display = "none";
+						
+								  document.getElementById("content").style.display = "block";
+						
+								  clearInterval(x);
+						
+								}
+						
+								//seconds
+						
+							  }, 1)
+						
+						  }());
+							
+						})
+
+
+					</script>
+
+					<div class="promo-banner01 promo-banner">
+						<div class="bg"></div>	
+						<div class="motion-box01 motion-box">
+							<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_fila_logo_01.png" alt="" class="fadeIn del1">
+							<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_main_tit_01.png" alt="" class="fadeIn del2">
+							<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_main_tit_02.png" alt="" class="fadeIn del4">
+							<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_main_tit_03.png" alt="" class="fadeIn del5">
+							<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_main_tit_04.png" alt="" class="fadeIn del3">
+						</div>
+					</div>
+
+					<div class="promo-banner02 promo-banner">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_02.jpg" alt="">
+						<div class="count-container">
+							<div id="countdown">
+								<ul>
+									<li class="count_num">
+										<p id="days">
+											<!--<span class="days01">0</span>
+											<span class="days02">1</span>-->
+										</p>
+									</li>
+									
+									<li class="count_num">
+										<p id="hours">
+											<!--<span class="hours01">0</span>
+											<span class="hours02">1</span>-->
+										</p>
+									</li>
+									
+									<li class="count_num">
+										<p id="minutes">
+											<!--<span class="minutes01">0</span>
+											<span class="minutes02">1</span>-->
+										</p>
+									</li>
+									
+									<li class="count_num">
+										<p id="seconds">
+											<!--<span class="seconds01">0</span>
+											<span class="seconds02">1</span>-->
+										</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+<%
+If now() >= CDate("2024-03-25 10:59:59") Then
+	If hour(now) < 11 Then
+		nowDate = Date()-1
+	Else
+		nowDate = Date()
+	End If
+Else
+	nowDate = "2024-03-25"
+End If
+%>
+					<!-- 상단 탭 -->
+					<div class="mbs-week-tab">
+						<div class="in">
+						<button type="button" data-id="tab01" class="on">하루특가</button>
+						<button type="button" data-id="tab02">데일리<br>래플</button>
+						<button type="button" data-id="tab03">MD PICK</button>
+						<button type="button" data-id="tab04">선착순<br>랜덤 쿠폰</button>
+						<button type="button" data-id="tab05">신규회원<br>웰컴 혜택</button>
+						<button type="button" data-id="tab06">출석체크</button>
+						</div>
+					</div>
+					<!-- // 상단 탭 -->
+
+					<div class="promo-banner03 promo-banner">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_03.jpg" alt="">
+					</div>
+
+					<!-- 3시간 특가 카운트 -->
+					<div class="promo-banner count-box"><!-- 3시간 타임특가 시 클래스 _count_hide 추가 -->
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_count.jpg" alt="">
+						<div class="count-container2">
+							<div id="countdown2">
+								<ul>
+									<li class="count_num">
+										<p id="hours2">
+											<span class="hours03">0</span>
+											<span class="hours04">1</span>
+										</p>
+									</li>
+									<!--<li><span>:</span></li>-->
+									<li class="count_num">
+										<p id="minutes2">
+											<span class="minutes03">0</span>
+											<span class="minutes04">1</span>
+										</p>
+									</li>
+									<!--<li><span>:</span></li>-->
+									<li class="count_num">
+										<p id="seconds2">
+											<span class="seconds03">0</span>
+											<span class="seconds04">1</span>
+										</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+<%
+If nowDate = "2024-03-25" Or nowDate = "2024-03-29" Then
+%>
+					<!-- 3시간 특가 상품 -->
+					<div class="promo-banner time-gds-box">
+						<div class="mbs-gds-list">
+							<div class="inner">
+<%server.execute("/event/membersweek2024/memWeek_TIME_MO_" & nowDate & ".html")%>
+							</div>
+						</div>
+					</div>
+
+<%
+End If
+%>
+					<div class="promo-banner04 promo-banner">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_04.jpg" alt="">
+						<!-- 스페셜 데이 -->
+						<div class="special-slide-box">
+							<div class="swiper special-slide">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide <%If nowDate = "2024-03-25" Then%>on<%End If%>">
+										<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_img01_.png" alt="">
+									</div>
+									<div class="swiper-slide <%If nowDate = "2024-03-26" Then%>on<%End If%>">
+										<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_special_02.png" alt="">
+									</div>
+									<div class="swiper-slide <%If nowDate = "2024-03-27" Then%>on<%End If%>">
+										<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_special_03.png" alt="">
+									</div>
+									<div class="swiper-slide <%If nowDate = "2024-03-28" Then%>on<%End If%>">
+										<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_special_04.png" alt="">
+									</div>
+									<div class="swiper-slide <%If nowDate = "2024-03-29" Then%>on<%End If%>">
+										<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_special_05.png" alt="">
+									</div>
+									<div class="swiper-slide <%If nowDate = "2024-03-30" Then%>on<%End If%>">
+										<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_special_06.png" alt="">
+									</div>
+									<div class="swiper-slide <%If nowDate = "2024-03-31" Then%>on<%End If%>">
+										<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_special_07.png" alt="">
+									</div>
+									<div class="swiper-slide <%If nowDate = "2024-04-01" Then%>on<%End If%>">
+										<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240313_m_special_08.png" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="promo-banner05 promo-banner _detail" id="tab01">
+						<div class="bg"></div>
+						<div class="motion-box02 motion-box">
+							<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_05-1.png" alt="" class="fadeIn del1">
+						</div>
+						<div class="mbs-one-day">
+							<!-- 하루 특가 날짜 탭 -->
+							<ul class="one-day-tab">
+								<li class="todayTab tab2023-03-25 <%If nowDate = "2024-03-25" Then%>on<%End If%>">03.25</li><!-- 당일엔 on 클래스 추가 -->
+								<li class="todayTab tab2023-03-26 <%If nowDate = "2024-03-26" Then%>on<%End If%>">03.26</li>
+								<li class="todayTab tab2023-03-27 <%If nowDate = "2024-03-27" Then%>on<%End If%>">03.27</li>
+								<li class="todayTab tab2023-03-28 <%If nowDate = "2024-03-28" Then%>on<%End If%>">03.28</li>
+								<li class="todayTab tab2023-03-29 <%If nowDate = "2024-03-29" Then%>on<%End If%>">03.29</li>
+								<li class="todayTab tab2023-03-30 <%If nowDate = "2024-03-30" Then%>on<%End If%>">03.30</li>
+								<li class="todayTab tab2023-03-31 <%If nowDate = "2024-03-31" Then%>on<%End If%>">03.31</li>
+								<li class="todayTab tab2023-04-01 <%If nowDate = "2024-04-01" Then%>on<%End If%>">04.01</li>
+							</ul>
+							<!-- 하루 특가 상품 -->
+							<div class="one-day-list mbs-gds-list">
+								<div class="inner">
+									<!-- test -->
+									<div class="goods">
+										<a href="/product/view.asp?ProductNo=51020">
+											<div class="thum">
+												<img src="//filacdn.styleship.com/filaproduct2/data/productimages/a/3/FE2JKF5103X_CRM.jpg" alt="유니 컬러 블럭킹 아노락" class="lozad" data-loaded="true">
+											</div>
+											<div class="pd-info">
+												<p class="name">유니 컬러 블럭킹 아노락</p>
+												<div class="price">
+													<p class="ori"><del>109,000원</del></p> <br>
+													<p class="sale">49,000원</p>
+													<p class="per">55% 할인</p>
+												</div>
+											</div>
+										</a>
+									</div>
+									<!-- test -->
+<%server.execute("/event/membersweek2024/memWeek_MO_" & nowDate & ".html")%>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="promo-banner06 promo-banner _detail" id="tab02">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_06.jpg" alt="">
+						<div class="daily-raffle-box">
+							<div class="gift-box">
+								<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_raffle_01.png" alt="">
+							</div>
+							
+							<!-- 동의하기 폼 -->
+							<div class="promo-agr-box">
+								<form action="">
+									<input type="checkbox" id="promoCheck" class="cb__style1">
+									<label for="promoCheck" class="promo-agr-label">당첨 시 상품 증정을 위한 SMS 마케팅 수신에 동의합니다.</label>
+									<button type="button" class="promo-agr-btn promo-btn-style" onclick="membersRaffle2024();">응모하기</button>
+								</form>
+							</div>
+						</div>
+						<!-- 팝업 -->
+						<div class="mbs-com-layer layer__raffle"><!-- 응모 완료 시 클래스 open 추가 -->
+							<div class="inner">
+								<div class="img-box">
+									<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_raffle_pop.jpg" alt="">
+									<button type="button" class="mbs-close-btn"><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_lry_close.png" alt=""></button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="promo-banner07 promo-banner _detail" id="tab03">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_07.jpg" alt="">
+					</div>
+
+					<!-- md's pick -->
+					<div class="promo-banner md-pick-box">
+						<div class="md-tab-box"> <!-- 선택된 탭에 클래스 on -->
+							<button type="button" class="md-tab-btn tab1 on" onclick="mdpickP('MEN_MO');">MEN</button>
+							<button type="button" class="md-tab-btn tab2" onclick="mdpickP('WOMEN_MO');">WOMEN</button>
+							<button type="button" class="md-tab-btn tab3" onclick="mdpickP('KIDS_MO');">KIDS</button>
+						</div>
+
+						<div class="one-day-list mbs-gds-list">
+							<div class="inner view_content">
+<%server.execute("/event/membersweek2024/MEN_MO.html")%>
+							</div>
+						</div>
+
+						<!-- 상품 더보기 버튼 -->
+						<div class="mbs-more-btn">
+							<a href="#group4227" class="promo-btn-style">최대 71.3% 상품 더 보기</a>	
+						</div>
+					</div>
+
+					<div class="promo-banner08 promo-banner _detail" id="tab04">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_08.jpg" alt="">
+						
+						<!-- 랜덤 쿠폰 -->
+						<div class="mbs-random-coupon">
+							<div class="inner">
+								<!-- 랜덤 쿠폰 슬롯 -->
+								<div class="ran-slot-box">
+									<div class="slot-box">
+										<div class="slot-in">
+											<div class="slot slot1">
+												<div class="slot-bg _bg1"></div>
+											</div>
+											<div class="slot slot2">
+												<div class="slot-bg _bg2"></div>
+											</div>
+										</div>
+									</div>
+
+									<!-- 소진 완료 -->
+									<div class="ran-sold-out"><!-- 소진 완료 시 클래스 open 추가 -->
+										<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_slot_2.png" alt="">
+									</div>
+									<!-- // 소진 완료 -->
+
+								</div>
+								<!-- // 랜덤 쿠폰 슬롯 -->
+								
+
+								<!-- 쿠폰 받기 버튼 -->
+								<div class="ran-coupon-btn">
+									<a href="#group4227" class="promo-btn-style">쿠폰 다운받기</a>	
+								</div>
+								<!-- //쿠폰 받기 버튼 -->
+
+							</div>
+						</div>
+
+
+						<!-- 랜덤쿠폰 팝업 -->
+						<div class="mbs-com-layer layer__ran open"><!-- 랜덤쿠폰 당첨 시 클래스 open 추가 -->
+							<div class="inner">
+								<div class="img-box">
+									<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_m_random_pop.jpg" alt="">
+
+									<!-- 할인율 -->
+									<div class="percent-box">
+										<div class="top"><p class="cpnNo1">11%</p>
+										</div>
+										<div class="bot"><p class="cpnNo2">11</p>
+										</div>
+									</div>
+									<!-- // 할인율 -->
+									
+								</div>
+								<button type="button" class="mbs-close-btn"><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_lry_close.png" alt=""></button>
+							</div>
+						</div>
+						<!-- // 랜덤쿠폰 팝업 -->
+					</div>
+
+					<div class="promo-banner09 promo-banner">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_09.jpg" alt="">
+						
+						<!-- 프로모션 코드 등록 -->
+						<div class="promo-code-box">
+							<div class="code-inp-box">
+								<input type="text" value="멤버스위크" readonly>
+							</div>	
+							<!-- 코드 복사하기 버튼 -->							
+							<div class="code-copy-btn">
+								<button class="promo-btn-style" id="pageURL1_copy" data-clipboard-text="멤버스위크">코드 복사하기</button>		
+							</div>
+						</div>
+						<!-- // 프로모션 코드 등록 -->
+
+					</div>
+
+					<div class="promo-banner10 promo-banner _detail" id="tab05">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_10.jpg" alt="">
+					</div>
+					
+					<div class="promo-banner11 promo-banner _detail attendance" id="tab06">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_11.jpg" alt="">
+						<!-- 출석체크 -->
+						<div class="mbs-day-check">
+							<div class="day-inp-box">
+								<p>0</p>
+							</div>
+							<div class="day-btn-box">
+								<button type="button" class="checked" ><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_day_chk.png" alt=""></button><!-- 버튼 클릭 시 클래스 checked 추가 -->
+								<button type="button" class=""><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_day_chk.png" alt=""></button>
+								<button type="button" class=""><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_day_chk.png" alt=""></button>
+								<button type="button" class=""><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_day_chk.png" alt=""></button>
+								<button type="button" class=""><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_day_chk.png" alt=""></button>
+								<button type="button" class="checked"><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_day_chk.png" alt=""></button>
+								<button type="button" class="checked"><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_day_chk.png" alt=""></button>
+								<!-- 마지막 버튼 이미지 다름 -->
+								<button type="button" class="_last checked"><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_day_chk2.png" alt=""></button>
+							</div>
+							
+							<!-- 동의하기 폼 -->
+							<div class="promo-agr-box day-check-agr">
+								<form action="">
+									<input type="checkbox" id="agrCheck2" class="cb__style1">
+									<label for="agrCheck2" class="promo-agr-label">포인트 지급을 위한 마케팅 수신에 동의합니다.</label>
+									<div class="day-check-btn">
+										<button class="promo-btn-style">출석체크 하기</button>		
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- // 출석체크 -->
+
+
+						<!-- 출석 완료 팝업 -->
+						<div class="mbs-com-layer layer__day"><!-- 출석 완료 시 클래스 open 추가 -->
+							<div class="inner">
+								<div class="img-box">
+									<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_day_pop.jpg" alt="">
+									<!-- 날짜 -->
+									<p class="txt__date">4</p>
+								</div>
+								<button type="button" class="mbs-close-btn"><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_lry_close.png" alt=""></button>
+							</div>
+						</div>
+						<!-- // 출석 완료 팝업 -->
+						<!-- 출석 종료 시 팝업 -->
+						<div class="mbs-com-layer layer__day"><!-- 출석 종료 시 클래스 open 추가 -->
+							<div class="inner">
+
+								<!-- 출석체크 이벤트 종료 시 이미지 -->
+								<div class="img-box">
+									<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_d_day_pop2.jpg" alt="">
+									<button type="button" class="mbs-close-btn"><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_lry_close.png" alt=""></button>
+								</div>
+
+							</div>
+						</div>
+						<!-- 출석 종료 시 팝업 -->
+					</div>
+
+					</div>
+					<div class="promo-banner12 promo-banner">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_12.jpg" alt="">
+						<!-- 동의하기 폼 -->
+						<div class="promo-agr-box special-gift-agrs">
+							<form action="">
+								<input type="checkbox" id="promoCheck2" class="cb__style1">
+								<label for="promoCheck2" class="promo-agr-label">사은품 지급을 위한 마케팅 수신에 동의합니다.</label>
+								<button class="promo-agr-btn promo-btn-style" onclick="membersGift2024();">응모하기</button>		
+							</form>
+						</div>
+
+						<!-- 응모 완료 팝업 -->
+						<div class="mbs-com-layer layer__special"><!-- 응모 완료 시 클래스 open 추가 -->
+							<div class="inner">
+
+								<div class="img-box">
+									<!-- 응모 완료 시 팝업 이미지 -->
+									<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_special_pop.jpg" alt="">
+									<button type="button" class="mbs-close-btn"><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_lry_close.png" alt=""></button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="promo-banner13 promo-banner">
+						<img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_13.jpg" alt="">
+
+						<!-- 유의사항 -->
+						<button type="button" class="mbs-toggle-btn"></button>
+						<div class="mbs-toggle-img"><img src="<%=AssetsServer%>/data/ContentsFile/membersweek_240318_m_13-1.jpg" alt=""></div>
+					</div>
+				</div>
+				<!-- //2023-08-01 promo-box-->
+
+				<script>
+					
+					//tab
+					const tabBtns = document.querySelectorAll('.mbs-week-tab button');
+					const tabBtnH = document.querySelector('.mbs-week-tab').offsetHeight;
+					const tabBoxs = document.querySelectorAll('.promo-banner._detail');
+
+					const tabScroll = ()=> {
+						const wSt = document.querySelector('html').scrollTop; 
+
+						for(let i = 0; i < tabBtns.length; i++){			
+							if(wSt < tabBoxs[0].offsetTop - tabBtnH){
+								for(tabBtn of tabBtns){
+									tabBtn.classList.remove('on');
+								}
+							}else if(wSt > tabBoxs[i].offsetTop - tabBtnH){
+								for(tabBtn of tabBtns){
+									tabBtn.classList.remove('on');
+								}
+								tabBtns[i].classList.add('on');
+							}
+						}
+					}	
+
+					const tabClick = ()=> {  
+						for(tabBtn of tabBtns){
+							tabBtn.addEventListener('click', (e)=>{
+								const boxTop = document.querySelector('#' + e.currentTarget.getAttribute('data-id')).offsetTop - tabBtnH + 3; 
+								
+								window.scrollTo({
+									top: boxTop,
+									left: 0,
+									behavior: 'smooth'
+								});
+							});
+						}
+					}
+
+					document.addEventListener('scroll', ()=> {
+						tabScroll();		
+					});
+																					  
+					tabScroll();
+					tabClick();
+
+					/*$('.event_tab._evt_tab_style2 .category-box__btn').on('click', function(){
+						$('.event_tab._evt_tab_style2').toggleClass('_open');
+					});
+					
+					
+
+					$('.event_tab._evt_tab_style2 a').each(function(){
+						$(this).attr('data-left', ($(this).offset().left) - 20);
+					});
+
+
+					$('.event_tab._evt_tab_style2 a').on('click', function(){
+						$('.event_tab._evt_tab_style2').removeClass('_open');
+					});	
+					
+
+					$(window).on('scroll', function(){
+						if($('.event_tab._evt_tab_style2 a').hasClass('on')){
+							var currTab = $('.event_tab._evt_tab_style2 a.on').attr('data-left');
+
+							$('.event_tab._evt_tab_style2 .tab-category-box').scrollLeft(currTab);
+						}else{
+							$('.event_tab._evt_tab_style2 .tab-category-box').scrollLeft(0);
+						}
+					});*/
+				</script>
+			</section>		
+<%
+SectionNo = 1062
+With DB
+	.Query = "Select * From TB_Section Where SectionNo = ? and CodeSectionStatusNo = 1 "
+	.Param = SectionNo
+	SET Ers = .Execute
+	
+	If Ers.eof Then
+%>
+<Script>
+	alert("잘못된 접근입니다.");
+	top.location.href ="list.asp"
+</Script>
+<%
+		response.end
+	End If
+
+	SectionSQL = " Select AA.GroupNo, BB.GroupTitle, BB.GroupImage1 as imagePC, BB.GroupImage2 as imageMO, GroupLinkUrl From TB_SectionGroup AA inner join TB_Group BB on AA.GroupNo = BB.GroupNo Where SectionNo = ? and CodeGroupStatusNo = 1 order by SectionGroupPriority desc " 
+	.Query = SectionSQL
+	.Param = SectionNo
+	set rs = .Execute
+
+	if rs.EOF or rs.BOF then
+		SectionArray = null
+		SectionRows = -1
+	else
+		SectionArray = rs.getrows
+		SectionRows = ubound(SectionArray,2)
+		
+		eventArraySQL = " Select  a.ProductNo, a.ProductName, a.ProductCode, a.ProductPriceSale, a.ProductColor, dbo.FN_GET_PRODUCTCATEGORY(a.productno) categoryname, AA.GroupNo, BB.GroupTitle " &_
+									" From TB_SectionGroup AA  " &_
+									" inner join TB_Group BB on AA.GroupNo = BB.GroupNo  " &_ 
+									" inner join TB_GroupProduct as GG on BB.GroupNo = GG.GroupNo  " &_
+									" inner join vw_ProductList as a on a.productNo = GG.ProductNo " &_
+									" Where SectionNo = ? and CodeGroupStatusNo = 1 and Codeproductstatusno in (1,2,9) and BrandFactoryNo <> 0 and ProductOpenType in (0,1) " &_
+									" order by SectionGroupPriority desc, case when a.ProductStock > 0 and Codeproductstatusno = 1  then 9 when a.ProductStock > 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 1 then -1 else -2 end desc, GroupProductPriority desc, a.ProductNo desc "
+		.Query = eventArraySQL
+		.Param = SectionNo
+		set arrayRS = .Execute
+
+		if arrayRS.EOF or arrayRS.BOF then
+			arrayNum = -1			
+		else
+			arrayNum = 0
+		end if 
+	end if
+	
+	Set rs = Nothing
+
+End With
+%>
+			<div class="goods-bot" id="bestBtn">
+<%if SectionRows > 0 then
+	firsttitle = SectionArray(1,0)
+%>
+				<!-- 2023-02-07 탭메뉴 추가 --> 
+				<div class="box-line"></div>
+
+				<div class="event_tab special_tab">
+<%
+		FOR rowcounter= 0 TO SectionRows
+				groupNo_1 = SectionArray(0,rowcounter)
+				groupTitle_1 = SectionArray(1,rowcounter)
+%>
+					<a href="#" id="gt<%=groupNo_1%>" onclick="gotoScroll('#group<%=groupNo_1%>');"><%=groupTitle_1%></a>
+<%
+		Next
+%>
+				</div>
+<%end if%>
+	<form name="sFrm" method="get" action="?">
+	<input type="hidden" name="no" value="<%=SectionNo%>" />	
+	<input type="hidden" name="page" value="<%=page%>" />
+	</form>
+				<!-- 2023-02-07 상품 리스트 추가 -->
+				<div class="event_list_box">
+<%if isArray(SectionArray) then%>
+<%
+		'별점으로 추가된 필드 및 테이블
+		addField = " , ReviewCount, ReviewStarPoint, SellCount, StaffPrice "
+		addTable = " Left Join TB_Product_BatchCount On A.ProductNo = TB_Product_BatchCount.ProductNo "
+
+		FOR rowcounter= 0 TO SectionRows
+				groupNo_1 = SectionArray(0,rowcounter)
+				groupTitle_1 = SectionArray(1,rowcounter)
+				imagePC = SectionArray(2,rowcounter)
+				imageMO = SectionArray(3,rowcounter)
+				GroupLinkUrl = SectionArray(4,rowcounter)
+
+		basicWhere = ""
+		'#HJ 2015-10-08 재고 0 초과 인것만 노출! (이유는 재고 없는 카테고리들을 모두 만들수 없기 때문) 
+		'#HJ 2015-10-15 폐쇄몰관련 ProductOpenType 부분 추가 
+		basicWhere = " and Codeproductstatusno in (1,2,9) and BrandFactoryNo <> 0 and GG.GroupNo = ? "
+		IF GV_COMPANYNO = 0 THEN 
+			basicWhere = basicWhere & " and ProductOpenType in (0,1) "
+		ELSE
+			basicWhere = basicWhere & " and ProductOpenType in (0,2) "		
+		END IF
+
+		addQuery = basicWhere	& ""
+		addQuery2 = " group by a.ProductNo, a.ProductName, a.CodeSexNo, a.ProductCode, a.ProductPrice, a.ProductPriceSale, a.p_type, a.ProductColor, a.BrandNameEn, a.CodeProductColor, a.ProductStyle, a.ProductStock, GroupProductPriority, Codeproductstatusno " & addField & " "
+
+
+	'#HJ 2019-05-16 입고예정이 먼저 나오고 그다음 품절상품들이 나오도록 수정
+	' 추가 => case when a.ProductStock > 0 and Codeproductstatusno = 1  then 9 when a.ProductStock > 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 1 then -1 else -2 end desc,
+		select case sortVal
+		case 1		: sortValquery = " order by case when a.ProductStock > 0 and Codeproductstatusno = 1  then 9 when a.ProductStock > 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 1 then -1 else -2 end desc, GroupProductPriority desc, a.ProductNo desc "	'//// 신상품순
+		case 2		: sortValquery = " order by case when a.ProductStock > 0 and Codeproductstatusno = 1  then 9 when a.ProductStock > 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 1 then -1 else -2 end desc, ProductPriceSale asc, a.ProductNo desc " 	'//// 낮은가격순
+		case 3		: sortValquery = " order by case when a.ProductStock > 0 and Codeproductstatusno = 1  then 9 when a.ProductStock > 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 1 then -1 else -2 end desc, ProductPriceSale desc, a.ProductNo desc "	'//// 높은가격순
+		case 4		: sortValquery = " order by case when a.ProductStock > 0 and Codeproductstatusno = 1  then 9 when a.ProductStock > 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 1 then -1 else -2 end desc, ProductClickNo desc, a.ProductNo desc "		'//// 상품평순
+		case else	: sortValquery = " order by case when a.ProductStock > 0 and Codeproductstatusno = 1  then 9 when a.ProductStock > 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 2  then 1 when a.ProductStock <= 0 and Codeproductstatusno = 1 then -1 else -2 end desc, GroupProductPriority desc, a.ProductNo desc "		'//// 설정순서순
+		end select	
+
+		With DB
+'			.Debug = 1
+			.Query = "Select a.ProductNo, a.ProductName, a.CodeSexNo, a.ProductCode, a.ProductPrice, a.ProductPriceSale, a.p_type, a.ProductColor, a.BrandNameEn, max(TB_CodeProductTagCategory.CodeProductTagCategoryImage) as tagFileName, a.CodeProductColor, a.ProductStyle, isnull(a.ProductStock,0) as ProductStock, dbo.FN_GET_COUPON_PRICE(a.ProductNo) as CouponSalePrice, Codeproductstatusno, dbo.FN_GET_PRODUCTCATEGORY(a.productno) categoryname " & addField & " From vw_ProductList as a inner join TB_GroupProduct as GG on a.productNo = GG.ProductNo left outer join TB_ProductTag on a.ProductNo = TB_ProductTag.ProductNo left outer join TB_CodeProductTagCategory on TB_ProductTag.CodeProductTagCategoryNo = TB_CodeProductTagCategory.CodeProductTagCategoryNo " & addTable & " where 1=1 "& addQuery & addQuery2 & sortValquery
+			.Param = groupNo_1
+'			.PageNo = 1
+'			.PageSize = bm_pagesize
+			'response.write .Query
+			SET mdPRs = .Execute
+			RecordCount = mdPRs.recordcount
+
+		End With
+%>
+<%If mdPRs.eof Then%>
+<script>
+jQuery("#gt<%=groupNo_1%>").hide();
+</script>
+<%End If%>
+					<div class="thumb2_wrap" id="group<%=groupNo_1%>" <%If mdPRs.eof Then%>style="display:none;"<%End If%>>
+						<p class="tit"><%=groupTitle_1%></p>
+
+						<ul class="thumb2_list">
+<%
+	rollProductList2023mobileNoCart(mdPRs)
+%>
+
+						</ul>
+					</div>
+<%
+		Next
+	SET Ers = nothing
+%>			
+<%end if%>
+
+				</div>
+
+				
+			</div>
+		</div>
+		<!-- // end of :: contents -->
+
+		<!-- #include virtual = "/mo/layout/doc_footer.asp" -->
+	</div>
+    <!-- // end of :: wrap -->    
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+<script>
+	const observer = lozad();
+	jQuery(function() {
+		observer.observe();
+	})
+</script>
+            
+    
+</body>
+</html>

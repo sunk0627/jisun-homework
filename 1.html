@@ -1,649 +1,1417 @@
-<!-- #include virtual = "/pc/layout/initialize.asp" -->
-<!-- #include virtual = "/pc/layout/doc_title.asp" -->
-<!-- #include virtual = "/pc/layout/html_header.asp" -->
-
-<!-- 개별 css, js -->
-<link rel="stylesheet" href="/pc/resource/css/main.css">
-<script src="/pc/resource/js/pages/main.js?v=202304051724"></script>
-<%If CDate("2023-06-02 12:00:00") < now() And CDate("2023-06-05 18:00:00") > now() Then%>
-<script src="/pc/resource/js/pages/popup.js?v=202211301634"></script>
-<%End If%>
-<script src="/pc/resource/js/pages/review.js?v=2022090703"></script>
-</head>
-
-<body class="header--wt">
-    <!-- start of :: wrap -->
-    <div id="wrap">
-
-
-        <!-- #include virtual = "/pc/layout/doc_header.asp" -->
-
-        <!-- start of :: contents -->
-        <div id="contents" class="main__contents">
-            <!-- banner -->
-            <section class="main-banner-box m-banner-top">
-                <h2 class="hidden">banner</h2>
-                <!-- 메인 슬라이더 -->
-                <div class="banner__list _type_slider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide bnr">
-                            <a href="">
-                                <div class="photo">
-                                    <img src="/pc/resource/images/main/2307_main_banner_d_01.jpg" alt="main banner">
-                                </div>
-
-                                <!-- 배너 타이틀 -->
-                                <div class="info">
-                                    <p class="txt1">NOT AFRAID OF THE DARK</p>
-                                    <p class="txt2">SKULL CAPSULE</p>
-
-                                    <p class="banner-more _type_button">DETAIL VIEW</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide bnr">
-                            <a href="">
-                                <div class="photo">
-                                    <img src="/pc/resource/images/main/2307_main_banner_d_01.jpg" alt="main banner">
-                                </div>
-
-                                <!-- 배너 타이틀 -->
-                                <div class="info">
-                                    <p class="txt1">NOT AFRAID OF THE DARK</p>
-                                    <p class="txt2">SKULL CAPSULE</p>
-
-                                    <p class="banner-more _type_button">DETAIL VIEW</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide bnr">
-                            <a href="">
-                                <div class="photo">
-                                    <img src="/pc/resource/images/main/2307_main_banner_d_01.jpg" alt="main banner">
-                                </div>
-
-                                <!-- 배너 타이틀 -->
-                                <div class="info">
-                                    <p class="txt1">NOT AFRAID OF THE DARK</p>
-                                    <p class="txt2">SKULL CAPSULE</p>
-
-                                    <p class="banner-more _type_button">DETAIL VIEW</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide bnr">
-                            <a href="">
-                                <div class="photo">
-                                    <img src="/pc/resource/images/main/2307_main_banner_d_01.jpg" alt="main banner">
-                                </div>
-
-                                <!-- 배너 타이틀 -->
-                                <div class="info">
-                                    <p class="txt1">NOT AFRAID OF THE DARK</p>
-                                    <p class="txt2">SKULL CAPSULE</p>
-
-                                    <p class="banner-more _type_button">DETAIL VIEW</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- scroll bar -->
-                <div class="scroll-bar-box _type_arrows">
-                    <div class="main-slider-pagination"></div>
-                    <div class="pagination-curr-bar">
-                        <div></div>
-                    </div>
-                </div>
-            </section>
-            <!-- // banner -->
-
-            <!-- pxg club -->
-            <section class="main-goods-wrap">
-                <h2 class="hidden">pxg club</h2>
-
-                <p class="tit">PXG CLUB</p>
-
-                <div class="main-gds-box">
-                    <div>
-                        <div class="top">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_img_d_01.jpg" alt="">
-                            </div>
-
-                            <div class="txt-box">
-                                <p class="category">PXG GEN6 CLUBS</p>
-                                <p class="">
-                                    그린에서 놀라운 퍼포먼스를 전달하는 2023년 신제품 pxg gen6 라인업은<br>
-                                    공식 온라인스토어에서 구매하실 수 있습니다.
-                                </p>
-                            </div>
-                        </div>
-
-                        <ul class="main-goods-list">
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_club_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_club_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_club_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div class="top">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_img_d_01.jpg" alt="">
-                            </div>
-
-                            <div class="txt-box">
-                                <p class="category">PXG GEN6 CLUBS</p>
-                                <p class="">
-                                    그린에서 놀라운 퍼포먼스를 전달하는 2023년 신제품 pxg gen6 라인업은<br>
-                                    공식 온라인스토어에서 구매하실 수 있습니다.
-                                </p>
-                            </div>
-                        </div>
-
-                        <ul class="main-goods-list">
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_club_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_club_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_club_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div class="top">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_img_d_01.jpg" alt="">
-                            </div>
-
-                            <div class="txt-box">
-                                <p class="category">PXG GEN6 CLUBS</p>
-                                <p class="">
-                                    그린에서 놀라운 퍼포먼스를 전달하는 2023년 신제품 pxg gen6 라인업은<br>
-                                    공식 온라인스토어에서 구매하실 수 있습니다.
-                                </p>
-                            </div>
-                        </div>
-
-                        <ul class="main-goods-list">
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_club_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_club_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_club_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            <!-- // pxg club -->
-
-            <!-- banner -->
-            <section class="main-banner-box m-banner-mid">
-                <h2 class="hidden">banner</h2>
-                <!-- 메인 슬라이더 -->
-                <div class="banner__list">
-                    <div class="bnr">
-                        <a href="">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_banner_d_02.jpg" alt="main banner">
-                            </div>
-
-                            <!-- 배너 타이틀 -->
-                            <div class="info">
-                                <p class="txt1">NOT AFRAID OF THE DARK</p>
-                                <p class="txt2">SKULL CAPSULE</p>
-
-                                <p class="banner-more _type_button">DETAIL VIEW</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-            <!-- // banner -->
-
-            <!-- pxg style -->
-            <section class="main-goods-wrap">
-                <h2 class="hidden">pxg 23 fw style</h2>
-
-                <p class="tit">PXG 23 FW STYLE</p>
-
-                <div class="main-gds-box">
-                    <div>
-                        <div class="top">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_img_d_01.jpg" alt="">
-                            </div>
-
-                            <div class="txt-box">
-                                <p class="category">PXG GEN6 CLUBS</p>
-                                <p class="">
-                                    그린에서 놀라운 퍼포먼스를 전달하는 2023년 신제품 pxg gen6 라인업은<br>
-                                    공식 온라인스토어에서 구매하실 수 있습니다.
-                                </p>
-                            </div>
-                        </div>
-
-                        <ul class="main-goods-list">
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_style_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_style_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_style_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div class="top">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_img_d_01.jpg" alt="">
-                            </div>
-
-                            <div class="txt-box">
-                                <p class="category">PXG GEN6 CLUBS</p>
-                                <p class="">
-                                    그린에서 놀라운 퍼포먼스를 전달하는 2023년 신제품 pxg gen6 라인업은<br>
-                                    공식 온라인스토어에서 구매하실 수 있습니다.
-                                </p>
-                            </div>
-                        </div>
-
-                        <ul class="main-goods-list">
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_style_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_style_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_style_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div class="top">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_img_d_01.jpg" alt="">
-                            </div>
-
-                            <div class="txt-box">
-                                <p class="category">PXG GEN6 CLUBS</p>
-                                <p class="">
-                                    그린에서 놀라운 퍼포먼스를 전달하는 2023년 신제품 pxg gen6 라인업은<br>
-                                    공식 온라인스토어에서 구매하실 수 있습니다.
-                                </p>
-                            </div>
-                        </div>
-
-                        <ul class="main-goods-list">
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_style_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_style_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <div class="photo">
-                                        <img src="/pc/resource/images/main/2307_main_style_s_d_01.jpg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <p class="txt1">GEN6</p>
-                                        <p class="txt2">GEN6 0311 DRIVER</p>
-                                        <div class="price">
-                                            <p class="normal">811,000<span>원</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="status">
-                                    <button type="button" class="wish__btn wish"></button><!-- 활성화시 클래스 on -->
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            <!-- // pxg style -->
+<ul id="optPrice">
+	<li>
+		<div class="check-box"><input type="checkbox" id="checkPrice1" value="1" data-val="1" data-name="10만원 미만"
+				data-type="price"><label for="checkPrice1">10만원 미만</label></div>
+	</li>
+	<li>
+		<div class="check-box"><input type="checkbox" id="checkPrice2" value="2" data-val="2" data-name="10 - 19만원"
+				data-type="price"><label for="checkPrice2">10 - 19만원</label></div>
+	</li>
+	<li>
+		<div class="check-box"><input type="checkbox" id="checkPrice3" value="3" data-val="3" data-name="20 - 29만원"
+				data-type="price"><label for="checkPrice3">20 - 29만원</label></div>
+	</li>
+	<li>
+		<div class="check-box"><input type="checkbox" id="checkPrice4" value="4" data-val="4" data-name="30 - 39만원"
+				data-type="price"><label for="checkPrice4">30 - 39만원</label></div>
+	</li>
+	<li>
+		<div class="check-box"><input type="checkbox" id="checkPrice5" value="5" data-val="5" data-name="40 - 49만원"
+				data-type="price"><label for="checkPrice5">40 - 49만원</label></div>
+	</li>
+	<li>
+		<div class="check-box"><input type="checkbox" id="checkPrice6" value="6" data-val="6" data-name="50만원 이상"
+				data-type="price"><label for="checkPrice6">50만원 이상 </label></div>
+	</li>
+</ul>
 
 
-            <!-- banner -->
-            <section class="main-banner-box m-banner-bot">
-                <h2 class="hidden">banner</h2>
+<li>- Internationally recognized short-game coach</li>
+<li>- Golf Digest’s ’50 Best Teachers in America’</li>
+<li>- Author of 4 golf instruction books (The Art of Putting, The Art of the Short Game, The Art of Scoring, The Art of
+	the Swing)</li>
+<li>- Two time All American at University of Missouri</li>
+<li>- Winner on the PGA TOUR in 1989</li>
+<li>- 3 wins on what is now the Korn Ferry Tour</li>
+<li>- Students include tour players Sergio Garcia, Darren Clarke, Jay Haas, Joaquin Niemann, and NBA All-Star Charles
+	Barkley</li>
+<li>- Holds the PGA Tour record for fewest putts in nine holes with six at the 2002 Air Canada Championship</li>
 
-                <ul>
-                    <li>
-                        <a href="">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_hf_banner_d_01.jpg" alt="main banner">
-                            </div>
-                            <div class="info">
-                                <p class="category">THANK YOU GIFTS</p>
-                                <p>pxg 공식 온라인스토어 회원 중, 특정 금액 이상 어패럴 및 용품을 구매해주시는 분들께 기프트를 증정합니다.</p>
+<div class="swiper-slide sld2">
+</div>
+<div class="swiper-slide sld3">
+</div>
+<div class="swiper-slide sld4">
+</div>
+<div class="swiper-slide sld5">
+</div>
+<div class="swiper-slide sld6">
+</div>
+<div class="swiper-slide sld7">
+</div>
+<div class="swiper-slide sld8">
+</div>
+<div class="swiper-slide sld9">
+</div>
+<div class="swiper-slide sld10">
+</div>
 
-                                <p class="banner-more">DETAIL VIEW</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_hf_banner_d_02.jpg" alt="main banner">
-                            </div>
-                            <div class="info">
-                                <p class="category">THANK YOU GIFTS</p>
-                                <p>pxg 공식 온라인스토어 회원 중, 특정 금액 이상 어패럴 및 용품을 구매해주시는 분들께 기프트를 증정합니다.</p>
 
-                                <p class="banner-more">DETAIL VIEW</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_hf_banner_d_03.jpg" alt="main banner">
-                            </div>
-                            <div class="info">
-                                <p class="category">THANK YOU GIFTS</p>
-                                <p>pxg 공식 온라인스토어 회원 중, 특정 금액 이상 어패럴 및 용품을 구매해주시는 분들께 기프트를 증정합니다.</p>
+<div class="popup__layer lev-ben-lyr">
+	<div class="head">
+		<p class="tit"><strong>회원 등급별 혜택</strong></p>
 
-                                <p class="banner-more">DETAIL VIEW</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <div class="photo">
-                                <img src="/pc/resource/images/main/2307_main_hf_banner_d_04.jpg" alt="main banner">
-                            </div>
-                            <div class="info">
-                                <p class="category">THANK YOU GIFTS</p>
-                                <p>pxg 공식 온라인스토어 회원 중, 특정 금액 이상 어패럴 및 용품을 구매해주시는 분들께 기프트를 증정합니다.</p>
+		<button type="button" class="close__btn">close</button>
+	</div>
 
-                                <p class="banner-more">DETAIL VIEW</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </section>
-            <!-- // banner -->
-        </div>
-        <!-- // end of :: contents -->
+	<div class="con">
+		<div class="lev-ben-box">
+			<div>
+				<p class="dgr">MEMBER</p>
+				<div class="info">
+					<p>등급 산정 기준</p>
+					<p class="txt1">회원 가입 시</p>
+					<p>등급 혜택</p>
+					<p class="txt2">
+						- 회원 전용 뉴스레터<br>
+						- 구매금액의 1% 마일리지 적립
+					</p>
+				</div>
+			</div>
+			<div>
+				<p class="dgr">VIP</p>
+				<div class="info">
+					<p>등급 산정 기준</p>
+					<p class="txt1">500만원 이상 <br>구매 시</p>
+					<p>등급 혜택</p>
+					<p class="txt2">
+						- 회원 전용 뉴스레터<br>
+						- 구매금액의 1.5% 마일리지 적립<br>
+						- 연 2 회 쿠폰 지급 (5%)<br>
+						- 새벽 배송 서비스
+					</p>
+				</div>
+			</div>
+			<div>
+				<p class="dgr">VVIP</p>
+				<div class="info">
+					<p>등급 산정 기준</p>
+					<p class="txt1">1,000만원 이상<br>구매 시</p>
+					<p>등급 혜택</p>
+					<p class="txt2">
+						- 회원 전용 뉴스레터<br>
+						- PXG 행사 진행 시 우선 초청<br>
+						- 구매금액의 3% 마일리지 적립<br>
+						- 연 2 회 쿠폰 지급 (10%)<br>
+						- 새벽 배송 서비스
+					</p>
+				</div>
+			</div>
+			<div>
+				<p class="dgr">SVIP</p>
+				<div class="info">
+					<p>등급 산정 기준</p>
+					<p class="txt1">상위 0.1%</p>
+					<p>등급 혜택</p>
+					<p class="txt2">
+						- 회원 전용 뉴스레터<br>
+						- PXG 행사 진행 시 우선 초청<br>
+						- 구매금액의 5% 마일리지 적립<br>
+						- 연 4 회 쿠폰 지급 (10%)<br>
+						- 새벽 배송 서비스
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-        <!-- #include virtual = "/pc/layout/doc_footer.asp" -->
-    </div>
-    <!-- // end of :: wrap -->
+<div class="mbs-bnf-box">
+	<div class="motion-box motion-box2">
+		<ul>
+			<li
+				style="background-image: url(https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld1.png)">
+				<p class="tit fadeIn del1">타임 특가</p>
+				<p class="txt fadeIn del2">
+					6/17, 6/19​ 아<br>
+					단 3시간만 <b>최대 할인</b>
+				</p>
+			</li>
+			<li
+				style="background-image: url(https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld2.png)">
+				<p class="tit fadeIn del1">선착순 랜덤 쿠폰 </p>
+				<p class="txt fadeIn del3">
+					하루 3번 열리는<br>
+					<b>최대 30%</b> 쿠폰
+				</p>
+			</li>
+			<li
+				style="background-image: url(https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld3.png)">
+				<p class="tit fadeIn del1">친구 추천</p>
+				<p class="txt fadeIn del3">
+					사용 가능한<br>
+					<b>3,000 포인트</b> 지급
+				</p>
+			</li>
+			<li
+				style="background-image: url(https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld4.png)">
+				<p class="tit fadeIn del1">출석 체크</p>
+				<p class="txt fadeIn del3">
+					4일만 출석하면​ 최대<br>
+					<b>5,000 포인트</b> 지급​
+				</p>
+			</li>
+			<li
+				style="background-image: url(https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld5.png)">
+				<p class="tit fadeIn del1">하루 특가</p>
+				<p class="txt fadeIn del3">
+					매일 오전 11시<br>
+					<b>특가 상품</b> 공개
+				</p>
+			</li>
+		</ul>
+	</div>
+</div>
 
-</body>
 
-</html>
+<style>
+	.promo-banner {
+		position: relative;
+		max-width: 1903px;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+
+	.promo-banner01 {
+		position: relative;
+		height: 1110px;
+		background: url(https://web1.fila.co.kr/data/ContentsFile/membersweek_240617_d_main_banner.jpg) center no-repeat;
+	}
+
+	.promo-banner02 {
+		position: relative;
+		background: rgb(0, 0, 0) url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_d_rolling_txt.png) repeat-x center/1560px;
+		height: 80px;
+		animation: rolling 25s linear infinite;
+	}
+
+	.promo-banner03 {
+		position: relative;
+		height: 805px;
+		background: url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_d_banner01.jpg) center no-repeat;
+	}
+
+	.promo-banner04 {
+		position: relative;
+		height: 1021px;
+		background: url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_d_banner02.jpg) center no-repeat;
+	}
+
+	@keyframes rolling {
+		0% {
+			background-position: 0 0;
+		}
+
+		100% {
+			background-position: -1560px 0;
+		}
+	}
+
+	.motion-box {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	.motion-box>div {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: all 1s;
+		transition-delay: .8s;
+	}
+
+	.bg01 {
+		background: url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_d_title1.png) center no-repeat;
+	}
+
+	.bg02 {
+		background: url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_d_title2.png) center no-repeat;
+	}
+
+	.bg03 {
+		background: url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_d_txt1.png) center no-repeat;
+	}
+
+	.bg04 {
+		background: url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_d_txt2.png) center no-repeat;
+	}
+
+	.star-box span {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 66px;
+		z-index: 1;
+	}
+
+	.star-box span img {
+		width: 100%;
+		animation: rotate 2s linear infinite;
+	}
+
+	.star-box .star1 {
+		top: 160px;
+		transform: translateX(388px);
+	}
+
+	.star-box .star2 {
+		top: 720px;
+		transform: translateX(-363px);
+	}
+
+	@keyframes rotate {
+		0% {
+			rotate: 0;
+		}
+
+		100% {
+			rotate: 180deg;
+		}
+	}
+
+	.share-btn-box {
+		position: absolute;
+		bottom: 65px;
+		left: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		transform: translateX(-50%);
+		width: 1400px;
+	}
+
+	.share-btn-box a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 5px 0;
+		width: 200px;
+		height: 50px;
+		font-size: 17px;
+		color: rgb(255, 255, 255);
+		background-color: rgb(0, 0, 0);
+		border-radius: 30px;
+		box-sizing: border-box;
+	}
+
+	.share-btn-box .share__btn span {
+		margin-right: 10px;
+		font-size: 0;
+	}
+
+	.promo-store-box {
+		position: relative;
+		height: 1052px;
+		background: url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_d_store_ban.jpg) center no-repeat;
+	}
+
+	.promo-store-box .store-btn-box {
+		position: absolute;
+		bottom: 120px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.promo-store-box .store-btn-box a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 380px;
+		height: 60px;
+		font-size: 20px;
+		font-weight: 700;
+		color: rgb(255, 255, 255);
+		background-color: rgb(0, 0, 0);
+		border-radius: 30px;
+		border: 2px solid rgb(0, 0, 0);
+		box-sizing: border-box;
+		transition: all .3s;
+	}
+
+	.promo-store-box .store-btn-box a:hover {
+		background-color: transparent;
+		color: rgb(0, 0, 0);
+	}
+
+
+	.mbs-btn-box {
+		position: absolute;
+		left: 50%;
+		bottom: 150px;
+		width: 390px;
+		height: 70px;
+		border-radius: 80px;
+		background: linear-gradient(90deg, rgba(132, 159, 206, 1) 0%, rgba(255, 243, 243, 1) 17%, rgba(223, 150, 159, 1) 54%, rgba(132, 159, 206, 1) 100%);
+		background-size: 350%;
+		transform: translateX(-50%);
+		box-sizing: border-box;
+		animation: ani 8s linear infinite alternate;
+	}
+
+	@keyframes ani {
+		0% {
+			background-position: 0%;
+		}
+
+		100% {
+			background-position: 350%;
+		}
+	}
+
+	.mbs-btn-box .mbs__btn {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 380px;
+		height: 60px;
+		font-size: 20px;
+		font-weight: 700;
+		color: rgb(255, 255, 255);
+		border-radius: 80px;
+		box-sizing: border-box;
+		background: rgb(0, 0, 0);
+		transition: all .3s;
+		transform: translate(-50%, -50%);
+	}
+
+	.mbs-btn-box .mbs__btn:hover {
+		background: rgb(238, 238, 238);
+		color: rgb(0, 0, 0);
+	}
+
+	.motion-box.on .fadeIn {
+		animation: fadeIn 1s forwards;
+	}
+
+	.motion-box.on .showUp {
+		animation: showUp .3s ease-in-out forwards;
+	}
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes showUp {
+		0% {
+			opacity: 0;
+			transform: translateY(40px)
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateY(0px);
+		}
+	}
+
+	z-index: 3;
+	}
+
+	.cb__style1+label:before {
+		background-image: url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_chk_box.png);
+	}
+
+	.cb__style1+label:before,
+	.cb__style1+label:after {
+		background-size: 20px 20px;
+	}
+
+	.del1 {
+		animation-delay: .2s !important;
+	}
+
+	.del2 {
+		animation-delay: .4s !important;
+	}
+
+	.del3 {
+		animation-delay: .6s !important;
+	}
+
+	.del4 {
+		animation-delay: .8s !important;
+	}
+
+	.del5 {
+		animation-delay: 1s !important;
+	}
+
+	.del6 {
+		animation-delay: 1.2s !important;
+	}
+
+	.del7 {
+		animation-delay: 1.4s !important;
+	}
+
+	.del8 {
+		animation-delay: 1.6s !important;
+	}
+
+	.del9 {
+		animation-delay: 1.8s !important;
+	}
+
+	.del10 {
+		animation-delay: 2s !important;
+	}
+
+	.promo-banner04 .agree-btn {
+		position: absolute;
+		bottom: 146px;
+		left: 50%;
+		width: 300px;
+		height: 50px;
+		border-radius: 30px;
+		box-sizing: border-box;
+		line-height: 48px;
+		font-size: 16px;
+		font-weight: 700;
+		color: rgb(255, 255, 255);
+		transform: translateX(-50%);
+		background-color: rgb(0, 0, 0);
+		transition: all .3s;
+	}
+
+	.promo-banner04 .agree-btn:hover {
+		color: rgb(0, 0, 0);
+		background-color: rgb(255, 255, 255);
+		border: 1px solid rgb(0, 0, 0);
+	}
+
+	.promo-banner04 #agree-check {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		z-index: -99;
+	}
+
+	.promo-banner04 .agree-chk-box {
+		position: absolute;
+		left: 50%;
+		bottom: 120px;
+		transform: translateX(-50%);
+	}
+
+	.promo-banner04 .agree-label {
+		position: relative;
+		font-size: 16px;
+		padding-left: 30px;
+		cursor: pointer;
+		line-height: 20px;
+	}
+
+	.mbs-bnf-box {
+		padding-top: 325px;
+		width: 1400px;
+		margin: 0 auto;
+	}
+
+	.mbs-bnf-box ul {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 9px;
+		opacity: 0;
+	}
+
+	.mbs-bnf-box ul li {
+		padding: 18px 30px;
+		height: 360px;
+		text-align: left;
+		box-sizing: border-box;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+
+	.mbs-bnf-box ul li .tit {
+		position: relative;
+		display: inline-block;
+		width: auto;
+		font-size: 20px;
+		font-weight: 700;
+		line-height: 48px;
+		letter-spacing: -.3px;
+		opacity: 0;
+	}
+
+	.mbs-bnf-box ul li .tit:after {
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: 8px;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: rgb(0, 0, 0);
+	}
+
+	.mbs-bnf-box ul li .txt {
+		margin-top: 5px;
+		font-size: 24px;
+		font-weight: 300;
+		line-height: 34px;
+		letter-spacing: -.3px;
+		opacity: 0;
+	}
+
+	.mbs-bnf-box ul li .txt b {
+		font-weight: 700;
+	}
+
+	.mbs-bnf-box .motion-box {
+		position: relative;
+		top: 0;
+		left: 0;
+	}
+</style>
+
+<script src="https://web1.fila.co.kr/pc/resource/js/lib/scrollmagic/ScrollMagic.js"></script>
+
+<script>
+	$(document).ready(function () {
+		var controller = new ScrollMagic.Controller();
+		var num = $('.motion-box').length;
+		for (i = 1; i < num + 1; i++) {
+			//banner
+			var banner = new ScrollMagic.Scene({
+					triggerElement: ".motion-box0" + i + "",
+					duration: 0,
+					triggerHook: 0.7,
+					reverse: false,
+					offset: 0,
+				})
+				/*.addIndicators({
+					name:"banner03",
+					indent:0,
+					colorStart:"red",
+					colorEnd:"red",
+					colorTrigger:"red"
+				})*/
+				.setClassToggle(".motion-box0" + i + "", "on")
+				.addTo(controller);
+		}
+
+	});
+</script>
+<div class="promo-banner01 promo-banner">
+	<div class="bg"></div>
+	<div class="motion-box motion-box01">
+		<div class="bg01 fadeIn del1"></div>
+		<div class="bg02 fadeIn del2"></div>
+		<div class="bg03 fadeIn del3"></div>
+		<div class="bg04 fadeIn del4"></div>
+		<div class="star-box fadeIn del3">
+			<span class="star1"><img src="https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_star.png"
+					alt=""></span>
+			<span class="star2"><img style="animation-direction: reverse !important;"
+					src="https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_star.png" alt=""></span>
+		</div>
+	</div>
+	<!-- 공유하기/url 링크복사 버튼 -->
+	<div class="share-btn-box">
+		<a href="javascript:void(0);" class="share__btn" data-path="/event/view.asp?seq=1099"><span><img
+					src="https://web1.fila.co.kr/data/contentsfile/membersweek_240617_d_share_icon.png"
+					alt=""></span>공유하기</a>
+		<a href="javascript:void(0);" class="url__btn" id="pageURL1_copy"
+			data-clipboard-text="https://www.fila.co.kr/event/view.asp?seq=1099">URL 링크복사</a>
+	</div>
+</div>
+
+<span>- </span>본 이벤트는 휠라 공식 홈페이지 기존 회원이 이벤트 페이지 내<br>
+공유하기 버튼을 통해 링크를 공유하고 친구가 해당 링크를 통해<br>
+구매 시 포인트를 지급해 드리는 행사입니다.​<br>
+<span>- </span>본 이벤트의 초대 횟수는 제한이 없으며, 친구 구매 횟수에 따라 포인트가<br>
+누적되어 지급됩니다. (단, 최대 지급 포인트는 30,000포인트입니다.)​<br>
+<span>- </span>본 이벤트에서 지급해 드리는 포인트는 6/24(월) 오전에 일괄 지급됩니다.​<br>
+<span>- </span>포인트는 6/24(월) 하루 사용 가능합니다.​<br>
+<span>- </span>포인트를 사용하여 구매 후, 취소 및 반품하신 경우 사용 기간 내에는<br>
+원복되나 사용 기간이 지나 소멸된 마일리지는 복구되지 않습니다.​<br>
+<span>- </span>본 이벤트는 부정한 방법으로 응모 시 포인트 지급이 취소될 수 있습니다.​<br>
+<span>- </span>본 이벤트는 당사 사정에 의하여 사전 고지없이 조기 종료 및<br>
+변경될 수 있습니다.<br>
+<span>- </span>포인트는 오프라인 매장에서도 사용 가능합니다.​<br>
+<span>- </span>친구 추천 이벤트는 오프라인 매장에서도 적용 가능합니다.​
+
+
+
+<span>-</span> 본 이벤트는 휠라 공식 홈페이지에서만 진행됩니다.​ <br>
+<span>-</span> 본 이벤트는 휠라 공식 홈페이지 기존 회원이 이벤트 페이지 내<br>
+공유하기 버튼을 통해 링크를 공유하고 친구가 추천인 코드 입력 후<br>
+구매 시 포인트를 지급해 드리는 행사입니다.​<br>
+<span>-</span> 본 이벤트의 초대 횟수는 제한이 없으며, 친구 구매 횟수에 따라 포인트가<br>
+누적되어 지급됩니다. (단, 최대 지급 포인트는 30,000포인트입니다.)​<br>
+<span>-</span> 본 이벤트에서 지급해 드리는 포인트는 6/24(월) 오전에 일괄 지급됩니다.​<br>
+<span>-</span> 포인트는 6/24(월) 하루 사용 가능합니다.​<br>
+<span>-</span> 포인트를 사용하여 구매 후, 취소 및 반품하신 경우 사용 기간 내에는<br>
+원복되나 사용 기간이 지나 소멸된 포인트는 복구되지 않습니다.​<br>
+<span>-</span> 본 이벤트는 부정한 방법으로 응모 시 포인트 지급이 취소될 수 있습니다.​<br>
+<span>-</span> 본 이벤트는 당사 사정에 의하여 사전 고지없이 조기 종료 및<br>
+변경될 수 있습니다.<br>
+<span>-</span> 포인트는 오프라인 매장에서도 사용 가능합니다.​<br>
+<span>-</span> 친구 추천 이벤트는 오프라인 매장에서도 적용 가능합니다.​
+
+<span>• 주요 법인 정보 수집 및 현황 진단 </span>
+<span>• 그룹 주요 법인 지속가능성 중대 이슈 파악</span>
+<span>• 세부 과제 도출 및 임직원 교육</span>
+<span>• 중장기 지속가능경영 전략 체계 수립 </span>
+<span>• 글로벌 통합 지속가능경영 체계 확대</span>
+<span>• 그룹 비즈니스 목표와 지속가능경영 통합 강화 </span>
+<span>• 공급망 등 주요 가치사슬 리스크 관리 </span>
+
+
+<span>• Collecting data and assessing the status of key entities </span>
+<span>• Identifying material sustainability issues for key entities in the Group</span>
+<span>• Identifying actionable items and providing employee training</span>
+
+<span>• Establishing mid/long-term sustainability strategy framework </span>
+<span>• Expanding integrated global sustainability management system</span>
+<span>• Aligning sustainability with the Group’s business goals</span>
+<span>• Managing key value chain risks, including supply chain</span>
+<div class="promo-banner02 promo-banner"></div>
+
+<div class="promo-store-box promo-banner">
+	<div class="store-btn-box">
+		<a href="/customer/store.asp">내 주변 매장 찾기</a>
+	</div>
+</div>
+
+<div class="promo-banner03 promo-banner">
+
+	<div class="mbs-bnf-box">
+		<div class="motion-box motion-box02">
+			<ul class="fadeIn">
+				<li
+					style="background-image: url(https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld1.png)">
+					<p class="tit fadeIn del2">타임 특가</p>
+					<p class="txt fadeIn del3">
+						6/17, 6/19<br>
+						단 3시간만 <b>최대 할인</b>
+					</p>
+				</li>
+				<li
+					style="background-image: url(https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld2.png)">
+					<p class="tit fadeIn del2">선착순 랜덤 쿠폰 </p>
+					<p class="txt fadeIn del3">
+						하루 3번 열리는<br>
+						<b>최대 30%</b> 쿠폰
+					</p>
+				</li>
+				<li
+					style="background-image: url(https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld3.png)">
+					<p class="tit fadeIn del2">친구 추천</p>
+					<p class="txt fadeIn del3">
+						사용 가능한<br>
+						<b>3,000 포인트</b> 지급
+					</p>
+				</li>
+				<li
+					style="background-image: url(https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld4.png)">
+					<p class="tit fadeIn del2">출석 체크</p>
+					<p class="txt fadeIn del3">
+						4일만 출석하면 최대<br>
+						<b>5,000 포인트</b> 지급
+					</p>
+				</li>
+				<li
+					style="background-image: url(https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld5.png)">
+					<p class="tit fadeIn del2">하루 특가</p>
+					<p class="txt fadeIn del3">
+						매일 오전 11시<br>
+						<b>특가 상품</b> 공개
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="promo-banner04 promo-banner">
+	<form action="">
+		<div class="mbs-btn-box">
+			<a href="javascript:mw2406Confirm();void(0);" class="mbs__btn"><span>멤버스 위크 알림받기</span></a>
+		</div>
+		<div class="agree-chk-box">
+			<input type="checkbox" id="promoCheck" class="cb__style1">
+			<label for="promoCheck" class="agree-label">알림 발송 및 포인트 지급을 위한 마케팅/SMS 수신에 동의합니다.</label>
+		</div>
+	</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+	.event_list_box {
+		margin-bottom: 0;
+	}
+
+	.promo-banner {
+		position: relative;
+		top: 0;
+		left: 0;
+	}
+
+	.promo-banner img {
+		width: 100%;
+		/*height: 100%;*/
+	}
+
+	.bg-box {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
+
+	.bg-box img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		opacity: 0;
+	}
+
+	.star-box {
+		opacity: 0;
+	}
+
+	.star-box span {
+		position: absolute;
+		width: calc(71 / 780 * 100vw);
+		z-index: 1;
+	}
+
+	.star-box span img {
+		width: 100%;
+		animation: rotate 2s linear infinite;
+	}
+
+	.star-box .star1 {
+		top: calc(230 / 780 * 100vw);
+		left: calc(635 / 780 * 100vw);
+	}
+
+	.star-box .star2 {
+		top: calc(810 / 780 * 100vw);
+		left: calc(385 / 780 * 100vw);
+	}
+
+	@keyframes rotate {
+		0% {
+			rotate: 0;
+		}
+
+		100% {
+			rotate: 180deg;
+		}
+	}
+
+	.promo-banner02 {
+		position: relative;
+		background: rgb(0, 0, 0) url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_d_rolling_txt.png) repeat-x center/cover;
+		height: calc(80 / 780 * 100vw);
+		animation: rolling 25s linear infinite;
+	}
+
+	@keyframes rolling {
+		0% {
+			background-position: 0 0;
+		}
+
+		100% {
+			background-position: calc(-1560 / 780 * 100vw) 0;
+		}
+	}
+
+	.promo-banner.on .fadeIn {
+		animation: fadeIn 1s forwards;
+	}
+
+	.promo-banner.on .showUp {
+		animation: showUp .3s ease-in-out forwards;
+	}
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes showUp {
+		0% {
+			opacity: 0;
+			transform: translateY(calc(40 / 780 * 100vw));
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateY(0px);
+		}
+	}
+
+	.del1 {
+		animation-delay: .2s !important;
+	}
+
+	.del2 {
+		animation-delay: .4s !important;
+	}
+
+	.del3 {
+		animation-delay: .6s !important;
+	}
+
+	.del4 {
+		animation-delay: .8s !important;
+	}
+
+	.del5 {
+		animation-delay: 1s !important;
+	}
+
+	.del6 {
+		animation-delay: 1.2s !important;
+	}
+
+	.del7 {
+		animation-delay: 1.4s !important;
+	}
+
+	.del8 {
+		animation-delay: 1.6s !important;
+	}
+
+	.promo-banner04 .agr-frm-box {
+		position: absolute;
+		left: 50%;
+		bottom: calc(116 / 780 * 100vw);
+		width: calc(700 / 780 * 100vw);
+		transform: translateX(-50%);
+	}
+
+	.mbs-btn-box {
+		position: relative;
+		width: calc(700 / 780 * 100vw);
+		height: calc(110 / 780 * 100vw);
+		border-radius: calc(80 / 780 * 100vw);
+		background: linear-gradient(90deg, rgba(132, 159, 206, 1) 0%, rgba(255, 243, 243, 1) 17%, rgba(223, 150, 159, 1) 54%, rgba(132, 159, 206, 1) 100%);
+		background-size: 350%;
+		box-sizing: border-box;
+		animation: ani 8s linear infinite alternate;
+	}
+
+	@keyframes ani {
+		0% {
+			background-position: 0%;
+		}
+
+		100% {
+			background-position: 350%;
+		}
+	}
+
+	.mbs-btn-box .mbs__btn {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: calc(680 / 780 * 100vw);
+		height: calc(90 / 780 * 100vw);
+		font-size: calc(28 / 780 * 100vw);
+		font-weight: 700;
+		color: rgb(255, 255, 255);
+		border-radius: calc(80 / 780 * 100vw);
+		box-sizing: border-box;
+		background: rgb(0, 0, 0);
+		transition: all .3s;
+		transform: translate(-50%, -50%);
+	}
+
+	.promo-banner04 .agree-chk-box {
+		width: 100%;
+		text-align: center;
+		margin-top: calc(25 / 780 * 100vw);
+	}
+
+	.promo-banner04 .agree-label {
+		font-size: calc(24 / 780 * 100vw);
+		line-height: calc(30 / 780 * 100vw);
+		padding-left: calc(50 / 780 * 100vw);
+	}
+
+	.cb__style1+label:before {
+		background-image: url(https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_chk_box.png);
+	}
+
+	.cb__style1+label:before,
+	.cb__style1+label:after {
+		width: calc(30 / 780 * 100vw);
+		height: calc(30 / 780 * 100vw);
+		background-size: calc(30 / 780 * 100vw) calc(30 / 780 * 100vw);
+	}
+
+	.cb__style1:checked+label:after {
+		z-index: 3;
+	}
+
+	.mbs-slide-box {
+		position: absolute;
+		top: calc(409 / 780 * 100vw);
+		left: 0;
+		padding: 0 calc(40 / 780 * 100vw) calc(84 / 780 * 100vw);
+		width: 100%;
+		box-sizing: border-box;
+		opacity: 0;
+		overflow: hidden;
+	}
+
+	.mbs-slide-box .swiper-slide {
+		width: calc(480 / 780 * 100vw);
+		margin-right: calc(20 / 780 * 100vw);
+	}
+
+	.mbs-slide-box .swiper-slide:last-child {
+		margin-right: 0;
+	}
+
+	.mbs-slide-box .swiper-scrollbar {
+		left: 0;
+		margin: 0 calc(40 / 780 * 100vw);
+		width: calc(100% - 10.256vw);
+		height: calc(4 / 780 * 100vw);
+		border-radius: 0;
+		background: rgba(0, 0, 0, 0.2);
+	}
+
+	.mbs-slide-box .swiper-scrollbar .swiper-scrollbar-drag {
+		border-radius: 0;
+		background: rgb(0, 0, 0);
+	}
+
+	.mbs-slide-box .txt-in {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: calc(48 / 780 * 100vw) calc(50 / 780 * 100vw);
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.mbs-slide-box .txt-in .tit {
+		position: relative;
+		display: inline-block;
+		width: auto;
+		font-size: calc(42 / 780 * 100vw);
+		font-weight: 700;
+		line-height: calc(52 / 780 * 100vw);
+		letter-spacing: -.3px;
+		opacity: 0;
+	}
+
+	.mbs-slide-box .txt-in .tit:after {
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: calc(-2 / 780 * 100vw);
+		left: 0;
+		width: 100%;
+		height: calc(4 / 780 * 100vw);
+		background-color: rgb(0, 0, 0);
+	}
+
+	.mbs-slide-box .txt-in .txt {
+		margin-top: calc(40 / 780 * 100vw);
+		font-size: calc(44 / 780 * 100vw);
+		font-weight: 300;
+		line-height: calc(58 / 780 * 100vw);
+		letter-spacing: -.3px;
+		opacity: 0;
+	}
+
+	.mbs-slide-box .txt-in .txt b {
+		font-weight: 700;
+	}
+
+
+	.share-btn-box {
+		position: absolute;
+		bottom: calc(35 / 780 * 100vw);
+		left: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		transform: translateX(-50%);
+		width: calc(700 / 780 * 100vw);
+	}
+
+	.share-btn-box a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: calc(5 / 780 * 100vw) 0;
+		width: calc(180 / 780 * 100vw);
+		height: calc(70 / 780 * 100vw);
+		font-size: calc(24 / 780 * 100vw);
+		color: rgb(255, 255, 255);
+		background-color: rgb(0, 0, 0);
+		border-radius: calc(70 / 780 * 100vw);
+		box-sizing: border-box;
+	}
+
+	.share-btn-box .share__btn span {
+		margin-right: calc(10 / 780 * 100vw);
+		font-size: 0;
+		width: calc(21 / 780 * 100vw);
+	}
+
+	.promo-store-box .store-btn-box {
+		position: absolute;
+		bottom: calc(120 / 780 * 100vw);
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.promo-store-box .store-btn-box a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: calc(700 / 780 * 100vw);
+		height: calc(90 / 780 * 100vw);
+		font-size: calc(28 / 780 * 100vw);
+		font-weight: 700;
+		color: rgb(255, 255, 255);
+		background-color: rgb(0, 0, 0);
+		border-radius: calc(80 / 780 * 100vw);
+		box-sizing: border-box;
+	}
+</style>
+
+
+<script>
+	$(document).ready(function () {
+		var controller = new ScrollMagic.Controller();
+		var num = $('.promo-banner').length;
+		for (i = 1; i < num + 1; i++) {
+			//banner
+			var banner = new ScrollMagic.Scene({
+					triggerElement: ".promo-banner0" + i + "",
+					duration: 0,
+					triggerHook: 0.7,
+					reverse: false,
+					offset: 0,
+				})
+				/*.addIndicators({
+					name:"banner03",
+					indent:0,
+					colorStart:"red",
+					colorEnd:"red",
+					colorTrigger:"red"
+				})*/
+				.setClassToggle(".promo-banner0" + i + "", "on")
+				.addTo(controller);
+		}
+		var swiper = new Swiper('.mbs-slide-box', {
+			speed: 300,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			loop: false,
+			slidesPerView: "auto",
+			noSwiping: false,
+			scrollbar: {
+				el: ".swiper-scrollbar",
+				hide: false,
+			},
+
+		});
+	});
+</script>
+
+
+<div class="promo-banner01 promo-banner">
+	<img src="https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_m_main_banner.jpg" alt="">
+	<div class="bg-box">
+		<img src="https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_m_title1.png" alt=""
+			class="fadeIn del1">
+		<img src="https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_m_title2.png" alt=""
+			class="fadeIn del2">
+		<img src="https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_m_txt1.png" alt=""
+			class="fadeIn del3">
+		<img src="https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_m_txt2.png" alt=""
+			class="fadeIn del4">
+	</div>
+	<div class="star-box fadeIn del3">
+		<span class="star1"><img src="https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_star.png"
+				alt=""></span>
+		<span class="star2"><img style="animation-direction: reverse !important;"
+				src="https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_star.png" alt=""></span>
+	</div>
+	<!-- 공유하기/url 링크복사 버튼 -->
+	<div class="share-btn-box">
+		<a href="javascript:void(0);" class="share__btn" data-path="/event/view.asp?seq=1099"><span><img
+					src="https://web1.fila.co.kr/data/contentsfile/membersweek_240617_m_share_icon.png"
+					alt=""></span>공유하기</a>
+		<a href="javascript:void(0);" class="url__btn" id="pageURL1_copy"
+			data-clipboard-text="https://www.fila.co.kr/event/view.asp?seq=1099">URL 링크복사</a>
+	</div>
+</div>
+
+<div class="promo-banner02 promo-banner">
+</div>
+
+<div class="promo-store-box promo-banner">
+	<img src="https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_m_store_ban.jpg" alt="">
+	<div class="store-btn-box">
+		<a href="/customer/store.asp">내 주변 매장 찾기</a>
+	</div>
+</div>
+
+<div class="promo-banner03 promo-banner">
+	<img src="https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_m_banner01.jpg" alt="">
+	<div class="mbs-slide-box fadeIn">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<img src="https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld1.png" alt="" class="">
+				<div class="txt-in">
+					<p class="tit fadeIn del1">타임 특가</p>
+					<p class="txt fadeIn del2">
+						6/17, 6/19<br>
+						단 3시간만 <b>최대 할인</b>
+					</p>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<img src="https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld2.png" alt="" class="">
+				<div class="txt-in">
+					<p class="tit fadeIn del1">선착순 랜덤 쿠폰 </p>
+					<p class="txt fadeIn del2">
+						하루 3번 열리는<br>
+						<b>최대 30%</b> 쿠폰
+					</p>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<img src="https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld3.png" alt="" class="">
+				<div class="txt-in">
+					<p class="tit fadeIn del1">친구 추천</p>
+					<p class="txt fadeIn del2">
+						사용 가능한<br>
+						<b>3,000 포인트</b> 지급
+					</p>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<img src="https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld4.png" alt="" class="">
+				<div class="txt-in">
+					<p class="tit fadeIn del1">출석 체크</p>
+					<p class="txt fadeIn del2">
+						4일만 출석하면 최대<br>
+						<b>5,000 포인트</b> 지급
+					</p>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<img src="https://web1.fila.co.kr/data/contentsfile/mbsweek_240617_teaser_d_sld5.png" alt="" class="">
+				<div class="txt-in">
+					<p class="tit fadeIn del1">하루 특가</p>
+					<p class="txt fadeIn del2">
+						매일 오전 11시<br>
+						<b>특가 상품</b> 공개
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="swiper-scrollbar"></div>
+	</div>
+</div>
+
+<div class="promo-banner04 promo-banner">
+	<img src="https://web1.fila.co.kr/data/ContentsFile/mbsweek_240617_teaser_m_banner02.jpg" alt="">
+	<div class="agr-frm-box">
+		<div class="mbs-btn-box">
+			<a href="javascript:mw2406Confirm();void(0);" class="mbs__btn"><span>멤버스 위크 알림받기</span></a>
+		</div>
+		<div class="agree-chk-box">
+			<input type="checkbox" id="promoCheck" class="cb__style1">
+			<label for="promoCheck" class="agree-label">알림 발송 및 포인트 지급을 위한 마케팅/SMS 수신에 동의합다.</label>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="basic__layer">
+	<div class="layer-bg"></div>
+	<div class="inner"> <button type="button" class="lyr-close__btn _type_img"></button>
+		<div class="txt-box">
+			<p>사이즈를 선택해 주세요.</p>
+		</div> <button type="button" class="lyr-close__btn _type_txt">닫기</button>
+	</div>
+</div>
+
+<div class="basic__layer">
+	<div class="layer-bg"></div>
+	<div class="inner"> <button type="button" class="lyr-close__btn _type_img"></button>
+		<div class="txt-box">
+			<p>
+				사이즈를 선택해 주세요.</p>
+		</div> <button type="button" class="lyr-close__btn _type_txt">닫기</button>
+	</div>
+</div>
+
+
+
+
+<!-- 마일리지 2000점 -->
+<div class="promo-popup promo-popup01" style="display: none">
+	<div class="popup-bg-box"></div>
+	<div class="popup-con-box">
+
+
+
+		<button type="button" class="close__btn layer_close_btn">닫기</button>
+	</div>
+</div>
+<!-- //마일리지 2000점 -->
+
+<!-- 마일리지 3000점 -->
+<div class="promo-popup promo-popup01" style="display: none">
+	<div class="popup-bg-box"></div>
+	<div class="popup-con-box">
+
+		<img src="https://www.nplus.co.kr/data/promotion/pc/weekend_chance3/weekend_chance3_d_roulette_coupon03.png"
+			alt="">
+
+		<button type="button" class="close__btn layer_close_btn"></button>
+	</div>
+</div>
+<!-- //마일리지 3000점 -->
+
+<!-- 3% 쿠폰 -->
+<div class="promo-popup promo-popup01" style="display: none">
+	<div class="popup-bg-box"></div>
+	<div class="popup-con-box">
+
+		<img src="https://www.nplus.co.kr/data/promotion/pc/weekend_chance3/weekend_chance3_d_roulette_coupon04.png"
+			alt="">
+
+		<button type="button" class="close__btn layer_close_btn">닫기</button>
+	</div>
+</div>
+<!-- //3% 쿠폰 -->
+
+<!-- 5% 쿠폰 -->
+<div class="promo-popup promo-popup01" style="display: none">
+	<div class="popup-bg-box"></div>
+	<div class="popup-con-box">
+
+		<img src="https://www.nplus.co.kr/data/promotion/pc/weekend_chance3/weekend_chance3_d_roulette_coupon05.png"
+			alt="">
+
+		<button type="button" class="close__btn layer_close_btn">닫기</button>
+	</div>
+</div>
+<!-- //5% 쿠폰 -->
+
+<!-- 7% 쿠폰 -->
+<div class="promo-popup promo-popup01" style="display: none">
+	<div class="popup-bg-box"></div>
+	<div class="popup-con-box">
+
+		<img src="https://www.nplus.co.kr/data/promotion/pc/weekend_chance3/weekend_chance3_d_roulette_coupon06.png"
+			alt="">
+
+		<button type="button" class="close__btn layer_close_btn">닫기</button>
+	</div>
+</div>
+<!-- //7% 쿠폰 -->
+
+<!-- 로그인 전 -->
+<div class="promo-popup promo-popup05" style="display: none">
+	<div class="popup-bg-box"></div>
+	<div class="popup-con-box">
+
+		<div class="popup-con-wrap">
+			<p>로그인 후 이용 가능합니다.</p>
+			<div class="popup-btn-box">
+				<button type="button" class="layer_close_btn">확인</button>
+			</div>
+		</div>
+
+		<button type="button" class="close__btn layer_close_btn"></button>
+	</div>
+</div>
+<!-- //로그인 전 -->
+
+<!-- 완료 -->
+<div class="promo-popup promo-popup06" style="display: none">
+	<div class="popup-bg-box"></div>
+	<div class="popup-con-box">
+
+		<div class="popup-con-wrap">
+			<p>이미 이벤트에 참여했습니다.</p>
+			<div class="popup-btn-box">
+				<button type="button" class="layer_close_btn">확인</button>
+			</div>
+		</div>
+
+		<button type="button" class="close__btn layer_close_btn"></button>
+	</div>
+</div>
+ <dd>우승반지는 3종 중 랜덤으로 1종만 발송됩니다. (선택 불가)</dd>
+ <dd>유니폼 이미지의 "13번 허경민" 마킹은 예시이며 별도 마킹은
+   제공되지 않습니다.</dd>
+ <dd>
+	본 패키지는 구매 시 모든 쿠폰/포인트 적용이 불가하며,
+	  단품 별 구매 및 취소가 불가합니다.
+ </dd>
+ <dd>재고 품절 시 사이즈 교환이 어려울 수 있습니다.</dd>
+ <dd>
+	본 패키지는 FILA 공식 홈페이지 회원 대상 상품이며
+	  한 아이디 당 1개만 구매 가능합니다.
+ </dd>
+<!-- //완료 -->

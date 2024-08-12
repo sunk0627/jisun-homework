@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.3.0/swiper-bundle.min.js"></script>
 
@@ -13,43 +13,42 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.3.0/swiper-bundle.css" />
 </head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .main__slider {
+        width: 1000px;
+        margin: 200px auto;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+    }
+
+    .vdo-box {
+        overflow: hidden; 
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-top: 56.25%;
+        pointer-events: none;
+    }
+
+    .swiper-slide video,
+    .swiper-slide iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
 <body>
-
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        .main__slider {
-            width: 1000px;
-            margin: 200px auto;
-        }
-
-        .swiper-slide img {
-            width: 100%;
-        }
-
-        .vdo-box {
-            overflow: hidden;
-            position: relative;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding-top: 56.25%;
-            pointer-events: none;
-        }
-
-        .swiper-slide video,
-        .swiper-slide iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
 
 
     <div class="slider-box">
@@ -87,52 +86,59 @@
                 </div>
                 <!-- //비디오 태그 -->
 
+                <!-- 비디오 태그 -->
+                <div class="swiper-slide _type_vdo">
+                    <div class="vdo-box">
+                        <video muted playsinline>
+                            <source
+                                src="https://filacdn.styleship.com/filacontent/data/contentsfile/sanrio_vid_M_top_d_230919.mp4">
+                        </video>
+                    </div>
+                </div>
+                <!-- //비디오 태그 -->
+
 
             </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
     </div>
+
 </body>
 <script>
     // swiper
     const swiper = new Swiper('.main__slider', {
         slidesPerView: 1,
         loop: true,
-        /*autoplay: {
-        	delay: 1000,
+        autoplay: {
+        	delay: 3000,
         	disableOnInteraction: false,
-        }*/
-    });
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
 
-    const typeVdo = document.querySelectorAll("._type_vdo");
-    const vdo = document.querySelector("._type_vdo video");
-    for (i = 0; i < typeVdo.length; i++) {
-        if (typeVdo.length) {
-            // 다음/이전 슬라이드 전환 시 이벤트 발생(transitionStart)
-            swiper.on('transitionStart', () => {
+        on: {
+            transitionStart: function () {
 
-                if (document.querySelector(".swiper-slide-active").classList.contains("_type_vdo")) {
-                    vdo.play();
-                } else {
+                var vdos = document.querySelectorAll("._type_vdo video");
+
+                Array.prototype.forEach.call(vdos, function (vdo) {
                     vdo.pause();
-                }
-            });
-        }
-    }
-</script>
+                });
+            },
 
-<div class="basic__layer">
-    <div class="layer-bg__wrap"></div>
-    <div class="inner" style="z-index:99999999">
-        <div class="head">
-            <p class="tit"></p> <button type="button" class="close__btn" onclick="">close</button>
-        </div>
-        <div class="con">
-            <div class="txt-box">
-                <p class="txt">사이즈를 선택해 주세요</p>
-            </div>
-            <div class="btn-box"> <button type="button" class="bg__btn close__btn2" onclick="">확인</button> </div>
-        </div>
-    </div>
-</div>
+            transitionEnd: function () {
+
+                var activeIndex = this.activeIndex;
+                var activeSlide = document.getElementsByClassName('swiper-slide')[activeIndex];
+                var activeSlideVideo = activeSlide.getElementsByTagName('video')[0];
+ 
+                activeSlideVideo.play();
+            }
+        }
+    });
+</script>
 
 </html>

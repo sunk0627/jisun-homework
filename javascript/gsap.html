@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<style>
+    body {
+    background-color: black;
+
+    
+}
+
+.outter {
+  position: relative;
+  left: 0; 
+  right: 0;
+  top:500px;
+  height: 700px;
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 100px; /* Need a specific value to work */
+  display: flex;
+  justify-content: center;
+  outline: 2px red;
+}
+
+
+.chart1 {
+  position: absolute;
+  opacity:  100%;
+}
+
+.chart2 {
+  position: absolute;
+  
+  opacity:  100%;
+}
+
+.chart3 {
+  position: absolute;
+  
+  opacity:  100%;
+}
+
+.chart4 {
+  position: absolute;
+  
+  opacity: 100%;
+}
+</style>
+<body>
+    <div class = "outter" id="outterId">
+    
+ 
+
+        <section class = "chart4">
+        <video id="chart4vid" width="1920" loop muted>
+        <source src="https://persius3.flywheelsites.com/files/stages/Chart4.m4v" type="video/mp4" />
+        </video>
+        </section>
+
+        <section class = "chart3">
+        <video id="chart3vid" width="1920"  loop muted>
+        <source src="https://persius3.flywheelsites.com/files/stages/Chart3.m4v" type="video/mp4" />
+        </video>
+        </section>
+  
+        <section class = "chart2">
+        <video id="chart2vid" width="1920"  loop muted>
+        <source src="https://persius3.flywheelsites.com/files/stages/Chart2.m4v" type="video/mp4" />
+        </video>
+        </section>
+  
+        <section class = "chart1">
+        <video id="chart1vid" width="1920"  loop muted>
+        <source src="https://persius3.flywheelsites.com/files/stages/Chart1.m4v" type="video/mp4" />
+        </video>
+        </section>
+ 
+
+</div>
+
+
+</body>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+ 
+ let tl = gsap.timeline({
+   scrollTrigger: {
+     trigger: ".outter",
+     start: "center 50%",
+     end: "bottom top",
+      markers: "true",
+     scrub: 1,
+     snap: {
+       snapTo: 0.33,
+       
+       duration: 0.01,
+       ease: "none"
+     },
+     pin: true
+     
+   }
+   
+ });
+ 
+ 
+ tl.to(".chart1", {autoAlpha: 0})
+ tl.to(".chart2", {autoAlpha: 0})
+ tl.to(".chart3", {autoAlpha: 0})
+ 
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    
+</body>
+<script>
+    let nowDate = new Date();
+
+    let year = nowDate.getFullYear();
+    let lastDay = [31,28,31,30,31,30,31,31,30,31,30,31];
+    let month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0){
+        lastDay[1] = 29;
+    } else {
+        lastDay[1] = 28;
+    }
+
+    let thisMonth = new D
+</script>
+</html>

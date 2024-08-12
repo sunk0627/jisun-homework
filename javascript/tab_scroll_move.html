@@ -76,30 +76,24 @@
 
 		for(let i = 0; i < tabBtns.length; i++){			
 			if(wSt < tabBoxs[0].offsetTop){ // 스크롤 위치가 첫번째 박스 위치보다 낮으면
-				for(tabBtn of tabBtns){
+				for(tabBtn of tabBtns){ㄹ                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 					tabBtn.classList.remove('on');
 				}
-			}else if(wSt > tabBoxs[i].offsetTop){ // 스크롤 위치가 각 박스마다 위치해 있으면?
-				for(tabBtn of tabBtns){
-					tabBtn.classList.remove('on');
-				}
-				tabBtns[i].classList.add('on');
-			}
-		}
+			}else if
 	}	
-                                                                                                                                                                                                 
-	const tabClick = ()=> { 
+                                                                                                                                                                                                
+	const tabClick = ()=> {  
 		for(tabBtn of tabBtns){
 			tabBtn.addEventListener('click', (e)=>{
 				const boxTop = document.querySelector('#' + e.currentTarget.getAttribute('data-id')).offsetTop + 50; // 클릭하면 해당 속성에 있는 박스 위치
 				
-				/*for(tabBtn of tabBtns){
+				/*for(tabBtn of tabBtns){x
 					tabBtn.classList.remove('on');
 				}
 				e.currentTarget.classList.add('on');*/
 
 				window.scrollTo({
-					top: boxTop,
+					top: boxTop,  
 					left: 0,
 					behavior: 'smooth'
 				});

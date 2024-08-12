@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<style>
+    table {
+        border-color: pink;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid green;
+    }
+
+    button {
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid hotpink;
+        cursor: pointer;
+    }
+</style>
+<script>
+    $(function() {
+        $('.play-btn').on('click', function () {
+
+            $('td').each(function (idx) {
+                console.log(idx);
+            });
+        });
+    });
+</script>
+
+<body>
+    <button class="play-btn">실행</button>
+    <table>
+        <tbody>
+            <tr>
+                <td style="color: rgb(102, 102, 102);">-32,531</td>
+                <td style="color: rgb(102, 102, 102);">20,000</td>
+                <td style="color: rgb(102, 102, 102);">15,321</td>
+                <td style="color: rgb(102, 102, 102);">-24,200</td>
+                <td style="color: rgb(102, 102, 102);">1,000</td>
+            </tr>
+            <tr>
+                <td style="color: rgb(102, 102, 102);">-2,531</td>
+                <td style="color: rgb(102, 102, 102);">6,200</td>
+                <td style="color: rgb(102, 102, 102);">10,333</td>
+                <td style="color: rgb(102, 102, 102);">20,200</td>
+                <td style="color: rgb(102, 102, 102);">152,000</td>
+            </tr>
+            <tr>
+                <td style="color: rgb(102, 102, 102);">9,531</td>
+                <td style="color: rgb(102, 102, 102);">-9,103</td>
+                <td style="color: rgb(102, 102, 102);">1,331</td>
+                <td style="color: rgb(102, 102, 102);">2,200</td>
+                <td style="color: rgb(102, 102, 102);">15,000</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

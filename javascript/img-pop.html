@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* .box {
+        color: red;
+        background-color: yellow;
+    }
+    .box2 {
+        color: white;
+        background-color: black;
+    } */
+     .text-box {
+        font-size: 2rem;
+        height: 200px;
+     }
+     .blink {
+        animation: blink 0.5s infinite;
+        font-size: 2.5rem;
+     }
+     @keyframes blink {
+        to {
+            opacity: 0;
+        }
+     }
+</style>
+
+<body style="background-color: rgb(226, 226, 226);">
+    <div class="text-box">
+        <span class="text"></span><span class="blink">|</span>
+    </div>
+
+    <div id="box">abcd</div>
+
+    <input type="text" id="fname">
+
+    <form action="" onfocusin="focusin(event)" onfocusout="focusout(event)">
+        name <input type="text" name="name"> <br>
+        email <input type="text" name="email">
+    </form>
+
+    <form action="">
+        이름 : <input type="text" id="name" size="10" onkeydown="moveFocus('age')"><br>
+        나이 : <input type="text" id="age" size="10" onkeydown="moveFocus('sex')"><br>
+        성별 : <input type="text" id="sex" size="10" onkeydown="moveFocus('confirm')">
+    </form>
+
+    <div tabindex="1">1</div>
+    <div tabindex="2">2</div>
+    <div tabindex="3">3</div>
+</body>
+<script>
+    const content = "Hello";
+    const text = document.querySelector(".text");
+    let index = 0;
+
+    function typing(){
+        let txt = content[index++];
+        text.innerHTML += txt;
+        if(index > content.length){
+            text.textContent = "";
+            index = 0;
+        }
+    }
+    setInterval(typing, 200);
+
+    function moveFocus(next) {
+        if (event.keyCode == 13){
+            document.getElementById(next).focus();
+        }
+    }
+
+    function focusin(e) {
+        e.currentTarget.style.border="1px solid red";
+    }
+    function focusout(e) {
+        e.currenTarget.style.border="1px solid blue";
+    }
+
+    document.getElementById("fname").addEventListener("focus", () => {
+        document.getElementById("fname").style.backgroundColor = "red";
+    });
+
+    document.getElementById("fname").addEventListener("blur", () => {
+        alert('dd');
+        document.getElementById("fname").style.backgroundColor = "white";
+    });
+
+    // let htgBox = document.querySelector('.heritage-collection-box');
+    // let popBtns = document.querySelectorAll('.heritage-collection-box .gds-pop-btn');
+    // let popImg = document.querySelector('.collec__gds-pop .gds-img-box');
+    // let gdsIdx = document.querySelectorAll('._type_img').indexOf();
+
+    // htgBox.addEventListener('click', function () {
+    //     popImg.getAttribute('src', 'https://www.columbiakorea.co.kr/mobile/event/231206/images/heritage_ban_m_pop0' + gdsIdx + 'jpg');
+    // });
+
+    // function myFunction(x) {
+    //     var temp = 2*x + 3
+    //     return temp
+    // }
+    // myFunction(1);
+    // console.log(x);
+
+    const box = document.getElementById('box');
+    const basecolor = (function(){
+        if(box.style.color === 'yellow' && box.style.background === 'red'){
+            box.style.color = 'white';
+            box.style.background = 'black';
+        } else{
+            box.style.color = 'yellow';
+            box.style.background = 'red';
+        }
+    });
+    function init(){
+        box.addEventListener("click", basecolor);
+    }
+    init();
+
+
+</script>
+
+</html>
