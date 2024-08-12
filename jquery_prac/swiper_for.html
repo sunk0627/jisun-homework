@@ -91,7 +91,7 @@
     $(function () {
         $('.slide-box').each(function (idx) {
             $(this).addClass('_sld0' + idx);
-
+            
             var swiper = new Swiper('._sld0' + idx + ' .swiper', {
                 speed: 1000,
                 autoplay: true,
@@ -104,14 +104,13 @@
                     invert: true,
                     forceToAxis: true
                 },
-                slidesOffsetBefore: 0,
+                slidesOffsetBefore: 0,  
                 slidesOffsetAfter: 0, 
                 navigation: {
                     nextEl: '._sld0' + idx + ' .swiper-button-next',
                     prevEl: '._sld0' + idx + ' .swiper-button-prev',
                 },
-                pagination: {
-                    el: '._sld0' + idx + ' .swiper-pagination',
+                pagination: { 
                     clickable: true,
                 },
             });

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        overflow-x: hidden;
+    }
+    .intro {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .intro__title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 60px;
+        text-align: center;
+        font-weight: 700;
+        line-height: 1.5;
+        transform: translate(-50%, -50%);
+        color: #000;
+    }
+    .intro__title:after {
+        content: '|';
+        display: inline-block;
+        font-size: 70px;
+        line-height: 1;
+        text-align: center;
+        color: yellowgreen;
+        animation: cursorEffect .5s linear infinite;
+    }
+    @keyframes cursorEffect {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
+    }
+    .arrw-box {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        width: 35px;
+        z-index: 1;
+        transform: translateX(-50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .3s, visibility .3s;
+        cursor: pointer;
+    }
+
+    .arrw-box .arrw {
+        position: relative;
+        animation: arrw .8s infinite;
+        opacity: .5;
+    }
+
+    .arrw-box .arrw+.arrw {
+        margin: 12px 0 0;
+    }
+
+    .arrw-box .arrw span {
+        display: block;
+        width: 20px;
+        height: 3px;
+        background-color: rgb(0, 0, 0);
+        transform: rotate(35deg);
+    }
+
+    .arrw-box .arrw span+span {
+        transform: rotate(-35deg);
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .arrw.del1 {
+        animation-delay: .2s !important;
+    }
+
+    .arrw.del2 {
+        animation-delay: .4s !important;
+    }
+
+    .show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @keyframes arrw {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .2;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+    .main-contents {
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+    }
+</style>
+
+<body>
+    <header class="intro">
+        <h1 class="intro__title"></h1>
+
+        <div class="arrw-box">
+            <div class="arrw"><span></span><span></span></div>
+            <div class="arrw del1"><span></span><span></span></div>
+            <div class="arrw del2"><span></span><span></span></div>
+        </div>
+
+    </header>
+    <main class="main-contents">
+        laskfj;alskdfjl;asdjfl;asekdfj
+    </main>
+</body>
+<script>
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual'; // 스크롤을 복원하지 않음.
+    }
+    const title = document.querySelector(".intro__title");
+    const button = document.querySelector(".arrw-box");
+    const main = document.querySelector(".main-contents");
+
+    const titleTxt = "Hello, \nGame\nWorld!";
+
+    let count = 0;
+    let timer = 0;
+
+    function typing() {
+        let character = titleTxt[count++];
+
+        if(character === "\n"){
+            title.innerHTML = title.innerHTML + "<br>";
+        }else{
+            title.innerHTML += character
+        }
+        if (count === titleTxt.length) {
+            clearInterval(timer);
+            button.classList.add("show");
+            return;
+        }
+    }
+
+    window.onload = function () {
+        timer = setInterval(typing, 200);
+    }
+
+    button.addEventListener("click", function(){
+        main.scrollIntoView({behavior:"smooth"});
+    });
+</script>
+
+</html>
