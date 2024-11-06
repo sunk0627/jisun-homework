@@ -426,5 +426,96 @@ $(function(){
 .swiper-slide {
     height: calc((100% - 6px) / 2) !important;
 }
+
+----------------------------------------------------------
+[SWIPER 영상 관련 스크립트]
+- 슬라이드 전환시 영상 재생/멈춤
+- 영상 끝나면 슬라이드 자동 전환
+** video 태그 내의 autoplay loop 기능 삭제 ** 
+
+var vdoSlide = new Swiper(".vdo-slide-box", {
+	speed: 300,
+	slidesPerView: 'auto',
+	//freeMode: true,
+	effect: "fade",
+	allowTouchMove: true,	
+	loop: true,
+	loopAdditionalSlides: 1,
+	pagination: {
+	  el: ".vdo-slide-box .swiper-pagination",
+	  clickable: true
+	},
+  on: {
+	  transitionStart: function(){
+		  if($('.swiper-slide-active').hasClass('_type_vdo')){
+			  for(var i = 0; i < $('._type_vdo video').length; i++){
+				  $('.swiper-slide video').get(i).pause();
+			  }	
+
+			  $('.swiper-slide-active video').get(0).play();	
+		  }else{
+			  for(var i = 0; i < $('._type_vdo video').length; i++){
+				  $('.swiper-slide video').get(i).pause();
+			  }							
+		  }
+	  }
+  }
+});
+
+
+vdoSlide.on('slideChangeTransitionStart', function(){
+  if($('.swiper-slide-active').hasClass('_type_vdo')){
+	  vdoSlide.autoplay.stop();
+  }else{
+	  vdoSlide.autoplay.start();
+  }
+});
+
+setInterval(function(){
+  if($('.swiper-slide-active').hasClass('_type_vdo')){
+	  if($('.vdo-slide-box .swiper-slide-active video').prop('ended')){
+		  vdoSlide.slideNext();
+	  }
+  }
+}, 200);
+------------------------------------------------------
+[swiper 카드형태]
+https://www.columbiakorea.co.kr/event/240820/transtrekker.asp
+
+var storySlide = new Swiper(".story-slide-box", {
+    speed: 600,
+    slidesPerView: 'auto',
+    //spaceBetween: 185,
+    //freeMode: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+    },
+    pagination: {
+        el: '.story-slide-box .swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.story-slide-box .swiper-button-next',
+        prevEl: '.story-slide-box .swiper-button-prev',
+    },
+    //allowTouchMove: false,
+    loop: true,
+    loopAdditionalSlides: 1,
+    centeredSlides: true,
+
+    effect: "creative",
+    creativeEffect: {
+        limitProgress: 5,
+        prev: {
+            opacity: .5,
+            translate: ["-1318px", 0, 0],
+        },
+        next: {
+            opacity: .5,
+            translate: ["1318px", 0, 0],
+        },
+    },
+});
 </body>
 </html>
