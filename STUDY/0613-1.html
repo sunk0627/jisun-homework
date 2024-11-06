@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+<script src="https://code.jquery.com/jquery-2.2.1.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+</head>
+<style>
+	.sel-box {display: none;}
+	.sel-box.on {display: block;}
+</style>
+<body>
+	<form class="container ">
+    <p>상품선택</p>
+    <select class="form-select">
+      <option value="모자">모자</option>
+      <option value="셔츠">셔츠</option>
+    </select>
+	<select class="sel-box">
+		<option value="">90</option>
+		<option value="">95</option>
+	</select>
+</form>
+<script>
+document.querySelector('.form-select').addEventListener('input', function(){
+	if (document.querySelector('.form-select').value == '셔츠')
+	{
+		document.querySelector('.sel-box').classList.add('on')
+	}else{
+
+		document.querySelector('.sel-box').classList.remove('on')
+	}
+});
+
+</script>
+</body>
+</html>

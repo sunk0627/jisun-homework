@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Generator" content="EditPlus®">
+		<meta name="Author" content="">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title>Document</title>
+		<!--<script src="https://www.keds.co.kr/mo/resource/js/lib/jquery-1.12.4.min.js"></script>-->
+	</head>
+	<body>
+
+	<style>
+	*{margin: 0; padding: 0;}
+	a{color: inherit; text-decoration: none;}
+	li{list-style: none;}
+	.tab-box{
+		position: fixed;
+		top: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 80px;
+		background-color: #333;
+		z-index: 1;
+
+	}
+/*	.tab-box li{
+		width: 200px;
+		height: 100%;
+		line-height: 80px;
+		text-align: center;
+	}
+	.tab-box a{
+		display: block; 
+		width: 100%; 
+		height: 100%;
+		color: #000;
+		background: #fff;
+		border: 1px solid #000;
+		box-sizing: border-box;
+	}
+	.tab-box li:hover a, .tab-box li.on a{
+		background-color: #333;
+		color: #fff;
+	}*/
+	.tab-box button{
+		width: 200px;
+		height: 100%;
+		line-height: 80px;
+		text-align: center;
+		color: #000;
+		background: #fff;
+		border: 1px solid #000;
+		box-sizing: border-box;
+	}
+	.tab-box button:hover, .tab-box button.on{
+		background-color: #333;
+		color: #fff;
+	}
+
+	.con, .start, .finish {
+		width: 100%;
+		height: 100vh;
+		text-align: center;
+		font-size: 50px;
+		line-height: 100vh;
+	}
+	.con01{background-color: lightblue;}
+	.con02{background-color: lightpink;}
+	.con03{background-color: bisque;}
+	.con04{background-color: lightgreen;}
+
+
+	</style>
+
+	<div class="start"></div>
+
+	<div class="tab-box">
+		<button type="button" data-link="#tab01">menu1</button>
+		<button type="button" data-link="#tab02">menu2</button>
+		<button type="button" data-link="#tab03">menu3</button>
+		<button type="button" data-link="#tab04">menu4</button>
+	</div>
+
+ 
+	<div class="contents">
+		<div class="con con01" id="tab01">1</div>
+		<div class="con con02" id="tab02">2</div>
+		<div class="con con03" id="tab03">3</div>
+		<div class="con con04" id="tab04">4</div>
+	</div>
+
+	<div class="finish"></div>
+
+ 	<script>
+	
+		const tabBox = document.querySelector('.tab-box');
+		const tab = document.querySelectorAll('.tab-box button');
+
+		tabBox.addEventListener('click', (event) => {
+		  const target = event.target;
+		  const link = target.dataset.link;
+
+		  if (link == null) {
+			return;
+		  } else {
+			for (i = 0; i < tab.length ; i++){ 
+				tab[i].classList.remove('on');
+			}
+			target.classList.add('on');
+			const scroll = document.querySelector(link);
+			scroll.scrollIntoView({behavior:"smooth"}); //option으로 애니메이션을 smooth하게 만든다
+		  }
+		});
+
+		window.addEventListener('scroll', ()=> {
+			const windowSt = document.documentElement.scrollTop;
+			const con = document.querySelectorAll('.con');
+
+			for(i = 0; i < con.length ; i++){
+				if (windowSt < con[0].offsetTop){
+					tab[i].classList.remove('on');
+				} else if(con[0].offsetTop < windowSt && windowSt < con[1].offsetTop){
+					tab[i].classList.remove('on');
+					tab[0].classList.add('on');
+				} else if(con[1].offsetTop < windowSt && windowSt < con[2].offsetTop){
+					tab[i].classList.remove('on');
+					tab[1].classList.add('on');
+				} else if(con[2].offsetTop < windowSt && windowSt < con[3].offsetTop){
+					tab[i].classList.remove('on');
+					tab[2].classList.add('on');
+				} else if(con[3].offsetTop < windowSt){
+					tab[i].classList.remove('on');
+					tab[3].classList.add('on');
+				} 
+			}
+
+		})
+
+	</script> 
+
+	</body>
+</html>

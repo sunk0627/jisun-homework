@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	body{margin: 0; padding:0;}
+	.list {font-size: 0;  width: 300px; padding: 0;}
+	.list li {vertical-align: top; display: inline-block; color: #888; box-sizing: border-box; border: 1px solid #ccc; border-top: 0; font-size: 16px; text-align: center; width: 33.33%; line-height: 30px; height: 30px;}
+	.tab-content {display: none;}
+	.show {display: block;}
+	.list .orange {border-top: 2px solid orange; color: #333;}
+</style>
+<body>
+	 <div class="cont">
+        <ul class="list">
+            <li class="tab-button orange">Products</li>
+            <li class="tab-button">Information</li>
+            <li class="tab-button">Shipping</li>
+        </ul>
+        <div class="tab-content show">
+            <p>상품설명 product</p>
+        </div>
+        <div class="tab-content">
+            <p>상품설명 Information</p>
+        </div>
+        <div class="tab-content">
+            <p>상품설명 shipping</p>
+        </div>
+    </div>
+<script>
+    /*for (let i = 0; i < 3; i++){
+        document.querySelectorAll('.tab-button')[i].addEventListener('click', function(){
+            document.querySelectorAll('.tab-button')[i].classList.remove('orange');
+            document.querySelectorAll('.tab-button')[i].classList.add('orange');
+            document.querySelectorAll('.tab-content')[i].classList.remove('show');
+            document.querySelectorAll('.tab-content')[i].classList.add('show');
+        });
+    }*/
+	for (let i = 0; i < 3; i++){
+        document.querySelectorAll('.tab-button')[i].addEventListener('click', function(){
+
+			for (let j = 0; j < 3; j++){
+				document.querySelectorAll('.tab-button')[j].classList.remove('orange');
+				document.querySelectorAll('.tab-content')[j].classList.remove('show');
+			}
+            document.querySelectorAll('.tab-button')[i].classList.add('orange');
+            document.querySelectorAll('.tab-content')[i].classList.add('show');
+        });
+    }
+	</script>
+</body>
+</html>

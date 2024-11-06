@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gsap</title>
+	
+	<!-- gsap plugin -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+	<!-- //gsap plugin -->
+
+
+</head>
+<body>
+<!-- 
+	GSAP 
+	웹 화면에 쉽게 사용할 수 있는 타임라인 기반 애니메이션 자바스크립트 라이브러리
+-->
+
+<!-- css -->
+<style>
+	/* 공통 */
+	*{padding: 0;margin: 0;}
+	#wrap section {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100vh;
+	}
+
+	.bg-box {
+		position: relative;
+		top: 0;
+		left: 0;
+	}
+	.bg-box > div {
+		position: absolute;
+		top: 100px;
+		left: 100px;
+		width: 50px;
+		height: 50px;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+	}
+
+	.control-btn-box {
+		display: flex;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.control-btn-box button {
+		display: block;		
+		width: 150px;
+		height: 50px;
+		margin-right: 10px;
+		cursor: pointer;
+	}
+	/* //공통 */
+
+
+</style>
+<!-- //css -->
+
+<!-- html -->
+<div id="wrap">
+	<br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br />
+
+	<section class="sct01" style="background-color: wheat;">
+		<div class="bg-box">
+			<div class="_bg01" style="background-color: black;"></div>
+			<div class="_bg02" style="top: 200px; background-color: skyblue;"></div>
+
+			<div class="_bg03" style="top: 300px; background-color: red;"></div>
+			<div class="_bg04" style="top: 400px; background-color: gold;"></div>
+
+			<div class="_bg05" style="top: 500px; background-color: green;"></div>
+			<div class="_bg06" style="top: 600px; background-color: orange;"></div>
+
+			<div class="_bg07" style="top: 700px; background-color: purple;"></div>
+			<div class="_bg08" style="top: 800px; background-color: gray;"></div>
+		</div>
+	</section>
+
+	<br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br />
+</div>
+<!-- //html -->
+
+</body>
+
+<!-- script -->
+<script> 
+	// addLabel : 그룹으로 묶어 실행
+	let tl = gsap.timeline({
+		scrollTrigger: {
+			trigger: '.sct01',
+			start: '0% 0%', // start(시작) scroller-strat(시작 지점 선택)
+			end: '100% 100%', // end(종료) scroller-end(종료 지점 선택)
+			pin: false, // 화면 고정
+			scrub: false, // true, false, 숫자
+			markers: true // 가이드 라인
+		}
+	});
+
+	tl
+		.to('._bg01', {
+			x: 500,
+			duration: 1
+		})
+		.to('._bg02', {
+			x: 300,
+			duration: 1
+		})
+
+		.addLabel('groupA')
+		.to('._bg03', {
+			x: 500,
+			duration: 1
+		}, 'groupA')
+		.to('._bg04', {
+			x: 300,
+			duration: 1
+		}, 'groupA')
+
+		.addLabel('groupB')
+		.to('._bg05', {
+			x: 200,
+			duration: 1
+		}, 'groupB')
+		.to('._bg06', {
+			x: 700,
+			duration: 1
+		}, 'groupB')
+
+		.addLabel('groupC')
+		.to('._bg07', {
+			x: 800,
+			duration: 1
+		}, 'groupC')
+		.to('._bg08', {
+			x: 600,
+			duration: 1
+		}, 'groupC')	
+</script>
+<!-- //script -->
+</html>

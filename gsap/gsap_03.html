@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gsap</title>
+	
+	<!-- gsap plugin -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	<!-- //gsap plugin -->
+
+
+</head>
+<body>
+<!-- 
+	GSAP 
+	웹 화면에 쉽게 사용할 수 있는 타임라인 기반 애니메이션 자바스크립트 라이브러리
+-->
+
+<!-- css -->
+<style>
+	/* 공통 */
+	*{padding: 0;margin: 0;}
+	#wrap section {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100vh;
+	}
+
+	.bg-box {
+		position: relative;
+		top: 0;
+		left: 0;
+	}
+	.bg-box > div {
+		position: absolute;
+		top: 100px;
+		left: 100px;
+		width: 50px;
+		height: 50px;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+	}
+
+	.control-btn-box {
+		display: flex;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.control-btn-box button {
+		display: block;		
+		width: 150px;
+		height: 50px;
+		margin-right: 10px;
+		cursor: pointer;
+	}
+	/* //공통 */
+
+
+</style>
+<!-- //css -->
+
+<!-- html -->
+<div id="wrap">1
+	<section class="sct01" style="background-color: wheat;">
+		<div class="bg-box">
+			<div class="_bg01" style="background-color: black;"></div>
+			<div class="_bg02" style="top: 200px; background-color: skyblue;"></div>
+			<div class="_bg03" style="top: 300px; background-color: red;"></div>
+		</div>
+	</section>
+</div>
+<!-- //html -->
+
+</body>
+
+<!-- script -->
+<script> 	
+	// timeline : 순서대로 진행
+	let tl = gsap.timeline({});
+
+	tl.to('._bg01', {
+		rotation: 360, // 회전
+		x: 500, // x축으로 이동
+		duration: 2 // 지속시간
+	})
+	.to('._bg02', {
+		rotation: 360, // 회전
+		x: 500, // x축으로 이동
+		duration: 2 // 지속시간
+	})
+	.to('._bg03', {
+		rotation: 360, // 회전
+		x: 500, // x축으로 이동
+		duration: 2 // 지속시간
+	});
+</script>
+<!-- //script -->
+</html>

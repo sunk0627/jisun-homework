@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+<script src="https://code.jquery.com/jquery-2.2.1.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+</head>
+<style>
+	.sel-box {display: none;}
+	.sel-box.on {display: block;}
+</style>
+<body>
+	<form class="container ">
+    <p>상품선택</p>
+    <select class="form-select">
+      <option value="모자">모자</option>
+      <option value="셔츠">셔츠</option>
+      <option value="바지">바지</option>
+    </select>
+	<select class="sel-box">
+		<option>90</option>
+		<option>95</option>
+	</select>
+</form>
+
+<script>
+document.querySelector('.form-select').addEventListener('input', function(){
+	var value = this.value;
+	console.log('value');
+	if (value == '셔츠')
+	{
+		document.querySelector('.sel-box').classList.add('on')
+	}else if(value == '바지'){
+		document.querySelector('.sel-box').classList.add('on')
+		document.querySelector('.sel-box').innerHTML = ''
+		var 템플릿 = '<option>28</option><option>30</option>';
+		document.querySelector('.sel-box').insertAdjacentHTML('beforeend', 템플릿);
+	}else{
+		document.querySelector('.sel-box').classList.remove('on')
+	}
+
+});
+	var obj = {name : 'kim', age : 20}
+
+	for (var key in obj)
+	{
+		console.log(key);
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="alert alert-danger">
+	  <span id="num">5</span>초 이내 구매시 사은품 증정
+	</div>
+</body>
+<script>
+
+	function 함수(){
+		console.log('hi');
+		return 123
+		console.log('hiiiiii');
+	}
+
+	함수();
+	setTimeout(function(){
+		document.querySelector('.alert').style.display = 'none';
+	},5000);
+	var count = 5;
+	setInterval(function(){
+		
+		count --;
+		if (count >= 0)
+		{
+			document.querySelector('#num').innerHTML = count;
+		}
+
+	},1000);
+
+</script>	
+</html>

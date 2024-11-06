@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.alert-box {display: none;}
+</style>
+<body>
+	<div class="alert-box" id="alert">
+		<p id="title">알림창</p>
+		<button id="close">닫기</button>
+	</div>	
+	<button onclick="idalim()">id</button>
+	<button id="pwd">pwd</button>
+</body>
+<script>
+function idalim(){
+	document.getElementById('title').innerHTML = 'id gab';
+	document.getElementById('alert').style.display="block";
+}
+
+document.getElementById('close').addEventListener('click', function(){
+	document.getElementById('alert').style.display = 'none'
+});
+
+document.getElementById('pwd').addEventListener('click', function(){
+	document.getElementById('alert').style.display = 'block'
+});
+</script>
+
+</html>
