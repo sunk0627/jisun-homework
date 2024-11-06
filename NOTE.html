@@ -426,5 +426,349 @@ $(function(){
 .swiper-slide {
     height: calc((100% - 6px) / 2) !important;
 }
+
+
+----------------------------------------------------------
+[SWIPER 영상 관련 스크립트]
+- 슬라이드 전환시 영상 재생/멈춤
+- 영상 끝나면 슬라이드 자동 전환
+** video 태그 내의 autoplay loop 기능 삭제 ** 
+
+var vdoSlide = new Swiper(".vdo-slide-box", {
+	speed: 300,
+	slidesPerView: 'auto',
+	//freeMode: true,
+	effect: "fade",
+	allowTouchMove: true,	
+	loop: true,
+	loopAdditionalSlides: 1,
+	pagination: {
+	  el: ".vdo-slide-box .swiper-pagination",
+	  clickable: true
+	},
+  on: {
+	  transitionStart: function(){
+		  if($('.swiper-slide-active').hasClass('_type_vdo')){
+			  for(var i = 0; i < $('._type_vdo video').length; i++){
+				  $('.swiper-slide video').get(i).pause();
+			  }	
+
+			  $('.swiper-slide-active video').get(0).play();	
+		  }else{
+			  for(var i = 0; i < $('._type_vdo video').length; i++){
+				  $('.swiper-slide video').get(i).pause();
+			  }							
+		  }
+	  }
+  }
+});
+
+
+vdoSlide.on('slideChangeTransitionStart', function(){
+  if($('.swiper-slide-active').hasClass('_type_vdo')){
+	  vdoSlide.autoplay.stop();
+  }else{
+	  vdoSlide.autoplay.start();
+  }
+});
+
+setInterval(function(){
+  if($('.swiper-slide-active').hasClass('_type_vdo')){
+	  if($('.vdo-slide-box .swiper-slide-active video').prop('ended')){
+		  vdoSlide.slideNext();
+	  }
+  }
+}, 200);
+------------------------------------------------------
+[swiper 카드형태]
+https://www.columbiakorea.co.kr/event/240820/transtrekker.asp
+
+var storySlide = new Swiper(".story-slide-box", {
+    speed: 600,
+    slidesPerView: 'auto',
+    //spaceBetween: 185,
+    //freeMode: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+    },
+    pagination: {
+        el: '.story-slide-box .swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.story-slide-box .swiper-button-next',
+        prevEl: '.story-slide-box .swiper-button-prev',
+    },
+    //allowTouchMove: false,
+    loop: true,
+    loopAdditionalSlides: 1,
+    centeredSlides: true,
+
+    effect: "creative",
+    creativeEffect: {
+        limitProgress: 5,
+        prev: {
+            opacity: .5,
+            translate: ["-1318px", 0, 0],
+        },
+        next: {
+            opacity: .5,
+            translate: ["1318px", 0, 0],
+        },
+    },
+});
+
+------------------------------------------------------
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+
+let tl = gsap.timeline({
+    scrollTrigger: {
+        trigger: '.main__contents .main-banner-box',
+        start: '0% 10%', // start(시작) scroller-strat(시작 지점 선택)
+        end: '90% 100%', // end(종료) scroller-end(종료 지점 선택)
+        pin: false, // 화면 고정
+        scrub: false, // true, false, 숫자
+        markers: false // 가이드 라인
+    }
+});
+
+tl.fromTo('.main-banner-box .banner__list .bnr .vdo-box video', {
+    scale: 1.2,
+    delay: 0.2,
+        ease: "power2.out"
+},
+{
+    scale: 1,
+    duration: 1.3,
+        ease: "power2.out"
+})
+    
+tl.fromTo('.main-banner-box .banner__list .bnr .txt-box .txt1', {
+    opacity: 0,
+},
+{
+    opacity: 1,
+})
+    
+tl.fromTo('.main-banner-box .banner__list .bnr .txt-box .txt2', {
+    opacity: 0,
+},
+{
+    opacity: 1,
+})
+
+let mm = gsap.matchMedia();
+
+mm.add("(min-width: 768px)", () => {
+    let tl2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.main__contents .main-look-box',
+            start: '0% 10%', // start(시작) scroller-strat(시작 지점 선택)
+            end: '70% 100%', // end(종료) scroller-end(종료 지점 선택)
+            pin: false, // 화면 고정
+            scrub: false, // true, false, 숫자
+            markers: false // 가이드 라인
+        }
+    });
+
+    tl2.fromTo('.main-look-box .lookbook__list a:nth-child(1)', {
+        opacity: 0,
+    },
+    {
+        opacity: 1,
+    })
+    tl2.fromTo('.main-look-box .lookbook__list a:nth-child(2)', {
+        opacity: 0,
+    },
+    {
+        opacity: 1,
+    })
+    tl2.fromTo('.main-look-box .lookbook__list a:nth-child(3)', {
+        opacity: 0,
+    },
+    {
+        opacity: 1,
+    })
+  
+});
+mm.add("(max-width: 767px)", () => {
+
+    let tl3 = gsap.timeline({
+        scrollTrigger: {
+            trigger: 'main__contents .main-look-box',
+            start: '0% 0%', // start(시작) scroller-strat(시작 지점 선택)
+            end: '90% 100%', // end(종료) scroller-end(종료 지점 선택)
+            pin: false, // 화면 고정
+            scrub: 3.5, // true, false, 숫자
+            markers: false // 가이드 라인
+        }
+    });
+
+    tl3.fromTo('.main-look-box .lookbook__list a:nth-child(1)', {
+        opacity: 0,
+    },
+    {
+        opacity: 1,
+    })
+    tl3.fromTo('.main-look-box .lookbook__list a:nth-child(2)', {
+        opacity: 0,
+    },
+    {
+        opacity: 1,
+    })
+    tl3.fromTo('.main-look-box .lookbook__list a:nth-child(3)', {
+        opacity: 0,
+    },
+    {
+        opacity: 1,
+    })
+});
+
+const showItems = gsap.utils.toArray('.lookbook-view-box .lookook-cut-box > div');
+showItems.forEach((item) => {
+    gsap.fromTo(item, {
+    opacity: 0,
+    }, {
+    opacity: 1,
+    scrollTrigger: {
+        markers: false,
+        trigger: item,
+        start: '0% 50%', // start(시작) scroller-strat(시작 지점 선택)
+        end: '80% 100%', // end(종료) scroller-end(종료 지점 선택)
+    }
+    });
+});
+------------------------------------------------------
+[tab 첫번째 contents 보이게]
+$().eq(0).show();
+
+------------------------------------------------------
+
+
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(30px);
+------------------------------------------------------
+[youtube 슬라이드 자동재생 스크립트]
+<div class="vdo-slide-box">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide _type_ytb">
+			<div class="vdo-box">
+				<div id="" data-vdo="gp5kw-CITIE"></div>
+			</div>
+		</div>
+		<div class="swiper-slide _type_ytb">
+			<div class="vdo-box">
+				<div id="" data-vdo="ppbzMWU7Kqg"></div>
+			</div>
+		</div>
+	</div>
+	<div class="swiper-pagination"></div>
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
+</div>
+
+<script>
+var yt = [];
+var swiper = new Swiper('.vdo-slide-box', {
+	//speed: 1000,
+	mousewheelControl: true,
+	slidesPerView: "auto",
+	//freeMode: true,
+	/*autoplay: {
+		delay: 1,
+		disableOnInteraction: false
+	},*/
+	effect: "fade",
+	loop: true,
+	pagination: {
+		el: ".vdo-slide-box .swiper-pagination",
+		clickable: true
+	},
+	navigation: {
+		nextEl: '.vdo-slide-box .swiper-button-next',
+		prevEl: '.vdo-slide-box .swiper-button-prev',
+	},
+
+});
+
+function onYouTubeIframeAPIReady() {
+	var vdoIframe = $('.swiper-slide .vdo-box > div');
+
+	vdoIframe.each(function(idx){
+		$(this).attr('id', 'ytbPlayer' + idx);
+
+		yt.push($(this).attr('id'));	
+	
+		let w = '100%';
+		let h = '100%';
+
+		yt[idx] = new YT.Player(yt[idx], {
+			width: w,
+			height: h,
+			videoId: $('#' + yt[idx]).attr('data-vdo'),
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': function(event){
+
+					if (event.data == YT.PlayerState.ENDED){ 
+
+						swiper.slideNext();
+						yt[swiper.activeIndex].playVideo();
+					}
+				}
+			},
+		});
+
+		function onPlayerReady(event) {
+			event.target.mute();
+			event.target.playVideo();
+
+			/*if (event.data == YT.PlayerState.ENDED){
+
+				swiper.slideNext();
+				event.target.mute();
+				event.target.playVideo();
+
+			}*/
+		}
+		swiper.on('transitionStart', function () { // 전환 시
+			yt[swiper.previousIndex].pauseVideo();
+		});
+
+		swiper.on('transitionEnd', function () { //전환 후
+			yt[swiper.activeIndex].playVideo();
+		});
+
+	});	
+}
+
+</script>
+
+- 네파메인 
+------------------------------------------------------
+
+[swiper 자동롤링 ]
+var swiper = new Swiper('.choco-slide-box', {
+	  speed: 4e3,
+	  slidesPerView: 'auto',
+	  //freeMode: true,
+	  autoplay: {
+		delay: 0,
+		disableOnInteraction: false
+	  },
+	  allowTouchMove: false,
+	  loop: true,
+	  loopAdditionalSlides: 1,
+	  centeredSlides: true,
+});
+
+
+.choco-slide-box .swiper-wrapper {
+	transition-timing-function: linear;
+}
+
 </body>
 </html>
