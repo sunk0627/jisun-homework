@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <script type="text/javascript" async="" src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <style>
+        .swiper-container {
+            width: 1500px;
+            height: 800px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .swiper-container .swiper-slide {
+            width: 1500px;
+            height: 800px;
+        }
+        .swiper-container .swiper-slide iframe {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-container {}
+    </style>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" data-video-id="vdo1">
+                <iframe src="https://www.youtube.com/embed/gp5kw-CITIE?amp;autoplay=1&amp;playlist=gp5kw-CITIE&amp;loop=1&amp;mute=1" frameborder="0">
+                </iframe>
+            </div>
+            <div class="swiper-slide" data-video-id="vdo2">
+                <iframe src="https://www.youtube.com/embed/ppbzMWU7Kqg?amp;autoplay=1&amp;playlist=ppbzMWU7Kqg&amp;loop=1&amp;mute=1" frameborder="0">
+                </iframe>
+            </div>
+            <div class="swiper-slide" data-video-id="vdo3">
+                <iframe src="https://www.youtube.com/embed/gp5kw-CITIE?amp;autoplay=1&amp;playlist=gp5kw-CITIE&amp;loop=1&amp;mute=1" frameborder="0">
+                </iframe>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+
+        <script>
+            let player;
+
+            
+            function onYouTubeIframeAPIReady() {
+                const slides = document.querySelectorAll('.swiper-slide');
+                slides.forEach(slide => {
+                    const videoId = slide.getAttribute('data-video-id');
+                    slide.innerHTML = ``;
+                    players[videoId] = new YT.Player(`player-${videoId}`, {
+                        events: {
+                            'onStateChange': onPlayerStateChange
+                        }
+                    });
+                });
+            }
+            function onPlayerStateChange(event) {
+                if (event.data === YT.PlayerState.ENDED) {
+                    swiper.slideNext(); // 영상이 끝나면 다음 슬라이드로 전환
+                }
+            }
+
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                on: {
+                    slideChange: function () {
+                        const previousSlide = this.slides[this.previousIndex];
+                        const currentSlide = this.slides[this.activeIndex];
+                        const previousVideoId = previousSlide.getAttribute('data-video-id');
+                        const currentVideoId = currentSlide.getAttribute('data-video-id');
+
+                        if (previousVideoId) {
+                            const previousPlayer = document.getElementById(`player-${previousVideoId}`);
+                            previousPlayer.contentWindow.postMessage(
+                                '{"event":"command","func":"pauseVideo","args":""}', '*');
+                        }
+                        if (currentVideoId) {
+                            const currentPlayer = document.getElementById(`player-${currentVideoId}`);
+                            currentPlayer.contentWindow.postMessage(
+                                '{"event":"command","func":"playVideo","args":""}', '*');
+                        }
+                    },
+                },
+            });
+        </script>
+
+</body>

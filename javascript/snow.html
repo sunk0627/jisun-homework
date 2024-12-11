@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    
+    <div class="snow-box"></div>
+</body>
+<script>
+    
+    function snowMotion(){
+
+        let boxName,
+            boxNameEl,
+            num,
+            temp,
+            snowStyle,
+            snowStyleMotion,
+            snowPosX, snowPosY;
+
+        
+        boxName = '.snow-box';
+        boxNameEl = document.querySelector(boxName);
+
+        num = 70;		
+
+
+        // 스타일
+        snowStyle = `
+            <style>
+                ${boxName},
+                ${boxName} > .snow-motion {
+                    overflow: hidden;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 12;
+                    pointer-events: none;
+                }
+
+                ._snow {
+                    position: absolute;
+                    background-color: rgb(255,255,255);
+                    border-radius: 50%;
+
+                    animation: snowDown 30s infinite linear;
+                }
+                ._snow:before {
+                    display: block;
+                    padding-top: 100%;
+                    content: '';
+                }
+
+                @keyframes snowDown {
+                    100% {top: 100%;}
+                }
+                
+            </style>
+        `;
+        boxNameEl.insertAdjacentHTML('beforeend', snowStyle);		
+        
+
+        // 눈
+        boxNameEl.insertAdjacentHTML('beforeend', '<div class="snow-motion"></div>');
+
+        for(let i = 1; i < (num + 1); i++){
+            snowPosX = Math.floor(Math.random() * window.innerWidth);			
+            snowPosY = Math.floor(Math.random() * window.innerHeight);
+
+            function numRandom(min, max){
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            temp = `
+                <div class="_snow _snow${i}" style="
+                    top: -${snowPosY}px; 
+                    left: ${snowPosX}px; 
+                    width: ${numRandom(2, 4)}px;
+                    animation-duration: ${numRandom(5, 25)}s;
+                "></div>
+            `;		
+
+            document.querySelector('.snow-box > .snow-motion').insertAdjacentHTML('beforeend', temp);
+        }
+
+    }
+
+    snowMotion();
+</script>
+</html>

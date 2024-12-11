@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .renewal__contents .ren-tab-box {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            border: 1px solid rgb(0, 0, 0);
+            z-index: 2;
+            box-sizing: border-box;
+        }
+
+        .renewal__contents .ren-tab-box .inner {
+            display: flex;
+            width: auto;
+            margin: 0 auto;
+            overflow-x: scroll;
+            white-space: nowrap;
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .renewal__contents .ren-tab-box .inner::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera*/
+        }
+
+        .renewal__contents .ren-tab-box a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 calc(30 / 750 * 100vw);
+            width: 100%;
+            height: calc(90 / 750 * 100vw);
+            font-family: 'Proxima_Nova';
+            font-size: calc(32 / 750 * 100vw);
+            border-left: 1px solid rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
+            box-sizing: border-box;
+            transition: all .3s;
+        }
+
+        .renewal__contents .ren-tab-box a:last-child {
+            border-right: 1px solid rgb(0, 0, 0);
+        }
+
+        .renewal__contents .ren-tab-box a.on {
+            color: rgb(255, 255, 255);
+            background-color: rgb(207, 4, 4);
+        }
+    </style>
+    <!-- tab -->
+    <div class="ren-tab-box">
+        <div class="inner">
+            <a href="#message">CELEBRATION MESSAGE</a>
+            <a href="#troops">BE THE TROOPS</a>
+
+            <a href="#gift">ONE DAY COUPON</a>
+
+            <a href="#benefits">CREDIT CARD BENEFITS</a>
+        </div>
+    </div>
+    <!-- // tab -->
+    <script>
+        $(function () {
+            //tab click
+            $('.ren-tab-box a').on('click', function (e) {
+                e.preventDefault();
+
+                $(this).addClass('on').siblings().removeClass('on');
+
+                var tabHt = $(this).height();
+                var tabId = $(this).attr('href');
+                var tabCont = Math.floor($('.ren__sct' + tabId).offset().top);
+                var tabLeft = $(this).offset().left;
+                var curLeft = $('.ren-tab-box .inner').scrollLeft();
+
+                $('html, body').stop().animate({
+                    scrollTop: tabCont - tabHt
+                });
+                $('.ren-tab-box .inner').stop().animate({
+                    scrollLeft: tabLeft + curLeft
+                });
+            });
+
+            var delta = 150;
+            var timer = null;
+
+            function resizeDone() {
+                var scTop = $(window).scrollTop();
+                var tabCont = $('.ren__sct');
+                var tabBtn = $('.ren-tab-box a');
+                var tabHt = $('.ren-tab-box').height();
+                var curLeft = $('.ren-tab-box .inner').scrollLeft();
+
+                for (var i = 0; i < tabCont.length; i++) {
+                    var tabContTop = Math.floor(tabCont.eq(i).offset().top - tabHt);
+
+                    if (scTop == $(document).height() - $(window).height()) {
+                        tabBtn.eq(i).removeClass('on');
+                        $('.ren-tab-box a:last-child').addClass('on');
+                    } else if (scTop >= tabContTop) {
+                        tabBtn.eq(i).addClass('on').siblings().removeClass('on');
+
+                        $('.ren-tab-box .inner').stop().animate({
+                            scrollLeft: $('.ren-tab-box a.on').offset().left + curLeft
+                        });
+                    } else {
+                        tabBtn.eq(i).removeClass('on');
+                    }
+                }
+            }
+
+            //tab scroll
+            $(window).scroll(function () {
+                clearTimeout(timer);
+                timer = setTimeout(resizeDone, delta);
+            });
+
+            //댓글버튼
+            $('.btn__comment').on('click', function (e) {
+                e.preventDefault();
+
+                var tabHt = $(this).height();
+                var tabId = $(this).attr('href');
+                var tabCont = $('.evt-comment-box' + tabId).offset().top;
+
+                $('html, body').stop().animate({
+                    scrollTop: tabCont - tabHt
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>

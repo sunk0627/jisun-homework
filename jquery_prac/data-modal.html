@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<style>
+    .promo-pd-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    .promo-pd-box._pd01 {
+        top: calc(530 / 780 * 100vw);
+        left: calc(630 / 780 * 100vw);
+    }
+
+    .promo-pd-box._pd02 {
+        top: calc(1035 / 780 * 100vw);
+        left: calc(280 / 780 * 100vw);
+    }
+
+    .promo-pd-box._pd03 {
+        top: calc(1400 / 780 * 100vw);
+        left: calc(405 / 780 * 100vw);
+    }
+
+    .promo-pd-box>div {
+        position: absolute;
+        display: block;
+        width: calc(98 / 780 * 100vw);
+        height: calc(98 / 780 * 100vw);
+    }
+
+    .promo-pd-box .promo-pd-btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(https://www.columbiakorea.co.kr//mobile/event/241212/images/holiday_241212_m_btn2.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .promo-pd-box .promo-pd-btn {
+        background-image: url(https://www.columbiakorea.co.kr//mobile/event/241212/images/holiday_241212_m_btn.png);
+    }
+
+    .promo-pop-bg {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 12;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .promo-pop-bg.on {
+        display: block;
+    }
+
+    .promo-pd-pop {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 123;
+    }
+
+    .promo-pd-pop.on {
+        display: block;
+    }
+
+    .promo-pd-pop>div {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow-y: auto;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(560 / 780 * 100vw);
+        height: calc(800 / 780 * 100vw);
+        z-index: 999;
+    }
+
+    .promo-pd-pop .pd-img-wrap {
+        position: relative;
+        width: 100%;
+        height: fit-content;
+    }
+
+    .promo-pd-pop .pop-close-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: calc(46 / 780 * 100vw);
+        height: calc(46 / 780 * 100vw);
+        background: url(https://www.columbiakorea.co.kr/mobile/event/241212/images/holiday_241212_m_close_btn.png) no-repeat center center/cover;
+    }
+</style>
+
+<body>
+
+    <div class="promo-pd-box _pd01">
+        <div>
+            <button class="promo-pd-btn" data-popurl="/product/view.asp?pno=18153"
+                data-popimg="https://www.columbiakorea.co.kr/mobile/event/241212/images/holiday_241212_m_pd_pop01.png"></button>
+        </div>
+    </div>
+    <div class="promo-pd-box _pd02">
+        <div>
+            <button class="promo-pd-btn" data-popurl="/product/view.asp?pno=18772"
+                data-popimg="https://www.columbiakorea.co.kr/mobile/event/241212/images/holiday_241212_m_pd_pop02.png"></button>
+        </div>
+    </div>
+    <div class="promo-pd-box _pd03">
+        <div>
+            <button class="promo-pd-btn" data-popurl="/product/view.asp?pno=18628"
+                data-popimg="https://www.columbiakorea.co.kr/mobile/event/241212/images/holiday_241212_m_pd_pop03.png"></button>
+        </div>
+    </div>
+
+    <div class="promo-pd-pop">
+        <div>
+            <button class="pop-close-btn"></button>
+            <a href="" class="pd-img-wrap">
+                <img src="" alt="" class="pop-promo-img">
+            </a>
+        </div>
+    </div>
+</body>
+<script>
+    $("body").on("click", ".promo-pd-box .promo-pd-btn", function () {
+        let popImg = $(this).data("popimg");
+        let popUrl = $(this).data("popurl");
+        $(".promo-pop-bg").addClass("on");
+        $(".promo-pd-pop").addClass("on");
+        $(".promo-pd-pop .pop-promo-img").attr('src', popImg);
+        $(".promo-pd-pop a").attr('href', popUrl);
+    })
+
+    $("body").on("click", ".promo-pop-bg", function () {
+        $(".promo-pop-bg").removeClass("on");
+        $(".promo-pd-pop").removeClass("on");
+    });
+
+    $(".pop-close-btn").on("click", function () {
+        $(".promo-pop-bg").removeClass("on");
+        $(".promo-pd-pop").removeClass("on");
+    })
+</script>
+
+</html>

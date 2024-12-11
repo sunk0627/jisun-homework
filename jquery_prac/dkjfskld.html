@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .goods .photo .thumb__slider .slick-slide {aspect-ratio: 1 / 1;}
+        .promo-banner {		
+            position: relative;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+        .promo-banner img {
+            display: block;
+            width: 100%;
+            /*height: 100%;*/
+        }
+        .motion-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .motion-box img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s;
+            transition-delay: .2s;
+        }
+
+        .motion-box.on .fadeIn {animation: fadeIn 1s forwards;}
+        .motion-box.on .txt {animation: fadeIn .5s steps(1) forwards;}
+        .motion-box.on .showUp {animation: showUp .3s ease-in-out forwards;}
+        .motion-box.on .showDown {animation: showDown .3s ease-out forwards;}
+        .motion-box.on .showLeft {animation: showLeft .6s ease-out forwards;}
+        .motion-box.on .showRight {animation: showRight .6s ease-out forwards;}
+        .motion-box.on .upDown {
+            opacity: 1;
+            animation: upDown 1s ease-in-out infinite alternate;
+        }
+        .motion-box.on .shaking {
+            opacity: 1;
+            animation: shaking 2s ease-in-out infinite;
+        }
+        .motion-box div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all .5s;
+            transition-delay: .2s;
+        }
+
+        /*tab*/
+        .promo-tab-box {
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+            z-index: 3;
+        }
+        .promo-tab-box button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 50%;
+            height: calc(120 / 780 * 100vw);
+            border: calc(1 / 780 * 100vw) solid rgb(0, 0, 0);
+            box-sizing: border-box;
+            background-color: rgb(26, 26, 26);
+            font-family: 'Pretendard', sans-serif;
+            font-size: calc(28 / 780 * 100vw);
+            font-weight: 600;
+            letter-spacing: -.02em;
+            color: rgb(221, 221, 221);
+            transition: .2s all;
+        }
+        .promo-tab-box button.on {color: rgb(0, 0, 0);}
+        .promo-tab-box button:nth-child(1).on {background-color: rgb(248, 216, 117);}
+        .promo-tab-box button:nth-child(2).on {background-color: rgb(249, 185, 112);}
+        .promo-tab-box button:nth-child(3).on {background-color: rgb(249, 157, 112);}
+        .promo-tab-box button:nth-child(4).on {background-color: rgb(254, 146, 128);}
+        .promo-tab-box button:after {
+            content: '';
+            display: inline-block;
+            position: relative;
+            left: 0;
+            width: calc(13 / 780 * 100vw);
+            height: calc(22 / 780 * 100vw);
+            margin-left: calc(30 / 780 * 100vw);
+            background: url(https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_arr_wt.png) center / contain no-repeat;;
+            box-sizing: border-box;
+            animation: arrMoving .5s ease-in-out alternate infinite;
+        }
+        .promo-tab-box button.on:after {background: url(https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_arr_bk.png) center / contain no-repeat;}
+
+        .promo-btn-box .promo-btn  {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            bottom: calc(160 / 780 * 100vw);
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(360 / 780 * 100vw);
+            height: calc(80 / 780 * 100vw);
+            box-sizing: border-box;
+            background-color: rgb(0, 0, 0);
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 500; 
+            font-size: calc(30 / 780 * 100vw);
+            letter-spacing: -.04em;
+            color: rgb(255, 255, 255);
+            transition: all .2s;
+        }
+        .promo-banner03 .promo-btn {bottom: calc(80 / 780 * 100vw);}
+
+        /* quiz */
+        .answer-btn-box {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: calc(633 / 780 * 100vw);
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(668 / 780 * 100vw);
+            height: calc(170 / 780 * 100vw);
+        }
+        .answer-btn-box button {
+            position: relative;
+            height: 100%;
+        }
+        .answer-btn-box button:nth-child(1) {width: calc(221 / 780 * 100vw);}
+        .answer-btn-box button:nth-child(2) {width: calc(228 / 780 * 100vw);}
+        .answer-btn-box button:nth-child(3) {width: calc(219 / 780 * 100vw);}
+        .answer-btn-box button .on-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: .2s;
+        }
+        .answer-btn-box button.on .on-img {opacity: 1;}
+
+        /* 릴레이특가 */
+        .date-slide {
+            position: absolute;
+            top: calc(291 / 780 * 100vw);
+            left: 0;
+            width: 100%;
+        } 
+        .date-slide .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: calc(324 / 780 * 100vw);
+            height: calc(96 / 780 * 100vw);
+            margin-left: calc(-13 / 780 * 100vw);
+            background: url(https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_date_01.png) center / contain no-repeat;
+            font-family: 'TTNormsPro-Bold', sans-serif;
+            font-size: calc(32 / 780 * 100vw);
+            letter-spacing: -.04em;
+            color: rgb(255, 162, 53);
+        }
+        .date-slide .swiper-slide.on {
+            background: url(https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_date_on_01.png) center / contain no-repeat;
+            color: rgb(255, 234, 162);
+        }
+
+        .pd-list-box {
+            position: absolute;
+            top: calc(438 / 780 * 100vw);
+            left: 0;
+            width: 100%;
+            padding-bottom: calc(70 / 780 * 100vw);
+            overflow: visible;
+        }
+        .pd__list li {
+            position: relative;
+            width: calc(378 / 780 * 100vw);
+            border-radius: calc(20 / 780 * 100vw);
+            margin: 0 calc(10 / 780 * 100vw);
+            overflow: hidden;
+            box-shadow: 0px calc(4 / 780 * 100vw) calc(8 / 780 * 100vw) calc(1 / 780 * 100vw) rgba(0, 0, 0, .2);
+        }
+        .pd__list li .thum {
+            position: relative;
+        }
+        .pd__list li .tag {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: calc(28 / 780 * 100vw);
+            bottom: calc(22 / 780 * 100vw);
+            width: calc(98 / 780 * 100vw);
+            height: calc(50 / 780 * 100vw);
+            border-radius: calc(14 / 780 * 100vw);
+            background-color: rgb(250, 166, 57);
+            font-family: 'TTNormsPro-Bold', sans-serif;
+            font-size: calc(28 / 780 * 100vw);
+            letter-spacing: -.04em;
+            color: rgb(0, 0, 0);
+        }
+        .pd__list li .info {
+            padding: calc(19 / 780 * 100vw) 0 calc(12 / 780 * 100vw);
+            box-sizing: border-box;
+            text-align: center;
+            background: rgb(254, 254, 254);
+        }
+        .pd__list li .cate._nepa {
+            width: calc(74 / 780 * 100vw);
+            height: calc(20 / 780 * 100vw);
+            margin: 0 auto;
+            background: url(https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_logo_nepa.png) center / contain no-repeat;
+        }
+        .pd__list li .cate._neki {
+            width: calc(136 / 780 * 100vw);
+            height: calc(20 / 780 * 100vw);
+            margin: 0 auto;
+            background: url(https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_logo_neki.png) center / contain no-repeat;
+        }
+        .pd__list li .name {
+            margin-top: calc(5 / 780 * 100vw);
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 500;
+            font-size: calc(28 / 780 * 100vw);
+            letter-spacing: -.04em;
+            color: rgb(0, 0, 0);
+        }
+        .pd__list li .name._long {
+            font-size: calc(25 / 780 * 100vw);
+            line-height: calc(42 / 780 * 100vw);
+            letter-spacing: -.08em;
+        }
+        .pd__list li .price {
+            margin-top: calc(12 / 780 * 100vw);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard', sans-serif;
+            font-size: calc(28 / 780 * 100vw);
+        }
+        .pd__list li .price .ori {
+            font-weight: 400;
+            color: rgb(155, 155, 155);
+        }
+        .pd__list li .price .sale {
+            font-weight: 700;
+            color: rgb(0, 0, 0);
+        }
+        .pd__list li .price .arr {
+            width: calc(10 / 780 * 100vw);
+            height: calc(20 / 780 * 100vw);
+            margin: 0 calc(20 / 780 * 100vw) 0 calc(18 / 780 * 100vw);
+            background: url(https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_price_arr.png) center / contain no-repeat;
+        }
+        .pd__list li .shop {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: calc(74 / 780 * 100vw);
+            background: rgb(0, 0, 0);
+            /*font-family: 'TT Norms Pro', sans-serif;*/
+            font-family: 'TTNormsPro-Regular', sans-serif;	
+            font-weight: 400;
+            font-size: calc(30 / 780 * 100vw);
+            color: rgb(255, 255, 255);
+        }
+        .pd__list li .shop:after {
+            content: '';
+            display: block;
+            width: calc(12 / 780 * 100vw);
+            height: calc(17 / 780 * 100vw);
+            margin-left: calc(12 / 780 * 100vw);
+            background: url(https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_shop_arr.png) center / contain no-repeat;
+            animation: arrMoving .5s ease-in-out alternate infinite;
+        }
+
+
+        .pd-list-box .scroll-bar-box {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            z-index: 3;
+            width: 100%;
+            padding: 0 calc(60 / 780 * 100vw);
+            box-sizing: border-box;	
+            transform: translateX(-50%);
+        }
+        .pd-list-box .promo-slide-pagination {
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 0 calc(60 / 780 * 100vw);
+            opacity: 0;
+        }
+        .pd-list-box .promo-slide-pagination span {
+            width: 100%;
+            height: 100%;
+            margin: 0 !important;
+            border-radius: 0;
+            cursor: pointer;
+        }
+        .pd-list-box .promo-slide-pagination + .pagination-curr-bar {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: calc(4 / 780 * 100vw);
+            background-color: rgba(164, 86, 55, .2);
+        }
+        .pd-list-box .promo-slide-pagination + .pagination-curr-bar > div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: calc(4 / 780 * 100vw);
+            background-color: rgba(164, 86, 55, 1);
+
+            transition: left 0.5s 0.0s;
+        }
+
+
+        /* 팝업 */
+        .popup-box .popup-bg-box {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+            z-index: 55;
+        }
+        .popup-box .popup-con-box {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            width: 100%;
+            max-height: calc(550 / 780 * 100vw);
+            height: fit-content;
+            padding: calc(140 / 780 * 100vw) 0 calc(100 / 780 * 100vw);
+            box-sizing: border-box;
+            transform: translate(-50%, 0%);
+            background-color: rgb(255, 255, 255);
+            z-index: 55;
+        }
+
+        .popup-box .popup-con-wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            height: fit-content;
+            text-align: center;
+        }
+        .popup-box .popup-con-wrap p {
+            padding-bottom: calc(70 / 780 * 100vw);
+            line-height: calc(38 / 780 * 100vw);
+            font-size: calc(28 / 780 * 100vw);
+            color: rgb(51, 51, 51);
+            letter-spacing: -.03em;
+        }
+        .popup-box .popup-btn-box button {
+            width: calc(660 / 780 * 100vw);
+            height: calc(90 / 780 * 100vw);
+            background-color: rgb(0, 0, 0);
+            font-size: calc(26 / 780 * 100vw);
+            font-weight: 700;
+            color: rgb(255, 255, 255);
+            letter-spacing: -.04em;
+        }
+        /* 닫기 버튼 */
+        .popup-box .promo-popup .close__btn {
+            width: calc(50 / 780 * 100vw);
+            height: calc(50 / 780 * 100vw);
+            display: block;
+            position: absolute;
+            top: calc(50 / 780 * 100vw);
+            right: calc(50 / 780 * 100vw);
+            font-size: 0; 
+        }
+        .popup-box .promo-popup .close__btn:before,
+        .popup-box .promo-popup .close__btn:after {	
+            width: calc(45 / 780 * 100vw);
+            height: calc(3 / 780 * 100vw);
+            position: absolute;
+            top: 50%;
+            left: calc(2 / 780 * 100vw);
+            background-color: rgb(0,0,0);
+            transform-origin: center center;
+            content: '';
+        }
+        .popup-box .promo-popup .close__btn:before {transform: rotate(45deg)}
+        .popup-box .promo-popup .close__btn:after {transform: rotate(-45deg)}
+
+        
+        
+        @keyframes arrw{
+            0%{opacity: 1;}
+            50%{opacity: .2;}
+            100%{opacity: 1;}
+
+        }
+        @keyframes slotRoll {
+            0% {background-position-y: 0;}
+            100% {background-position-y: calc(-1393 / 780 * 100vw);}
+        }
+        @keyframes slotRoll2 {
+            0% {background-position-y: 0;}
+            100% {background-position-y: calc(1393 / 780 * 100vw);}
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
+        @keyframes shaking {
+            0%{transform: rotate(0deg);}
+            25%{transform: rotate(5deg);}
+            50%{transform: rotate(2deg);}
+            75%{transform: rotate(3deg);}
+            100%{transform: rotate(0deg);}
+        }
+        @keyframes fadeIn {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        } 
+        @keyframes upDown {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(calc(-10 / 780 * 100vw));
+            }
+        }
+        @keyframes showUp {
+            0% {
+                opacity: 0;
+                transform: translateY(calc(40 / 780 * 100vw));
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        } 
+        @keyframes showDown {
+            0% {
+                opacity: 0;
+                transform: translateY(calc(-40 / 780 * 100vw));
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        } 
+        @keyframes showLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(calc(100 / 780 * 100vw));
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+        @keyframes showRight {
+            0% {
+                opacity: 0;
+                transform: translateX(calc(-100 / 780 * 100vw));
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+        @keyframes arrMoving {
+            0% {transform: translateX(0px);}
+            100% {transform: translateX(calc(5 / 780 * 100vw));}
+        }
+
+        .del1 {animation-delay: .2s !important;}
+        .del2 {animation-delay: .4s !important;}
+        .del3 {animation-delay: .6s !important;}
+        .del4 {animation-delay: .8s !important;}
+        .del5 {animation-delay: 1s !important;}
+        .del6 {animation-delay: 1.2s !important;}
+    </style>
+
+    <script>
+
+        function gotoScroll(val){
+            var offsetVal = $(val).offset().top;
+            $("body, html").animate({scrollTop:offsetVal},500);
+        };
+
+        // 팝업 레이어
+        function openPopLayer(val) {
+            $(val).css("display", "block");
+        }
+        function tabScrollTo(val) {
+            var tabHeight = document.querySelector('.promo-tab-box').offsetHeight;
+            var offsetVal = $(val).offset().top - tabHeight + 10;
+            $("body, html").animate({scrollTop:offsetVal},500);
+        }
+
+        function quizSelect(){
+            $('.answer-btn-box button').on('click', function() {
+                $('.answer-btn-box button').removeClass('on');
+                $(this).addClass('on');
+            });
+
+            $('.submit-btn').on('click', function() {
+                var selectedButtonIndex = $('.answer-btn-box button.on').index(); // 선택된 버튼의 인덱스
+                
+                if (selectedButtonIndex === 0 || selectedButtonIndex === 1) {
+                    openPopLayer('.promo-popup02');
+                } else if (selectedButtonIndex === 2) {
+                    //openPopLayer('.promo-popup01');
+                dataFrame.location.href = "/promotion/data/20241004/coupon_down.asp?cte=1";
+                } else {
+                    fn_alert('정답을 선택하세요.'); // 버튼이 선택되지 않았을 경우 경고
+                }
+            });
+        }
+
+        function eventTabScroll(){
+            const tabHeight = document.querySelector('.promo-tab-box').offsetHeight;
+            const tabBtns = document.querySelectorAll('.promo-tab-box > button');
+            const tabBoxs = document.querySelectorAll('.promo-tab-con');
+
+            const tabScroll = ()=> {
+                const wSt = document.querySelector('html').scrollTop; // 브라우저 스크롤 위치
+
+                for(let i = 0; i < tabBtns.length; i++){			
+
+                    if(wSt < tabBoxs[0].offsetTop - tabHeight){ // 스크롤 위치가 첫번째 박스 위치보다 낮으면
+                        for(tabBtn of tabBtns){
+                            tabBtn.classList.remove('on');
+                        }
+                    }else if(wSt >= tabBoxs[i].offsetTop - tabHeight){ // 스크롤 위치가 각 박스마다 위치해 있으면?
+                        for(tabBtn of tabBtns){
+                            tabBtn.classList.remove('on');
+                        }
+                        tabBtns[i].classList.add('on');
+                    }
+                }
+            }
+            tabScroll();
+        };
+
+
+        $(document).ready(function(){
+
+            $("body").on("click", ".promo-popup .layer_close_btn", function(){
+                $(this).parents(".promo-popup").css("display", "none");
+            });
+
+            eventTabScroll();
+            $(window).on('scroll', function(){
+                eventTabScroll();
+            });
+
+            quizSelect();
+
+            /* 슬라이드 */
+            var dataSlide = new Swiper(".date-list-box", {
+                speed: 1000,
+                slidesPerView: 'auto',
+                loop: true,
+                loopAdditionalSlides: 1,
+                centeredSlides: true,
+                on: {
+                    init: function() {
+                        var onSlide = document.querySelector('.swiper-slide.on');
+                        if (onSlide) {
+                            var activeSlideIndex = Array.prototype.indexOf.call(onSlide.parentElement.children, onSlide);
+                            this.slideToLoop(activeSlideIndex, 0);
+                        }
+                    }
+                }
+            });
+
+            /*$('.pd-list-box').each(function(index, element) {
+                let $this = $(this);  // Reference to the current .pd-list-box
+                let totalSlide = $this.find('.swiper-slide').length;
+                let $pagination = $this.find('.promo-slide-pagination');
+                let $paginationBar = $pagination.siblings('.pagination-curr-bar').find('> div');
+
+                let promoSwiper = new Swiper($this[0], {
+                    speed: 500,
+                    slidesPerView: 'auto',
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: $pagination[0],
+                        clickable: true,
+                    },
+                    loop: true,
+                    loopAdditionalSlides: 1,
+                    centeredSlides: true,
+                });
+
+                // Set initial pagination data
+                $pagination.attr('data-total-num', totalSlide);
+                $pagination.attr('data-curr-num', promoSwiper.realIndex + 1);
+                $paginationBar.css({
+                    'width': ((promoSwiper.realIndex + 1) / totalSlide) * 100 + '%',
+                    'left': (promoSwiper.realIndex / totalSlide) * 100 + '%'
+                });
+
+                // Update pagination on slide change
+                promoSwiper.on('slideChange', function () {
+                    $pagination.attr('data-curr-num', promoSwiper.realIndex + 1);
+                    $paginationBar.css({
+                        'left': (promoSwiper.realIndex / totalSlide) * 100 + '%'
+                    });
+                });
+            });*/
+
+            $('.pd-list-box').each(function(index, element) {
+                let $this = $(this);  // Reference to the current .pd-list-box
+                let totalSlide = $this.find('.swiper-slide').length;
+                let $pagination = $this.find('.promo-slide-pagination');
+                let $paginationBar = $pagination.siblings('.pagination-curr-bar').find('> div');
+
+                // Function to initialize Swiper
+                function initializeSwiper() {
+                    let promoSwiper = new Swiper($this[0], {
+                        speed: 500,
+                        slidesPerView: 'auto',
+                        autoplay: {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        },
+                        pagination: {
+                            el: $pagination[0],
+                            clickable: true,
+                        },
+                        loop: true,
+                        loopAdditionalSlides: 1,
+                        centeredSlides: true,
+                    });
+
+                    // Set initial pagination data
+                    $pagination.attr('data-total-num', totalSlide);
+                    $pagination.attr('data-curr-num', promoSwiper.realIndex + 1);
+                    $paginationBar.css({
+                        'width': ((promoSwiper.realIndex + 1) / totalSlide) * 100 + '%',
+                        'left': (promoSwiper.realIndex / totalSlide) * 100 + '%'
+                    });
+
+                    // Update pagination on slide change
+                    promoSwiper.on('slideChange', function () {
+                        $pagination.attr('data-curr-num', promoSwiper.realIndex + 1);
+                        $paginationBar.css({
+                            'left': (promoSwiper.realIndex / totalSlide) * 100 + '%'
+                        });
+                    });
+                }
+
+                // Watch for the element to become visible and initialize the swiper
+                let observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if ($this.is(':visible') && !$this.hasClass('swiper-initialized')) {
+                            // Initialize Swiper only if it's visible and not yet initialized
+                            initializeSwiper();
+                            $this.addClass('swiper-initialized'); // Prevent reinitializing
+                        }
+                    });
+                });
+
+                // Observe changes to the element's attributes (e.g., display change)
+                observer.observe(element, { attributes: true, attributeFilter: ['style', 'class'] });
+            });
+        });
+jQuery(function(){
+
+var today = new Date();
+var year = today.getFullYear(); // 년도
+var month = today.getMonth() + 1;  // 월
+var date = today.getDate();  // 날짜
+var day = today.getDay();  // 요일
+if ( month < 10 ) month = "0" + month
+if ( date < 10 ) date = "0" + date
+var fullDate = year + "-" + month + "-" + date ;
+
+//fullDate = "2024-10-09";
+
+var tabIndex = 0;
+
+if ( fullDate == "2024-10-04" || fullDate == "2024-10-05" || fullDate == "2024-10-06" || fullDate == "2024-10-07" || fullDate == "2024-10-08") {
+tabIndex = 0;
+} else if ( fullDate == "2024-10-09" || fullDate == "2024-10-10") {
+tabIndex = 1;
+} else if ( fullDate == "2024-10-11" || fullDate == "2024-10-12" || fullDate == "2024-10-13" ) {
+tabIndex = 2;
+} else if ( fullDate == "2024-10-14" || fullDate == "2024-10-15") {
+tabIndex = 3;
+} else if ( fullDate == "2024-10-16" || fullDate == "2024-10-17") {
+tabIndex = 4;
+} else if ( fullDate == "2024-10-18" || fullDate == "2024-10-19" || fullDate == "2024-10-20") {
+tabIndex = 5;
+} 
+
+jQuery(".date-list-box ul li").removeClass("on");
+jQuery(".pd-list-box").hide();
+
+//jQuery(".date-list-box ul li:eq(" + tabIndex +  ")").addClass("on");
+jQuery(".date-list-box ul li[data-swiper-slide-index=" + tabIndex +  "]").addClass("on");
+jQuery(".pd-list-box:eq(" + tabIndex +  ")").css("display", "flex");
+
+jQuery(".date-list-box").scrollLeft( jQuery(".date-list-box ul li[data-swiper-slide-index=" + tabIndex +  "]").position().left );
+})
+
+    </script>
+
+    <div class="promo-wrap">
+
+        <div class="promo-banner01 promo-banner">
+            <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_banner_01.jpg" alt="">
+            <div class="motion-box01 motion-box on">
+                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_txt_01.png" alt="" class="fadeIn del1">
+            </div>
+        </div>
+
+        <div class="promo-banner02 promo-banner">
+            <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_banner_02.jpg" alt="">
+        </div>
+
+        <div class="promo-tab-box">
+            <button type="button" onclick="tabScrollTo('#promoTab01');">신규회원혜택</button>	
+            <button type="button" onclick="tabScrollTo('#promoTab02');">퀴즈 풀고 혜택받기</button>	
+            <button type="button" onclick="tabScrollTo('#promoTab03');">마일리지 더블업</button>	
+            <button type="button" onclick="tabScrollTo('#promoTab04');">릴레이 특가</button>	
+        </div>
+
+        <div class="promo-banner03 promo-banner promo-tab-con" id="promoTab01">
+            <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_banner_03_.jpg" alt="">
+            <div class="promo-btn-box">
+                <a href="/member/join.asp" class="promo-btn">회원가입 바로가기</a>
+            </div>
+        </div>
+
+        <div class="promo-banner04 promo-banner promo-tab-con" id="promoTab02">
+            <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_banner_04.jpg" alt="">
+
+            <div class="quiz-box">
+
+                <div class="answer-btn-box">
+                    <button type="button" class="">
+                        <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_quiz_01.png" alt="">
+                        <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_quiz_01_on.png" alt="" class="on-img">
+                    </button>
+                    <button type="button" class="">
+                        <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_quiz_02.png" alt="">
+                        <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_quiz_02_on.png" alt="" class="on-img">
+                    </button>
+                    <button type="button" class="">
+                        <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_quiz_03.png" alt="">
+                        <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_quiz_03_on.png" alt="" class="on-img">
+                    </button>
+                </div>
+
+                <div class="promo-btn-box">
+                    <button type="button" class="promo-btn submit-btn" onclick="">정답 제출하기</button>
+
+                    <!--
+                        openPopLayer('.promo-popup01'); 정답 - 3번째 버튼
+                        openPopLayer('.promo-popup02'); 오답
+                        openPopLayer('.promo-popup03'); 제출 완료
+                        openPopLayer('.promo-popup04'); 로그인
+                    -->
+                </div>
+            </div>
+        </div>
+
+        <div class="promo-banner05 promo-banner promo-tab-con" id="promoTab03">
+            <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_banner_05.jpg" alt="">
+
+            <div class="promo-btn-box">
+                <button type="button" class="promo-btn" onclick="gotoScroll('#goodsBot');">상품 보러가기</button>
+            </div>
+        </div>
+
+        <div class="promo-banner06 promo-banner promo-tab-con" id="promoTab04">
+            <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_banner_06.jpg" alt="">
+
+            <div class="date-list-box date-slide swiper"> 
+                <ul class="swiper-wrapper">
+                    <li class="swiper-slide on">10.07~10.08</li> <!-- 해당 날짜에 on ---->
+                    <li class="swiper-slide ">10.09~10.10</li>
+                    <li class="swiper-slide">10.11~10.13</li>
+                    <li class="swiper-slide">10.14~10.15</li>
+                    <li class="swiper-slide">10.16~10.17</li>
+                    <li class="swiper-slide">10.18~10.20</li>
+                </ul>
+            </div>
+
+            <div class="pd-list-box swiper" style="display: block;"> <!-- 10.07 ~ 10.08 -->
+                <ul class="pd__list swiper-wrapper">
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=27578">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_a_01.jpg" alt="">
+                                <p class="tag">78%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">공용 볼케인 다운자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>309,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">69,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=27443">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_a_02.jpg" alt="">
+                                <p class="tag">79%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 씨즈 튜브 다운자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>409,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">86,900원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=23560">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_a_03.jpg" alt="">
+                                <p class="tag">81%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 지리산 집업티셔츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>104,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">19,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=29756">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_a_04.jpg" alt="">
+                                <p class="tag">73%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">공용 파이크 트레이닝 맨투맨</p>
+                                <div class="price">
+                                    <p class="ori"><del>79,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">21,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=26772">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_a_05.jpg" alt="">
+                                <p class="tag">75%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 바시코 가을 에코 팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>139,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">34,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=26884">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_a_06.jpg" alt="">
+                                <p class="tag">75%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 바시코 가을 에코팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>139,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">34,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=31273">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_a_07.jpg" alt="">
+                                <p class="tag">74%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">페페 경량 패딩자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>109,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">28,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li> 
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=30994">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_a_08.jpg" alt="">
+                                <p class="tag">65%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">파서블 폴리기모 트레이닝세트</p>
+                                <div class="price">
+                                    <p class="ori"><del>119,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">41,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="scroll-bar-box">
+                    <div class="promo-slide-pagination"></div>
+                    <div class="pagination-curr-bar">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pd-list-box swiper" style="display: none;"> <!-- 10.09 ~ 10.10 -->
+                <ul class="pd__list swiper-wrapper"> 
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=30728">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_b_01.jpg" alt="">
+                                <p class="tag">70%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 폴레오 경량 다운자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>179,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">53,700원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=30751">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_b_02.jpg" alt="">
+                                <p class="tag">70%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 폴레오 경량 다운자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>179,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">53,700원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=27639">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_b_03.jpg" alt="">
+                                <p class="tag">72%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name _long">공용 라이프스타일 플리스 우븐믹스 자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>109,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">30,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=26910">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_b_04.jpg" alt="">
+                                <p class="tag">65%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">에센셜 하프집업 맨투맨(레귤러핏)</p>
+                                <div class="price">
+                                    <p class="ori"><del>89,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">31,100원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=32032">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_b_05.jpg" alt="">
+                                <p class="tag">66%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name _long">남성 고어텍스 윈드스토퍼 트레이닝팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>139,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">47,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=26889">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_b_06.jpg" alt="">
+                                <p class="tag">78%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 마운틴 카고팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>159,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">35,700원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=31406">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_b_07.jpg" alt="">
+                                <p class="tag">74%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">그랜드 스트레치 아노락 자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>109,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">28,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=23850">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_b_08.jpg" alt="">
+                                <p class="tag">78%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">폴리 맨투맨 트레이닝 세트</p>
+                                <div class="price">
+                                    <p class="ori"><del>89,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">19,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="scroll-bar-box">
+                    <div class="promo-slide-pagination"></div>
+                    <div class="pagination-curr-bar">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pd-list-box swiper" style="display: none;">  <!-- 10.11 ~ 10.13 -->
+                <ul class="pd__list swiper-wrapper">
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=27301">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_c_01_.jpg" alt="">
+                                <p class="tag">77%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 에어그램 써모 후디 다운자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>379,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">87,700원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=25075">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_c_02.jpg" alt="">
+                                <p class="tag">72%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 프레스토 인피니움 자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>179,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">49,400원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=27650">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_c_03.jpg" alt="">
+                                <p class="tag">72%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">공용 토스티 윈드 플리스 후디자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>169,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">47,300원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=32198">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_c_04.jpg" alt="">
+                                <p class="tag">65%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 하프집업 스웨터</p>
+                                <div class="price">
+                                    <p class="ori"><del>139,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">48,600원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=26781">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_c_05.jpg" alt="">
+                                <p class="tag">70%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 마운틴 카고팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>159,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">47,700원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=23902">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_c_06.jpg" alt="">
+                                <p class="tag">73%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 마운틴 3L 팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>209,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">56,800원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=20300">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_c_07.jpg" alt="">
+                                <p class="tag">74%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">보노 케이프 자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>159,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">41,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=32321">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_pd_c_08.jpg" alt="">
+                                <p class="tag">65%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">웰즐리 여아 세트</p>
+                                <div class="price">
+                                    <p class="ori"><del>109,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">38,000원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="scroll-bar-box">
+                    <div class="promo-slide-pagination"></div>
+                    <div class="pagination-curr-bar">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pd-list-box swiper" style="display: none;">  <!-- 10.14 ~ 10.15 -->
+                <ul class="pd__list swiper-wrapper">
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=23946">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_d_01.jpg" alt="">
+                                <p class="tag">73%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 레제로 경량 다운자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>219,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">59,200원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=24137">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_d_02.jpg" alt="">
+                                <p class="tag">73%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 레제로 경량 다운자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>219,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">59,200원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=30798">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_d_03.jpg" alt="">
+                                <p class="tag">71%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 마운틴 뉴 트레일 팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>129,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">38,000원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=30756">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_d_04.jpg" alt="">
+                                <p class="tag">71%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 마운틴 뉴 트레일 팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>129,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">38,000원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=31568">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_d_05.jpg" alt="">
+                                <p class="tag">63%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 랩 하이넥 티셔츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>79,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">29,600원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=31613">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_d_06.jpg" alt="">
+                                <p class="tag">70%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 랩 하이넥 티셔츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>79,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">23,700원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=27834">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_d_07.jpg" alt="">
+                                <p class="tag">68%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">우모 롱 패딩자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>149,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">47,000원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=31385">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_d_08.jpg" alt="">
+                                <p class="tag">69%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">대시 웜 맨투맨 세트</p>
+                                <div class="price">
+                                    <p class="ori"><del>129,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">39,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="scroll-bar-box">
+                    <div class="promo-slide-pagination"></div>
+                    <div class="pagination-curr-bar">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pd-list-box swiper" style="display: none;">  <!-- 10.16 ~ 10.17 -->
+                <ul class="pd__list swiper-wrapper">
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=27583">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_e_01.jpg" alt="">
+                                <p class="tag">63%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">공용 사이폰 롱 다운자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>359,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">134,600원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=32128">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_e_02.jpg" alt="">
+                                <p class="tag">70%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 라이프 방풍자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>179,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">53,700원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=31368">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_e_03.jpg" alt="">
+                                <p class="tag">63%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 써모-퍼프 후디 패딩자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>189,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">70,800원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=29682">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_e_04.jpg" alt="">
+                                <p class="tag">63%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 써모-퍼프 후디 패딩자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>189,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">70,800원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=26889">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_e_05.jpg" alt="">
+                                <p class="tag">78%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 마운틴 카고팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>159,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">35,700원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=26778">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_e_06.jpg" alt="">
+                                <p class="tag">71%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 마운틴 하이브리드 팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>149,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">42,900원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=20313">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_e_07.jpg" alt="">
+                                <p class="tag">74%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">비스 소프트쉘 자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>99,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">26,000원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=31259">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_e_08.jpg" alt="">
+                                <p class="tag">67%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">레이오니 테리 세트</p>
+                                <div class="price">
+                                    <p class="ori"><del>119,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">39,000원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="scroll-bar-box">
+                    <div class="promo-slide-pagination"></div>
+                    <div class="pagination-curr-bar">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pd-list-box swiper" style="display: none;">  <!-- 10.18 ~ 10.20 -->
+                <ul class="pd__list swiper-wrapper">
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=27290">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_f_01.jpg" alt="">
+                                <p class="tag">76%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 씨즈 튜브 다운자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>359,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">87,000원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=27443">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_f_02.jpg" alt="">
+                                <p class="tag">79%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 씨즈 튜브 다운자켓</p>
+                                <div class="price">
+                                    <p class="ori"><del>409,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">87,000원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=26772">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_f_03.jpg" alt="">
+                                <p class="tag">75%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">남성 바시코 가을 에코 팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>139,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">34,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=26884">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_f_04.jpg" alt="">
+                                <p class="tag">75%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name">여성 바시코 가을 에코팬츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>139,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">34,500원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=30603">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_f_05.jpg" alt="">
+                                <p class="tag">58%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name _long">남성 폴라텍 마이크로플리스 집업티</p>
+                                <div class="price">
+                                    <p class="ori"><del>79,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">33,100원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=27494">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_f_06.jpg" alt="">
+                                <p class="tag">66%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _nepa"></div>
+                                <p class="name _long">여성 마운틴 소프트 플리스 집업티셔츠</p>
+                                <div class="price">
+                                    <p class="ori"><del>79,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">26,800원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=31231">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_f_07.jpg" alt="">
+                                <p class="tag">65%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">돌체 패딩 베스트</p>
+                                <div class="price">
+                                    <p class="ori"><del>79,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">27,900원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                    <li class="pd swiper-slide">
+                        <a href="/product/view.asp?pno=30965">
+                            <div class="thum">
+                                <img src="https://www.nplus.co.kr/data/promotion/pc/autumnsale/autumnsale_d_pd_f_08.jpg" alt="">
+                                <p class="tag">67%</p>
+                            </div>
+                            <div class="info">
+                                <div class="cate _neki"></div>
+                                <p class="name">챌린지 폴리 트레이닝세트</p>
+                                <div class="price">
+                                    <p class="ori"><del>109,000원</del></p>
+                                    <div class="arr"></div>
+                                    <p class="sale">35,900원</p>
+                                </div>
+                            </div>
+                            <p class="shop">SHOP</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="scroll-bar-box">
+                    <div class="promo-slide-pagination"></div>
+                    <div class="pagination-curr-bar">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="promo-banner07 promo-banner">
+            <img src="https://www.nplus.co.kr/data/promotion/mo/autumnsale/autumnsale_m_banner_07_.jpg" alt="">
+        </div>
+
+    </div>
+
+    <!-- 팝업 -->
+    <div class="popup-box">
+        <!-- 정답 -->
+        <div class="promo-popup promo-popup01" style="display: none">
+            <div class="popup-bg-box"></div>
+            <div class="popup-con-box">
+                
+                    <div class="popup-con-wrap">
+                        <p>정답입니다! <br>쿠폰이 발급되었습니다.</p>
+                        <div class="popup-btn-box">
+                            <button type="button" class="layer_close_btn">확인</button>
+                        </div>
+                    </div>
+                
+                <button type="button" class="close__btn layer_close_btn"></button>
+            </div>
+        </div>
+        <!-- //정답 -->
+
+        <!-- 오답 -->
+        <div class="promo-popup promo-popup02" style="display: none">
+            <div class="popup-bg-box"></div>
+            <div class="popup-con-box">
+                
+                    <div class="popup-con-wrap">
+                        <p>&lt;힌트&gt;<br>사이트 로고를 확인해보세요!</p>
+                        <div class="popup-btn-box">
+                            <button type="button" class="layer_close_btn">확인</button>
+                        </div>
+                    </div>
+                
+                <button type="button" class="close__btn layer_close_btn"></button>
+            </div>
+        </div>
+        <!-- //오답 -->
+
+        <!-- 제출 완료 -->
+        <div class="promo-popup promo-popup03" style="display: none">
+            <div class="popup-bg-box"></div>
+            <div class="popup-con-box">
+                
+                    <div class="popup-con-wrap">
+                        <p>이미 이벤트에 참여했습니다.</p>
+                        <div class="popup-btn-box">
+                            <button type="button" class="layer_close_btn">확인</button>
+                        </div>
+                    </div>
+                
+                <button type="button" class="close__btn layer_close_btn"></button>
+            </div>
+        </div>
+        <!-- //제출 완료 -->
+
+        <!-- 로그인 전 -->
+        <div class="promo-popup promo-popup04" style="display: none">
+            <div class="popup-bg-box"></div>
+            <div class="popup-con-box">
+                
+                    <div class="popup-con-wrap">
+                        <p>로그인 후 이용 가능합니다.</p>
+                        <div class="popup-btn-box">
+                            <button type="button" class="layer_close_btn" onclick="location.href='/member/login.asp'">확인</button>
+                        </div>
+                    </div>
+                
+                <button type="button" class="close__btn layer_close_btn"></button>
+            </div>
+        </div>
+        <!-- //로그인 전 -->
+
+    </div>
+    
+    <!-- //팝업 -->
+</body>
+</html>

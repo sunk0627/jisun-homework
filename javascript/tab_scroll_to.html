@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /*tab*/
+    .promo-tab-box {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        max-width: 1920px;
+        height: 90px;
+        margin: 0 auto;
+        background-color: rgb(25, 25, 25);
+        z-index: 3;
+    }
+
+    .promo-tab-box .inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1500px;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .promo-tab-box button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border: 1px solid rgb(89, 89, 89);
+        border-width: 0px 1px 1px 1px;
+        box-sizing: border-box;
+        background-color: rgb(25, 25, 25);
+        font-family: 'Pretendard', sans-serif;
+        font-size: 20px;
+        line-height: 30px;
+        letter-spacing: -.04em;
+        color: rgb(255, 255, 255);
+
+        transition: .2s all;
+    }
+
+    .promo-tab-box button.on,
+    .promo-tab-box button:hover {
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+        font-weight: 700;
+    }
+</style>
+
+<body>
+
+    <div class="promo-tab-box">
+        <div class="inner">
+            <button type="button" onclick="tabScrollTo('#promoTab01');">선물 팡팡 <br>출석체크 </button>
+            <button type="button" onclick="tabScrollTo('#promoTab02');">100%당첨 <br>랜덤 럭키박스 </button>
+            <button type="button" onclick="tabScrollTo('#promoTab03');">회원 단독 <br>추가혜택 </button>
+            <button type="button" onclick="tabScrollTo('#promoTab04');">스페셜 <br>블랙딜 </button>
+            <button type="button" onclick="tabScrollTo('#promoTab05');">네파러버를 <br>찾아라 </button>
+            <button type="button" onclick="tabScrollTo('#promoTab06');">생일 초대장 <br>받기 </button>
+        </div>
+    </div>
+    <div class="promo-tab-con" id="promoTab01"></div>
+    <div class="promo-tab-con" id="promoTab02"></div>
+    <div class="promo-tab-con" id="promoTab03"></div>
+    <div class="promo-tab-con" id="promoTab04"></div>
+    <div class="promo-tab-con" id="promoTab05"></div>
+    <div class="promo-tab-con" id="promoTab06"></div>
+</body>
+<script>
+    function tabScrollTo(val) {
+        var offsetVal = $(val).offset().top - 100;
+        $("body, html").animate({
+            scrollTop: offsetVal
+        }, 500);
+    }
+
+    function eventTabScroll() {
+        const tabBtns = document.querySelectorAll('.promo-tab-box button');
+        const tabBoxs = document.querySelectorAll('.promo-tab-con');
+
+        const tabScroll = () => {
+            const wSt = document.querySelector('html').scrollTop; // 브라우저 스크롤 위치
+
+            for (let i = 0; i < tabBtns.length; i++) {
+
+                if (wSt < tabBoxs[0].offsetTop - 120) { // 스크롤 위치가 첫번째 박스 위치보다 낮으면
+                    for (tabBtn of tabBtns) {
+                        tabBtn.classList.remove('on');
+                    }
+                } else if (wSt >= tabBoxs[i].offsetTop - 120) { // 스크롤 위치가 각 박스마다 위치해 있으면?
+                    for (tabBtn of tabBtns) {
+                        tabBtn.classList.remove('on');
+                    }
+                    tabBtns[i].classList.add('on');
+                }
+            }
+        }
+        tabScroll();
+    };
+
+    $(document).ready(function () {
+        eventTabScroll();
+        $(window).on('scroll', function () {
+            eventTabScroll();
+        });
+    });
+</script>
+
+</html>

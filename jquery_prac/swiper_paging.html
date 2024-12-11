@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스와이퍼 페이징 스크롤바</title>
+</head>
+<style>
+    .promo-slide .scroll-bar-box {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        z-index: 3;
+        max-width: 700px;
+        width: 100%;
+        box-sizing: border-box;
+        transform: translateX(-50%);
+    }
+
+    .promo-slider-pagination {
+        display: flex;
+        position: absolute;
+        top: -3px;
+        left: 0;
+        z-index: 3;
+        width: 100%;
+        padding: 0 40px;
+        box-sizing: border-box;
+        opacity: 0;
+    }
+
+    .promo-slider-pagination span {
+        width: 100%;
+        margin: 0 !important;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    .promo-slider-pagination+.pagination-curr-bar {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 15px;
+        background: rgba(249, 249, 249, 0.4);
+    }
+
+    .promo-slider-pagination+.pagination-curr-bar>div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: rgba(21, 134, 116, 1);
+        border-radius: 15px;
+
+        transition: left 0.5s 0.0s;
+    }
+
+    .promo-slider-pagination._hide~div {
+        visibility: hidden;
+    }
+</style>
+
+<body>
+
+    <div class="swiper promo-slide">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a href="/product/view.asp?pno=23968">
+                    <img src="https://www.nplus.co.kr/data/promotion/pc/blackfriday_2411/product_dt_1_01.png" alt="">
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="/product/view.asp?pno=27428">
+                    <img src="https://www.nplus.co.kr/data/promotion/pc/blackfriday_2411/product_dt_1_02.png" alt="">
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="/product/view.asp?pno=23850">
+                    <img src="https://www.nplus.co.kr/data/promotion/pc/blackfriday_2411/product_dt_1_11.png" alt="">
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="/product/view.asp?pno=34850">
+                    <img src="https://www.nplus.co.kr/data/promotion/pc/blackfriday_2411/product_dt_1_12.png" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="scroll-bar-box ">
+            <div class="promo-slider-pagination"></div>
+            <div class="pagination-curr-bar">
+                <div></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var totalSlide = $('.promo-slide .swiper-slide').length;
+    let promoSwiper = new Swiper(".promo-slide", {
+        speed: 500,
+        slidesPerView: 'auto',
+        slidesPerGroup: 1,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.promo-slider-pagination',
+            clickable: true
+        },
+        //effect: 'fade',
+        loop: true,
+        loopAdditionalSlides: 1,
+        centeredSlides: true,
+    });
+
+    $('.promo-slider-pagination').attr('data-total-num', totalSlide);
+    $('.promo-slider-pagination').attr('data-curr-num', promoSwiper.realIndex + 1);
+    $('.promo-slider-pagination + .pagination-curr-bar > div').css({
+        'width': ((promoSwiper.realIndex + 1) / totalSlide) * 100 + '%',
+        'left': (promoSwiper.realIndex / totalSlide) * 100 + '%'
+    });
+
+    promoSwiper.on('slideChange', function () {
+        $('.promo-slider-pagination').attr('data-curr-num', promoSwiper.realIndex + 1);
+
+        $('.promo-slider-pagination + .pagination-curr-bar > div').css({
+            'left': (promoSwiper.realIndex / totalSlide) * 100 + '%'
+        });
+    });
+</script>
+
+</html>
