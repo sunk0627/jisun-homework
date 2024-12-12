@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://www.fila.co.kr/css/common/font.css">
+	<link rel="stylesheet" href="http://www.fila.co.kr/css/common/normalize.css">
+	<link rel="stylesheet" href="http://www.fila.co.kr/css/common/opt-default.css">
+	<link rel="stylesheet" href="http://www.fila.co.kr/css/pages/layout.css?v=20170215">
+	<link rel="stylesheet" href="http://www.fila.co.kr/css/pages/sub.css?v=20170215">
+	<link rel="stylesheet" href="http://www.fila.co.kr/css/pages/brand.css">
+	<script src="http://www.fila.co.kr/js/common/libs/modernizr.custom.js"></script>
+	<script src="http://www.fila.co.kr/js/common/libs/greensock/TweenMax.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<script src="http://www.fila.co.kr/js/common/styleship/mighty.base.1.5.7.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/styleship/matizCoverLayer.3.1.0.min.js"></script>
+	<script src="http://www.fila.co.kr/js/common/styleship/matizResizeMap.1.0.0.min.js"></script>
+	<script src="https://www.keds.co.kr/pc/resource/js/lib/scrollmagic/ScrollMagic.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+
+<style>
+	/*animation setting*/
+
+	/*fadeIn 기본*/
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	/*flash*/
+	@keyframes flash {
+
+		0%,
+		100% {
+			opacity: 1;
+		}
+
+		50% {
+			opacity: .3;
+		}
+	}
+
+	/*bounce*/
+	@keyframes bounce {
+
+		0%,
+		100%,
+		20%,
+		50%,
+		80% {
+			-webkit-transform: translateY(0);
+			-ms-transform: translateY(0);
+			transform: translateY(0);
+		}
+
+		40% {
+			-webkit-transform: translateY(-10px);
+			-ms-transform: translateY(-10px);
+			transform: translateY(-10px);
+		}
+
+		60% {
+			-webkit-transform: translateY(-4px);
+			-ms-transform: translateY(-4px);
+			transform: translateY(-4px);
+		}
+	}
+
+	/*popIn 튀어나오는 효과*/
+	@keyframes popIn {
+		0% {
+			-webkit-transform: translate(0, 0) scale3d(0.1, 0.1, 0.1);
+			transform: translate(0, 0) scale3d(0.1, 0.1, 0.1);
+			opacity: 0;
+		}
+
+		40% {
+			opacity: 1;
+			-webkit-animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+			animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+			-webkit-transform: translate(0, 0) scale3d(1.08, 1.08, 1.08);
+			transform: translate(0, 0) scale3d(1.08, 1.08, 1.08);
+		}
+
+		60% {
+			-webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+			animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+			-webkit-transform: translate(0, 0) scale3d(1, 1, 1);
+			transform: translate(0, 0) scale3d(1, 1, 1);
+		}
+
+		80% {
+			-webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+			animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+			-webkit-transform: translate(0, 0) scale3d(1.03, 1.03, 1.03);
+			transform: translate(0, 0) scale3d(1.03, 1.03, 1.03);
+		}
+
+		100% {
+			-webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			-webkit-transform: translate(0, 0) scale3d(1, 1, 1);
+			transform: translate(0, 0) scale3d(1, 1, 1);
+			opacity: 1;
+		}
+	}
+
+	/*fireCracker 폭죽효과*/
+	@keyframes fireCracker {
+		0% {
+			opacity: 0;
+			transform: scale(0);
+		}
+
+		50% {
+			opacity: 1;
+			transform: scale(1);
+		}
+
+		100% {
+			opacity: 0;
+			transform: scale(1);
+		}
+	}
+
+	/*pulse 버튼 파동효과*/
+	/*
+		애니메이션 들어가는 태그에 style 필수추가
+		box-shadow: 0 0 0 0 rgba(0,0,0,1);
+	*/
+	@keyframes pulse {
+		70% {
+			box-shadow: 0 0 0 30px rgba(0, 0, 0, 0);
+		}
+
+		100% {
+			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+		}
+	}
+
+	/*rotate 회전시키기*/
+	@keyframes rotate {
+		100% {
+			transform: rotate(720deg);
+		}
+	}
+
+	/*오토슬라이드 animation.ver*/
+	/*
+		통이미지필요
+		이미지 크기에 따라 background-position이 달라짐
+	*/
+	@keyframes animatedBackground {
+		0% {
+			background-position: 0 0;
+		}
+
+		100% {
+			background-position: -2292px 0;
+		}
+	}
+
+	/*오토슬라이드 animation.ver 모바일*/
+	/*
+		통이미지필요
+		이미지 크기에 따라 background-position이 달라짐
+	*/
+	@keyframes animatedBackground_m {
+		0% {
+			background-position: 0 0;
+		}
+
+		100% {
+			background-position: 172% 0;
+		}
+	}
+
+	* {
+		padding: 0;
+		margin: 0;
+	}
+
+	body {
+		background-color: rgb(222, 222, 222);
+		margin-bottom: 100px;
+	}
+
+	.banner .rolling {
+		margin: 100px auto 0;
+		width: 100%;
+		background: url(https://assets.styleship.com/fila/event/200124/pc_rolling.png) repeat-x;
+		animation: animatedBackground 30s linear infinite;
+		height: 520px;
+		opacity: 1;
+	}
+
+	/*arrw*/
+	.arrw-box {
+		width: 35px;
+		margin: 50px auto 100px;
+		z-index: 1;
+	}
+
+	.arrw-box .arrw {
+		position: relative;
+		animation: arrw .8s infinite;
+		opacity: .5;
+	}
+
+	.arrw-box .arrw+.arrw {
+		margin: 12px 0 0;
+	}
+
+	.arrw-box .arrw span {
+		display: block;
+		width: 20px;
+		height: 3px;
+		background-color: rgb(0, 0, 0);
+		transform: rotate(35deg);
+	}
+
+	.arrw-box .arrw span+span {
+		transform: rotate(-35deg);
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	.arrw.del1 {
+		animation-delay: .2s !important;
+	}
+
+	.arrw.del2 {
+		animation-delay: .4s !important;
+	}
+
+	@keyframes arrw {
+		0% {
+			opacity: 1;
+		}
+
+		50% {
+			opacity: .2;
+		}
+
+		100% {
+			opacity: 1;
+		}
+
+	}
+
+	@media screen and (max-width: 767px) {
+		.banner .rolling {
+			margin: 50px auto 0;
+			height: auto;
+			padding-bottom: 54.22%;
+			animation: animatedBackground_m 15s linear infinite;
+			background-size: cover;
+		}
+	}
+
+	.ani_basic {
+		margin: 100px auto 0;
+		text-align: center;
+	}
+
+	.ani_basic>div {
+		display: inline-block;
+		margin: 0 100px;
+	}
+
+	.ani_basic>div p {
+		margin: 0 0 10px;
+	}
+
+	.ani_basic .fadeIn img {
+		opacity: 0;
+	}
+
+	.ani_basic .fadeIn img {
+		animation: fadeIn 1s infinite;
+	}
+
+	.ani_basic .flash img {
+		animation: flash 1s infinite;
+	}
+
+	.ani_basic .bounce img {
+		animation: bounce 1s infinite;
+	}
+
+	.ani_basic .popIn img {
+		animation: popIn 1s infinite;
+	}
+
+	.ani_basic .fireCracker img {
+		animation: fireCracker 1s infinite;
+	}
+
+	.ani_basic .pulse img {
+		animation: pulse 1.5s infinite;
+		border-radius: 50%;
+		overflow: hidden;
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+	}
+
+	.ani_basic .rotate img {
+		animation: rotate 1s infinite;
+	}
+
+	.motion-box {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.motion-box>div {
+		opacity: 0;
+		transition: all 1s;
+		transition-delay: .8s;
+	}
+
+	.motion-box.on .fadeIn {
+		animation: fadeIn 1s forwards;
+	}
+
+	.motion-tit-box .target-txt span {
+		position: relative;
+		display: inline-block;
+		/* min-width: 15px; */
+		opacity: 0;
+		font-feature-settings: "tnum";
+		font-variant-numeric: tabular-nums;
+	}
+
+	.btn_scr {
+		width: 300px;
+		height: 50px;
+		border: 1px solid #000;
+		box-sizing: border-box;
+		color: #000;
+		font-weight: 700;
+		font-size: 20px;
+	}
+
+	.box {
+		width: 500px;
+		height: 300px;
+		border: 1px solid #000;
+	}
+
+	.scr-box {
+		background: lightblue;
+		width: 500px;
+		height: 300px;
+	}
+
+	.auto-slide-box {
+		position: relative;
+		margin: 0 auto;
+		width: 1000px;
+		overflow: hidden;
+	}
+	.auto-slide-box .swiper-wrapper {
+		transition-timing-function: linear;
+	}
+	.auto-slide-box img {width: 100%;}
+	
+	.count-box {text-align: center;}
+	#countdown {
+		position: relative;
+		width: 100%;
+	}
+	#countdown .date {
+		font-family: 'GerTTv1.0-Bold', sans-serif;
+		font-weight: 700;
+		font-size: calc(94 / 780 * 100vw);
+		color: rgb(255, 255, 255);
+		line-height: calc(110 / 780 * 100vw);
+	}
+	#countdown ul {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+	#countdown ul li {
+		font-family: 'GerTTv1.0-Bold', sans-serif;
+		font-weight: 700;
+		font-size: calc(34 / 780 * 100vw);
+		color: rgb(255, 255, 255);
+		line-height: calc(50 / 780 * 100vw);
+		letter-spacing: .06em
+	}
+	#countdown ul p {
+		display: grid;
+		grid-template-columns: repeat(2,1fr);
+		width: 100%;
+		height: 100%;
+	}
+	#countdown .colon {
+		margin: 0 calc(6 / 780 * 100vw);
+	}
+	#countdown .colon span {
+		display: block;
+		margin-top: calc(-6 / 780 * 100vw);
+		font-size: calc(24 / 780 * 100vw);
+	}
+</style>
+
+<body>
+
+	<div class="ani_basic">
+		<div class="fadeIn">
+			<p>fadeIn</p>
+			<img src="https://assetscdn51.styleship.com/assets/nplus/data/promotion/pc/cocodown/cocodown_d_btn.png"
+				alt="">
+		</div>
+		<div class="flash">
+			<p>flash</p>
+			<img src="https://assetscdn51.styleship.com/assets/nplus/data/promotion/pc/cocodown/cocodown_d_btn.png"
+				alt="">
+		</div>
+		<div class="bounce">
+			<p>bounce</p>
+			<img src="https://assetscdn51.styleship.com/assets/nplus/data/promotion/pc/cocodown/cocodown_d_btn.png"
+				alt="">
+		</div>
+		<div class="popIn">
+			<p>popIn</p>
+			<img src="https://assetscdn51.styleship.com/assets/nplus/data/promotion/pc/cocodown/cocodown_d_btn.png"
+				alt="">
+		</div>
+		<div class="fireCracker">
+			<p>fireCracker</p>
+			<img src="https://assetscdn51.styleship.com/assets/nplus/data/promotion/pc/cocodown/cocodown_d_btn.png"
+				alt="">
+		</div>
+		<div class="pulse">
+			<p>pulse</p>
+			<img src="https://assetscdn51.styleship.com/assets/nplus/data/promotion/pc/cocodown/cocodown_d_btn.png"
+				alt="">
+		</div>
+		<div class="rotate">
+			<p>rotate</p>
+			<img src="https://assetscdn51.styleship.com/assets/nplus/data/promotion/pc/cocodown/cocodown_d_btn.png"
+				alt="">
+		</div>
+	</div>
+
+	<div class="motion">
+		<!-- 눈 -->
+		<div class="snow-box"></div>
+		<!-- 모션 -->
+		<div class="motion-box01 motion-box">
+			<div class="motion-tit-box fadeIn">
+				<p class="target-txt01 target-txt" data-ani="fadeIn" data-timing="100">
+					sample&nbsp;sampls&nbsp;amplesa&nbsp;mplesamplesamp&nbsp;lesa&nbsp;m&nbsp;plesam&nbsp;plesamplesamplee
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="banner">
+		<div class="rolling"></div>
+	</div>
+
+	<div class="arrw-box">
+		<div class="arrw"><span></span><span></span></div>
+		<div class="arrw del1"><span></span><span></span></div>
+		<div class="arrw del2"><span></span><span></span></div>
+	</div>
+
+	<a href="javascript:gotoScroll('#scrollBox');" class="btn_scr">scroll button</a>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div id="scrollBox" class="scr-box"></div>
+
+	<div class="auto-slide-box">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide"><img src="https://www.columbiakorea.co.kr/pc/event/241216/images/gear_up_for_winter_trails_d_ban01.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="https://www.columbiakorea.co.kr/pc/event/241216/images/gear_up_for_winter_trails_d_ban01.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="https://www.columbiakorea.co.kr/pc/event/241216/images/gear_up_for_winter_trails_d_ban01.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="https://www.columbiakorea.co.kr/pc/event/241216/images/gear_up_for_winter_trails_d_ban01.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="https://www.columbiakorea.co.kr/pc/event/241216/images/gear_up_for_winter_trails_d_ban01.jpg" alt=""></div>
+		</div>
+	</div>
+
+	<div class="count-box fadeIn del1">
+		<div id="countdown">
+			<ul>
+				<li class="count_num">
+					<p style="display: flex;">
+						<span class="days"></span>
+						&nbsp;DAYS&nbsp;
+					</p>													
+				</li>
+				<li class="count_num">
+					<p id="hours">
+						<span class="hours01">0</span>
+						<span class="hours02">0</span>
+					</p>
+				</li>
+				<li class="colon"><span>:</span></li>
+				<li class="count_num">
+					<p id="minutes">
+						<span class="minutes01">0</span>
+						<span class="minutes02">0</span>
+					</p>
+				</li>
+				<li class="colon"><span>:</span></li>
+				<li class="count_num">
+					<p id="seconds">
+						<span class="seconds01">0</span>
+						<span class="seconds02">0</span>
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</body>
+<script>
+	$(function () {
+		//자동롤링
+		var swiper = new Swiper('.auto-slide-box', {
+			speed: 4e3,
+			slidesPerView: 'auto',
+			freeMode: true,
+			autoplay: {
+				delay: 0,
+				disableOnInteraction: false
+			},
+			allowTouchMove: false,
+			loop: true,
+			loopAdditionalSlides: 1,
+			centeredSlides: true,
+		});
+	});
+</script>
+<script>
+	
+	(function () {
+
+const second = 1000,
+
+	minute = second * 60,
+
+	hour = minute * 60,
+
+	day = hour * 24;
+
+//I'm adding this section so I don't have to keep updating this pen every year :-)
+
+//remove this if you don't need it
+
+let today = new Date(),
+
+	dd = String(today.getDate()).padStart(2, "0"),
+
+	mm = String(today.getMonth() + 1).padStart(2, "0"),
+
+	yyyy = today.getFullYear(),
+
+	nextYear = yyyy,
+
+	dayMonth = "06/14/",
+
+	birthday = dayMonth + yyyy;
+
+
+today = mm + "/" + dd + "/" + yyyy;
+
+if (today > birthday) {
+
+birthday = dayMonth + nextYear;
+
+}
+
+//end
+
+const countDown = new Date('2024-12-06T10:00:00').getTime(),
+
+	x = setInterval(function() {    
+
+
+
+	const now = new Date().getTime(),
+
+			distance = countDown - now;
+
+	const leftDays = Math.floor(distance / (day)),
+			leftHours = Math.floor((distance % (day)) / (hour)),
+			leftMinutes = Math.floor((distance % (hour)) / (minute)),
+			leftSeconds = Math.floor((distance % (minute)) / second);
+
+	/* document.getElementById("days").innerText = String(leftDays).padStart(2, "0"),
+
+		document.getElementById("hours").innerText = String(leftHours).padStart(2, "0"),
+
+		document.getElementById("minutes").innerText = String(leftMinutes).padStart(2, "0"),
+
+		document.getElementById("seconds").innerText = String(leftSeconds).padStart(2, "0"),*/
+
+		document.querySelector(".days").innerText = Math.floor(distance / (day));
+
+		const padTxtHours = String(leftHours).padStart(2, "0");
+		document.querySelector('.hours01').innerText = padTxtHours.substr(0, 1);
+		document.querySelector('.hours02').innerText = padTxtHours.substr(1, 1);
+
+		const padTxtMinutes = String(leftMinutes).padStart(2, "0");
+		document.querySelector('.minutes01').innerText = padTxtMinutes.substr(0, 1);
+		document.querySelector('.minutes02').innerText = padTxtMinutes.substr(1, 2);
+
+
+		const padTxtSeconds = String(leftSeconds).padStart(2, "0");
+		document.querySelector('.seconds01').innerText = padTxtSeconds.substr(0, 1);
+		document.querySelector('.seconds02').innerText = padTxtSeconds.substr(1, 2);
+
+	/* document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+
+		document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+
+		document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);*/
+
+
+
+	//do something later when date is reached
+
+	if (distance < 0) {
+
+		document.getElementById("headline").innerText = "End";
+
+		document.getElementById("countdown").style.display = "none";
+
+		document.getElementById("content").style.display = "block";
+
+		clearInterval(x);
+
+	}
+
+	//seconds
+
+	}, 1)
+
+}());
+</script>
+<script>
+	// split text
+	function splitTxt() {
+
+		$(".target-txt").each(function () {
+
+			// target text variable
+			var target = $(this);
+			var targetTxt = target.text();
+			var targetSplit = targetTxt.split('');
+
+			// tartget animation variable
+			var targetAni = target.attr('data-ani');
+			var targetTiming = target.attr('data-timing');
+
+			$(this).empty();
+
+			$.each(targetSplit, function (index, char) {
+				var eachTxt = $('<span>' + char + '</span>').appendTo(target);
+
+				function eachClass() {
+					setTimeout(function () {
+						eachTxt.addClass(targetAni);
+
+						// Check if it's the last character
+						if (index === targetSplit.length - 1) {
+							// Add fadeIn class to .motion-txt-box element
+							$('.motion-txt-box').addClass('fadeIn');
+						}
+					}, targetTiming * index); // class 부여 간격
+				}
+
+				$(window).on('load', function () {
+					if (target.parents('.motion-box').hasClass('on')) {
+						eachClass();
+					}
+				})
+				$(window).on('scroll', function () {
+					if (target.parents('.motion-box').hasClass('on')) {
+						eachClass();
+					}
+				})
+			})
+		})
+	}
+
+	$(document).ready(function () {
+
+		var controller = new ScrollMagic.Controller();
+		var num = $('.motion-box').length;
+		for (i = 1; i < num + 1; i++) {
+			//banner
+			var banner = new ScrollMagic.Scene({
+					triggerElement: ".motion-box0" + i + "",
+					duration: 0,
+					triggerHook: 0.7,
+					reverse: false,
+					offset: 0,
+				})
+				/*.addIndicators({
+					name:"banner03",
+					indent:0,
+					colorStart:"red",
+					colorEnd:"red",
+					colorTrigger:"red"
+				})*/
+				.setClassToggle(".motion-box0" + i + "", "on")
+				.addTo(controller);
+		}
+
+		splitTxt();
+
+	});
+</script>
+<script>
+	// snow motion
+	function snowMotion() {
+
+		let boxName,
+			boxNameEl,
+			num,
+			temp,
+			snowStyle,
+			snowStyleMotion,
+			snowPosX, snowPosY;
+
+
+		boxName = '.snow-box';
+		boxNameEl = document.querySelector(boxName);
+
+		num = 70;
+
+
+		// 스타일
+		snowStyle = `
+			<style>
+				${boxName},
+				${boxName} > .snow-motion {
+					overflow: hidden;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					z-index: 12;
+					pointer-events: none;
+				}
+
+				._snow {
+					position: absolute;
+					background: rgb(255,255,255);
+					border-radius: 50%;
+
+					animation: snowDown 30s infinite linear;
+				}
+				._snow:before {
+					display: block;
+					padding-top: 100%;
+					content: '';
+				}
+
+				@keyframes snowDown {
+					100% {top: 100%;}
+				}
+				
+			</style>
+		`;
+		boxNameEl.insertAdjacentHTML('beforeend', snowStyle);
+
+
+		// 눈
+		boxNameEl.insertAdjacentHTML('beforeend', '<div class="snow-motion"></div>');
+
+		for (let i = 1; i < (num + 1); i++) {
+			snowPosX = Math.floor(Math.random() * window.innerWidth);
+			snowPosY = Math.floor(Math.random() * window.innerHeight);
+
+			function numRandom(min, max) {
+				return Math.floor(Math.random() * (max - min)) + min;
+			}
+
+			temp = `
+				<div class="_snow _snow${i}" style="
+					top: -${snowPosY}px; 
+					left: ${snowPosX}px; 
+					width: ${numRandom(2, 10)}px;
+					animation-duration: ${numRandom(5, 20)}s;
+				"></div>
+			`;
+
+			document.querySelector('.snow-box > .snow-motion').insertAdjacentHTML('beforeend', temp);
+		}
+
+	}
+
+	snowMotion();
+</script>
+<script>
+	//scroll
+	function gotoScroll(val) {
+		var offsetVal = jQuery(val).offset();
+		var topVal = (offsetVal.top) - 10;
+		jQuery("body,html").animate({
+			scrollTop: topVal
+		}, 500);
+
+	}
+</script>
+
+</html>

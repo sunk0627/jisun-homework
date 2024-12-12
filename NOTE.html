@@ -198,13 +198,13 @@ $('.slider').on('init', function(event, slick) {
 
 ---------------------------------------------------
 <!-- 비디오 영역 -->
-						<div class="video-box">
-							<div>
-								<iframe src="https://www.youtube.com/embed/Q0G-aB5RoiY?amp;autoplay=1&amp;playlist=Q0G-aB5RoiY&amp;loop=1&amp;mute=1" frameborder="0" allowfullscreen="" allow="autoplay" data-gtm-yt-inspected-12640479_8="true">
-								</iframe>
-							</div>
-						</div>					
-						<!-- //비디오 영역 -->
+<div class="video-box">
+	<div>
+		<iframe src="https://www.youtube.com/embed/Q0G-aB5RoiY?amp;autoplay=1&amp;playlist=Q0G-aB5RoiY&amp;loop=1&amp;mute=1" frameborder="0" allowfullscreen="" allow="autoplay" data-gtm-yt-inspected-12640479_8="true">
+		</iframe>
+	</div>
+</div>					
+<!-- //비디오 영역 -->
 
 ---------------------------------------------------
 [흐르는 스와이퍼]
@@ -974,7 +974,7 @@ var swiper = new Swiper('.choco-slide-box', {
 	</div>
 	
 	------------------------------------------------------
-	nction(fileName){
+	function(fileName){
 		var popup = function(){
 			$.ajax({
 				type: 'GET',
@@ -1002,15 +1002,120 @@ var swiper = new Swiper('.choco-slide-box', {
 		});
 	},
 	
-	
-	
 	sports.layer.popSus('sus1');
 	sports.layer.popSus('sus2')
-	;------------------------------------------------------
+	------------------------------------------------------
 	
 	블프
 	https://www.fila.co.kr/pc/event/blackfriday2023/index_231127.asp
 	https://www.nplus.co.kr/pc/promotion/blackfriday24/
+
+	------------------------------------------------------
+	모바일
+	//2022-06-28
+	$('.join_table td .cbox .list > li').each(function(idx){
+		$(this).find('.join_scroll').addClass('_lyr0' + idx);// li 아래 .join_scroll 박스에 _lyr0 + 0[순서만큼] 추가
+
+		$('.join_table td .cbox .list > li .join_scroll._lyr0' + idx + ' .tab li').on('click', function(e){// join_scroll._lyr00 .tab li를 click했을때
+			e.preventDefault();
+			
+			var tab_idx = $(this).index(); // .tab li의 index를 구해
+
+			$('.join_table td .cbox .list > li .join_scroll._lyr0' + idx + ' .tab li').removeClass('on'); // lyr00 .tab li 클래스 on을 빼 
+			$(this).addClass('on'); // .tab li에 on 클래스를 넣어
+
+			$('.join_table td .cbox .list > li .join_scroll._lyr0' + idx + ' .tab-content').removeClass('on'); // .con_lyr00 .tab-content에 클래스 on을 빼
+			$('.join_table td .cbox .list > li .join_scroll._lyr0' + idx).find('.tab-content').eq(tab_idx).addClass('on'); // con_lyr00 아래 .tab-content를 찾아서 tab_idx순서대로 클래스 on을 넣어
+		});
+		
+	});
+
+데스크탑
+
+	$('.cert-box .list > li').each(function(idx){
+		$(this).find('.con').addClass('_lyr0' + idx);// li 아래 .con 박스에 _lyr0 + 0[순서만큼] 추가
+
+		$('.cert-box .list > li .con._lyr0' + idx + ' .tab li').on('click', function(e){// con._lyr00 .tab li를 click했을때
+			e.preventDefault();
+			
+			var tab_idx = $(this).index(); // .tab li의 index를 구해
+
+			$('.cert-box .list > li .con._lyr0' + idx + ' .tab li').removeClass('on'); // lyr00 .tab li 클래스 on을 빼 
+			$(this).addClass('on'); // .tab li에 on 클래스를 넣어
+
+			$('.cert-box .list > li .con._lyr0' + idx + ' .tab-content').removeClass('on'); // .con_lyr00 .tab-content에 클래스 on을 빼
+			$('.cert-box .list > li .con._lyr0' + idx).find('.tab-content').eq(tab_idx).addClass('on'); // con_lyr00 아래 .tab-content를 찾아서 tab_idx순서대로 클래스 on을 넣어
+		});
+		
+	});
+	------------------------------------------------------
+	function ADB() {
+		var timeoutId = false;
+		$("#animate").hover(function () {
+			timeoutId = setTimeout(function () {
+			  $("content").animate({"display":"block", ... 생략);
+			}, 3000);
+		  },
+		  function () {
+			  if (timeoutId) {
+				  clearTimeout(timeoutId);
+			  }
+			  timeoutId = false;
+		  });
+	  }
+	  
+	------------------------------------------------------
+
+height 비율구하기% : 세로/가로*100
+top %구하기 : 높이값 / 부모박스 높이값 * 100
+width 비율구하기% : 해당박스/부모의가로길이*100
+
+height vh구하기 : 해당 박스 height값/전체height값*100
+height vw구하기 : 해당 박스height값 / 전체width값 * 100
+width vw구하기 : 해당박스 width값 / 전체 문서 width값 *100
+
+[이미지 가로 길이/너비 구하기]
+이미지 가로길이 / 전체길이 * 100 = 1개 이미지 퍼센트 값
+퍼센트 값 * 3 (3개일 경우) = 3개 곱한 값
+100(퍼센트) - 3개 곱한값 = 간격 합한 값
+간격 합한 값 / 2 (3개일 경우 간격 1줄에 2개 나옴) = 간격 1개 값
+
+또는
+
+[간격이 일정한 경우]
+calc(너비 - 간격)
+calc(33.33333% - 30px)
+
+
+
+[1200 px ~ 1600px ] pc 반응형
+
+[$('.btn_close').on('click')을 못찾는 이유]
+-> 처음에 .btn_close가 display:none된 상태로 위치하기때문에.
+-> 해결 $(body)를 먼저 찾고 on('click', '.btn_close')
+	$('body').on('click', '.btn_close',  function(){
+		console.log('click');
+		$(this).parents().find('.filter').removeClass('on');
+	});
+
+
+※자동재생 기본조건  [ mute = 1 ]
+
+[label check script]
+	$('.join_terms.new210304 li.all label').on('click', function(){
+		//console.log('aaa');
+
+		//$('.join_terms.new220622 li.all').toggleClass('on');
+		//$(this).parents('ul').find('li').not('li:first-child').toggleClass('show');
+		
+		var tInput = $(this).parents('li.all').find('input');
+		
+		if(tInput.prop('checked') == true){
+			$('.join_terms.new210304 li').removeClass('on');
+		}else{
+			$('.join_terms.new210304 li').addClass('on');
+		}
+
 >>>>>>> 192057430aa0df14038af57b02256a53cde8890c
 </body>
 </html>
