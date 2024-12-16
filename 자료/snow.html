@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <title>SNOW</title>
+
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>-->
+
+</head>
+<body>
+
+    
+	<div class="snow-box">
+		
+	</div>
+	
+	
+</body>
+
+<style>
+	*{padding: 0;margin: 0;}
+	
+	body {background-color: black;}
+</style>
+
+<script>
+	function snowMotion(){
+
+		let boxName,
+			boxNameEl,
+			num,
+			temp,
+			snowStyle,
+			snowStyleMotion,
+			snowPosX, snowPosY;
+
+		
+		boxName = '.snow-box';
+		boxNameEl = document.querySelector(boxName);
+
+		num = 50;		
+
+
+		// 스타일
+		snowStyle = `
+			<style>
+				${boxName},
+				${boxName} > .motion-box {
+					overflow: hidden;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+				}
+
+				._snow {
+					position: absolute;
+					background-color: rgb(255,255,255);
+					border-radius: 50%;
+
+					animation: snowDown 30s infinite linear;
+				}
+				._snow:before {
+					display: block;
+					padding-top: 100%;
+					content: '';
+				}
+
+				@keyframes snowDown {
+					100% {top: 100%;}
+				}
+				
+			</style>
+		`;
+		boxNameEl.insertAdjacentHTML('beforeend', snowStyle);		
+		
+
+		// 눈
+		boxNameEl.insertAdjacentHTML('beforeend', '<div class="motion-box"></div>');
+
+		for(let i = 1; i < (num + 1); i++){
+			snowPosX = Math.floor(Math.random() * window.innerWidth);			
+			snowPosY = Math.floor(Math.random() * window.innerHeight);
+
+			function numRandom(min, max){
+				return Math.floor(Math.random() * (max - min)) + min;
+			}
+
+			temp = `
+				<div class="_snow _snow${i}" style="
+					top: -${snowPosY}px; 
+					left: ${snowPosX}px; 
+					width: ${numRandom(2, 6)}px;
+					animation-duration: ${numRandom(10, 30)}s;
+				"></div>
+			`;		
+
+			document.querySelector('.snow-box > .motion-box').insertAdjacentHTML('beforeend', temp);
+		}
+
+	}
+
+	snowMotion();
+
+</script>
+
+</html>

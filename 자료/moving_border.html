@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<!--[if IE 6]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 ie6" lang="ko-KR"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 ie7" lang="ko-KR"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9 ie8" lang="ko-KR"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 ie9" lang="ko-KR"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="ko-KR"> <!--<![endif]-->
+<head>
+
+<meta charset="UTF-8">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+<title>기획전 | FILA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.1, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+
+<link rel="stylesheet" href="https://www.fila.co.kr/pc/resource/css/normalize.css">
+<link rel="stylesheet" href="https://www.fila.co.kr/pc/resource/css/opt-default.css">
+<link rel="stylesheet" href="https://www.fila.co.kr/pc/resource/css/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://www.fila.co.kr/pc/resource/css/layout.css?v=202303151053">
+<link rel="stylesheet" href="https://www.fila.co.kr/pc/resource/css/product.css?v=202304121351">
+<link rel="stylesheet" href="https://www.fila.co.kr/pc/resource/css/sub.css?v=202303291539">
+
+<script src="https://assetscdn.styleship.com/assets/filaweb1/pc/resource/js/lib/greensock/TweenMax.min.js"></script>
+<script src="https://assetscdn.styleship.com/assets/filaweb1/pc/resource/js/lib/jquery-1.12.4.min.js"></script>
+<script src="https://assetscdn.styleship.com/assets/filaweb1/pc/resource/js/lib/mighty.base.1.5.7.min.js"></script>
+<script src="https://assetscdn.styleship.com/assets/filaweb1/pc/resource/js/lib/matizResizeMap.1.0.0.min.js"></script>
+<script src="https://assetscdn.styleship.com/assets/filaweb1/pc/resource/js/lib/swiper-bundle.min.js"></script>
+
+<script src="https://www.fila.co.kr/pc/resource/js/pages/default.js?v=202304111038"></script>
+
+
+<!-- 개별 css, js -->
+<script src="https://www.fila.co.kr/pc/resource/js/pages/sports.js?v=202303141738"></script>
+<script src="https://www.fila.co.kr/pc/resource/js/pages/main.js"></script>
+
+</head>
+<body class="">
+	<!-- start of :: wrap -->
+	<div id="wrap">
+
+		<!-- start of :: contents -->
+		<div id="contents" class="brand__contents">
+			<section class="brand-view-box">
+				<div class="head">
+					<p class="tit"></p>
+				</div>
+
+				<div class="con">
+					<!-- 에디터 영역 -->
+					<style>
+
+
+						.banner {
+							position: relative;
+							max-width: 1920px;
+							margin: 0 auto;
+							overflow: hidden;
+						}
+						.link_btn {
+							width: 42px;
+							height: 42px;
+							position: absolute;
+							right: 0;
+						}
+						.link {
+							width: 20px;
+							height: 20px;
+							position: absolute;
+						}
+
+
+						.banner02 {
+							position: relative;	
+							background: url(https://web1.fila.co.kr/data/ContentsFile/secret_cp_230711_d_banner02_.jpg) center no-repeat;
+							height: 872px; 
+						}	
+
+						.bg-box{
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+							opacity: 0;
+							animation: fadeIn 1s forwards;
+						}
+
+						@keyframes fadeIn{
+							0%{opacity: 0;}
+							100%{opacity: 1;}
+						}
+
+						/*.banner02 a{
+							position: absolute;
+							top: 576px;
+							left: 50%;
+							transform: translateX(-50%);
+							width: 202px;
+							height: 51px;
+							box-sizing: border-box;	
+							/*border: 2px solid rgb(249, 211, 27);
+							transition: .2s;
+						}*/
+						.banner02 .cp-btn{
+							position: absolute;
+							top: 576px;
+							left: 50%;
+							transform: translateX(-50%);
+							width: 202px;
+							height: 51px;
+							font-size: 18px;
+							font-weight: 500;
+							color: #fff;
+							transition: all .4s;
+							text-align: center;
+							line-height: 51px;
+							background-color: #000;
+							/*border: 2px solid transparent;*/
+							transition: all 500ms cubic-bezier(.77, 0, .175, 1)
+
+						}
+						.cp-btn:hover {
+						  border: none;
+						  background-color: #fff;
+						  color: #000;
+						}
+						.cp-btn:hover .line-1 {
+						  animation: move1 1500ms infinite ease;
+						}
+						.cp-btn:hover .line-2 {
+						  animation: move2 1500ms infinite ease;
+						}
+						.cp-btn:hover .line-3 {
+						  animation: move3 1500ms infinite ease;
+						}
+						.cp-btn:hover .line-4 {
+						  animation: move4 1500ms infinite ease;
+						}
+
+						.cp-btn span{
+							position: absolute;
+							background-color: #000;
+						}
+						.line-1 {	
+						  width: 1px;
+						  left: 0;
+						  bottom: 0;
+						}
+						.line-2 {
+						  height: 1px;				
+						  left: 0;
+						  top: 0;
+						}
+						.line-3 {	
+						  width: 1px;
+						  right: 0;
+						  top: 0;
+						}
+						.line-4 {
+						  height: 1px;
+						  right: 0;
+						  bottom: 0;
+						}
+
+						@keyframes move1 {
+						  0% {
+							height: 100%;
+							bottom: 0;
+						  }
+						  54% {
+							height: 0;
+							bottom: 100%;
+						  }
+						  55% {
+							height: 0;
+							bottom: 0;
+						  }
+						  100% {
+							height: 100%;
+							bottom: 0;
+						  }
+						}
+						@keyframes move2 {
+						  0% {
+							width: 0;
+							left: 0;
+						  }
+						  50% {
+							width: 100%;
+							left: 0;
+						  }
+						  100% {
+							width: 0;
+							left: 100%;
+						  }
+						}
+						@keyframes move3 {
+						  0% {
+							height: 100%;
+							top: 0;
+						  }
+						  54% {
+							height: 0;
+							top: 100%;
+						  }
+						  55% {
+							height: 0;
+							top: 0;
+						  }
+						  100% {
+							height: 100%;
+							top: 0;
+						  }
+						}
+						@keyframes move4 {
+						  0% {
+							width: 0;
+							right: 0;
+						  }
+						  55% {
+							width: 100%;
+							right: 0;
+						  }
+						  100% {
+							width: 0;
+							right: 100%;
+						  }
+						}
+
+					</style>
+
+					<script>
+
+
+					</script>
+
+
+					<div class="banner02 banner">
+                        <a href="" class="cp-btn">
+							쿠폰 모두 받기
+							<span class="line-1"></span>
+							<span class="line-2"></span>
+							<span class="line-3"></span>
+							<span class="line-4"></span>
+						</a>
+						
+					</div>
+						
+
+					<!-- //에디터 영역 -->
+				</div>
+			</section>
+		</div>
+		<!-- // end of :: contents -->
+
+	</div>
+    <!-- // end of :: wrap -->    
+</body>
+</html>
